@@ -44,10 +44,13 @@ public interface IUserService
   [WebGet]
   User Login(string username, string password);
 
+  [WebGet]
   List<User> GetAllUsers();
 
+  [WebInvoke]
   bool DeleteUser(string username);
 
+  [WebInvoke]
   User AddUser(string username, string password);
 
 

@@ -64,11 +64,18 @@ public interface ITripService
   [OperationContract]
   [WebGet]
   Trip[] GetTripsByUsername(string username);
+  [WebGet]
   Trip[] GetAllTrips();
+  [WebGet]
   Trip[] GetTripsByParams(string tripName, int tripDuration);
+  [WebGet]
   Trip[] GetTripsByParams(string tripName);
+  [WebGet]
   Trip[] GetTripsByParams(int tripDuration);
+  [WebInvoke]
   bool DeleteTripsByUsername(string username);
+  [WebInvoke]
   bool DeleteTrip(int tripId);
+  [WebInvoke]
   bool AddTrip(string username);
 }

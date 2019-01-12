@@ -18,5 +18,6 @@ public class GeneralService : IGeneralService
 public interface IGeneralService
 {
   [OperationContract]
+  [WebGet]
   void GetMap();
 }
