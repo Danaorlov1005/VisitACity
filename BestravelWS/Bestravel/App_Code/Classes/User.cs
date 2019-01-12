@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,19 +8,20 @@ using System.Web;
 /// </summary>
 public class User
 {
-    private string username { get; set; }
-    private string password { get; set; }
-    public int[] trips { get; set; }
+  public int userId { get; set; }
+  private string username { get; set; }
+  private string password { get; set; }
+  public int[] trips { get; set; }
 
-    public User(string username, string password)
-    {
-        this.username = username;
-        this.password = password;
-        this.trips = new int[0];
-    }
+  public User(string username, string password)
+  {
+    this.username = username;
+    this.password = password;
+    this.trips = new int[0];
+  }
 
-    public void ChangePassword(string password)
-    {
-        this.password = password;
-    }
+  public void ChangePassword(string password)
+  {
+    this.password = password;
+  }
 }

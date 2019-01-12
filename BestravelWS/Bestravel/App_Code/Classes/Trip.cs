@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,12 +8,15 @@ using System.Web;
 /// </summary>
 public class Trip
 {
-
-    public Location[] locations { get; set; }
-    public Trip()
-    {
-        //
-        // TODO: Add constructor logic here
-        //
-    }
+  public int tripId { get; set; }
+  public string tripName { get; set; }
+  public int tripDuration { get; set; }
+  public string tripCity { get; set; }
+  public Location[] locations { get; set; }
+  public Trip()
+  {
+    //
+    // TODO: Add constructor logic here
+    //
+  }
 }

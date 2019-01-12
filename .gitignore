@@ -92,3 +92,4 @@ yarn-error.log
 yarn.lock
 /e2e/REPORTS
 *.patch
+/BestravelWS/.vs/Bestravel/v15/Server/sqlite3
