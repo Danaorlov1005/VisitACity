@@ -12,6 +12,21 @@ using System.Text;
 
 public class UserService : IUserService
 {
+  public User AddUser(string username, string password)
+  {
+    throw new NotImplementedException();
+  }
+
+  public bool DeleteUser(string username)
+  {
+    throw new NotImplementedException();
+  }
+
+  public List<User> GetAllUsers()
+  {
+    throw new NotImplementedException();
+  }
+
   public User Login(string username, string password)
   {
     // שליפה של משתמש
@@ -34,5 +49,6 @@ public interface IUserService
   bool DeleteUser(string username);
 
   User AddUser(string username, string password);
+
 
 }
