@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -12,21 +12,27 @@ using System.Text;
 
 public class UserService : IUserService
 {
-	public User Login(string username, string password)
-	{
-        // שליפה של משתמש
+  public User Login(string username, string password)
+  {
+    // שליפה של משתמש
 
-        return new User("","");
-	}
-    
+    return new User("", "");
+  }
+
 }
 
 
 [ServiceContract]
 public interface IUserService
 {
-    [OperationContract]
-    [WebGet]
-    User Login(string username, string password);
+  [OperationContract]
+  [WebGet]
+  User Login(string username, string password);
+
+  List<User> GetAllUsers();
+
+  bool DeleteUser(string username);
+
+  User AddUser(string username, string password);
 
 }

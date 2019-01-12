@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
@@ -11,12 +11,6 @@ using System.Web;
 /// 
 public class TripService : ITripService
 {
-    public TripService()
-    {
-        //
-        // TODO: Add constructor logic here
-        //
-    }
 
     public Trip[] GetTrips(string username)
     {
