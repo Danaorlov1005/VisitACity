@@ -11,6 +11,11 @@ using System.Web;
 /// 
 public class TripService : ITripService
 {
+  public IEnumerable<dynamic> get()
+  {
+    return DBAccses.getTrips();
+  }
+
   public bool AddTrip(string username)
   {
     throw new NotImplementedException();
@@ -46,10 +51,10 @@ public class TripService : ITripService
     throw new NotImplementedException();
   }
 
-  public Trip[] GetTripsByParams(int tripDuration)
-  {
-    throw new NotImplementedException();
-  }
+  //public Trip[] GetTripsByParams(int tripDuration)
+  //{
+  //  throw new NotImplementedException();
+  //}
 
   public Trip[] GetTripsByUsername(string username)
   {

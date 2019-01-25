@@ -11,7 +11,7 @@ public class GeneralService : IGeneralService
 {
   public void GetMap()
   {
-    GlobalAPI.GetMap();
+    //GlobalAPI.GetMap();
   }
 }
 
