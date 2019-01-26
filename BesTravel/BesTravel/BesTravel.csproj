@@ -203,10 +203,18 @@
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="DBAccses.cs" />
+    <Compile Include="Consts.cs" />
     <Compile Include="externalServices.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Const.cs" />
+    <Compile Include="Models\Geometry.cs" />
+    <Compile Include="Models\Location.cs" />
+    <Compile Include="Models\OpeningHours.cs" />
+    <Compile Include="Models\Photo.cs" />
+    <Compile Include="Models\PlacesApiQueryResponse.cs" />
+    <Compile Include="Models\Result.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -265,7 +273,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

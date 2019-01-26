@@ -3,6 +3,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 
@@ -12,11 +13,12 @@ using System.Web.Http;
 public class TripController : ApiController
 {
    [HttpGet]
-  public IEnumerable<dynamic> getTrips()
+  public async Task<dynamic> getTrips()
   {
-        return DBAccses.getTrips();
+    return await tripBL.getDataForClient("", 1);
   }
 
+  [ActionName("getTripByFilters")]
   public static JObject getTripByFilters(JObject data)
   {
     string tripLocation = data["tripLocation"].ToString();

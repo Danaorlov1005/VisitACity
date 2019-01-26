@@ -12,7 +12,7 @@ namespace BesTravel.Controllers
     public int sport { get; set; }
     public int romantic { get; set; }
     public int family { get; set; }
-    public FoodGenre cuisine { get; set; }
+    //public FoodGenre cuisine { get; set; }
 
   }
 }

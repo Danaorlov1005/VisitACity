@@ -8,11 +8,11 @@ using System.Web;
 /// </summary>
 public class Location
 {
-  public int locationId { get; set; }
-  public int locationX { get; set; }
-  public int locationY { get; set; }
-  public int locationDuration { get; set; }
-  public Location()
+  public double locationX { get; set; }
+  public double locationY { get; set; }
+  public Location(double x, double y)
   {
+    this.locationX = x;
+    this.locationY = y;
   }
 }
