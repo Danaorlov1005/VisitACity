@@ -1,0 +1,9 @@
+app-create-trip{
+  direction: rtl;
+  text-align: right !important;
+  color: gray;
+}
+
+html{
+  overflow: hidden !important;
+}

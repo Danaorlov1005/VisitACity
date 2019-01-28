@@ -1,9 +1,31 @@
 
 
 <div class="side-panel">
-  <button type="button" class="btn btn-secondary">Light</button>
-  <button class="btn purple-gradient">Purple</button>
-  <button type="button" class="btn btn-default btn-rounded">Default</button>
+  <div class="col">
+    <div class="md-form mt-0">
+      <input type="text" class="form-control" placeholder="הקלד מיקום..." [(ngModel)]="location">
+    </div>
+  </div>
+    <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0">חפש במיקום הזה</button>
+
+  <div class="slider">
+    <label for="nature">פעילויות טבע</label>
+    <input type="range" class="custom-range" min="0" max="5" id="nature">
+
+    <label for="family">משפחה</label>
+    <input type="range" class="custom-range" min="0" max="5" id="family">
+
+    <label for="food">אוכל</label>
+    <input type="range" class="custom-range" min="0" max="5" id="food">
+
+    <label for="nightLifa">חיי לילה</label>
+    <input type="range" class="custom-range" min="0" max="5" id="nightLifa">
+
+    <label for="culture">תרבות</label>
+    <input type="range" class="custom-range" min="0" max="5" id="culture">
+
+  </div>
+
 </div>
 
 <!--<h1>My First Google Map</h1>

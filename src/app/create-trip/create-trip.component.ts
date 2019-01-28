@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateTripComponent implements OnInit {
 
+  location = "פריז";
   constructor() { }
 
   ngOnInit() {
