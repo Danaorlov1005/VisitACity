@@ -199,7 +199,6 @@ C:\Users\moria\source\repos\BesTravel\BesTravel\bin\Microsoft.CodeDom.Providers.
 C:\Users\moria\source\repos\BesTravel\BesTravel\obj\Debug\BesTravel.csproj.CopyComplete
 C:\Users\moria\source\repos\BesTravel\BesTravel\obj\Debug\BesTravel.dll
 C:\Users\moria\source\repos\BesTravel\BesTravel\obj\Debug\BesTravel.pdb
-C:\Users\moria\Desktop\לימודים\פרוייקט גמר\VisitACity\BesTravel\BesTravel\obj\Debug\BesTravel.csprojAssemblyReference.cache
 C:\Users\moria\Desktop\לימודים\פרוייקט גמר\VisitACity\BesTravel\BesTravel\obj\Debug\BesTravel.csproj.CoreCompileInputs.cache
 C:\Users\moria\Desktop\לימודים\פרוייקט גמר\VisitACity\BesTravel\BesTravel\obj\Debug\BesTravel.dll
 C:\Users\moria\Desktop\לימודים\פרוייקט גמר\VisitACity\BesTravel\BesTravel\obj\Debug\BesTravel.pdb
