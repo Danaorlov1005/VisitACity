@@ -1,4 +1,6 @@
 using BesTravel.BL;
+using BesTravel.Models;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -31,5 +33,16 @@ public class TripController : ApiController
 
     /// return 3 random places for start
     return null;
+  }
+
+  [ActionName("saveTrip")]
+  public bool saveTrip(JObject data)
+  {
+    Trip trip = data.ToObject<Trip>();
+    //Trip trip = JsonConvert.DeserializeObject<Trip>(data);
+
+    // save changes
+
+    return true;
   }
 }
