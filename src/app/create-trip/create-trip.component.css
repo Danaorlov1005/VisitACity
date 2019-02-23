@@ -1,0 +1,14 @@
+.side-panel{
+  width: 20%;
+  right: 0%;
+  position: absolute;
+  height: 100%;
+  background: aliceblue;
+}
+
+.slider{
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}

@@ -1,0 +1,100 @@
+<main class="mt-5 pt-5">
+  <div class="container">
+    <section class="card aqua-gradient wow fadeIn" id="intro">
+      <div class="card-body text-white text-center py-5 px-5 my-5">
+
+        <h1 class="mb-4">
+          <strong>גלה מקומות חדשים לבקר בהם</strong>
+        </h1>
+        <p>
+          <strong>התחבר בשביל חוויה מותאמת אישית.</strong>
+        </p>
+        <p class="mb-4">
+          <strong>צור מסלולים וקבל מסלולים מותאים אישית שגולשים עם אותם תחומי עניין כמוך אהבו</strong>
+        </p>
+        <div>
+          <a target="_blank" class="btn btn-outline-white btn-lg">התחבר
+            <i class="fa fa-user ml-2"></i>
+          </a>
+          <a target="_blank" class="btn btn-outline-white btn-lg">צור חשבון חדש
+            <i class="fa fa-plus ml-2"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+    <hr class="my-5">
+
+    <!--Section: Cards-->
+    <section class="text-center">
+
+      <!--Grid row-->
+      <div class="row mb-4 wow fadeIn">
+
+        <!--Grid column-->
+        <div class="col-md-6 mb-4" *ngFor="let trip of allTrips">
+
+          <!--Card-->
+          <div class="card">
+
+            <div class="view overlay">
+              <img src={{trip.ImagePath}} class="card-img-top"
+                   alt="">
+              <a target="_blank">
+                <div class="mask rgba-white-slight"></div>
+              </a>
+            </div>
+
+            <div class="card-body">
+              <h4 class="card-title">{{trip.city}}</h4>
+              <p class="card-text"></p>
+              <p class="card-text">
+                <strong></strong>
+              </p>
+            </div>
+          </div>
+        </div>
+</div>
+
+      <nav class="d-flex justify-content-center wow fadeIn">
+        <ul class="pagination pg-blue">
+
+          <li class="page-item disabled">
+            <a class="page-link" href="#" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+              <span class="sr-only">Previous</span>
+            </a>
+          </li>
+
+          <li class="page-item active">
+            <a class="page-link" href="#">1
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+
+          <li class="page-item">
+            <a class="page-link" href="#" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+              <span class="sr-only">Next</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </section>
+  </div>
+</main>
+
+<footer class="page-footer text-center font-small mdb-color darken-2 mt-4 wow fadeIn">
+  <div class="footer-copyright py-3">
+    © 2019 Copyright:
+    <a target="_blank"> צוות פיתוח BestTravel </a>
+  </div>
+
+</footer>
+
+<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="js/popper.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/mdb.min.js"></script>
+<script type="text/javascript">
+  new WOW().init();
+</script>
