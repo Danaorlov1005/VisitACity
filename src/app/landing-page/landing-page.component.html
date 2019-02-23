@@ -1,7 +1,7 @@
 <main class="mt-5 pt-5">
   <div class="container">
-    <section class="card aqua-gradient wow fadeIn" id="intro">
-      <div class="card-body text-white text-center py-5 px-5 my-5">
+    <section class="card near-moon-gradient animated pulse" id="intro">
+      <div class="card-body text-white text-center py-5 px-5 my-5 wow bounceInUp overlay zoom">
 
         <h1 class="mb-4">
           <strong>גלה מקומות חדשים לבקר בהם</strong>
@@ -24,21 +24,16 @@
     </section>
     <hr class="my-5">
 
-    <!--Section: Cards-->
     <section class="text-center">
-
-      <!--Grid row-->
       <div class="row mb-4 wow fadeIn">
-
-        <!--Grid column-->
         <div class="col-md-6 mb-4" *ngFor="let trip of allTrips">
-
-          <!--Card-->
           <div class="card">
-
-            <div class="view overlay">
+            <div class="view overlay zoom">
               <img src={{trip.ImagePath}} class="card-img-top"
                    alt="">
+              <div class="mask flex-center">
+                <p class="white-text">Zoom effect</p>
+              </div>
               <a target="_blank">
                 <div class="mask rgba-white-slight"></div>
               </a>
@@ -82,6 +77,53 @@
     </section>
   </div>
 </main>
+
+<hr class="my-5">
+
+<div style="width: 90% !important; text-align: center !important; align-content: center !important; margin: auto">
+  <section class="text-center my-5 p-1">
+    <h2 class="h1-responsive font-weight-bold my-5">הכירו את הצוות</h2>
+    <div class="row" style="display: -webkit-inline-box; padding-left: 130px">
+
+      <div class="rounded-circle view overlay hm-teal-strong wow  bounce" style="width: 15% !important;margin: 10px;">
+        <img src="https://scontent.ftlv1-1.fna.fbcdn.net/v/t1.0-9/50014527_10211201753154648_525782139665383424_n.jpg?_nc_cat=100&_nc_ht=scontent.ftlv1-1.fna&oh=bbc99f47c814fd048444d017b5087cdf&oe=5CE1E01D" class="img-fluid ">
+        <div class="mask flex-center">
+          <p class="white-text">ורוניקה זולובוב</p>
+        </div>
+      </div>
+
+      <div class="rounded-circle view overlay hm-red-strong" style="width: 15% !important;margin: 10px;">
+        <img src="https://scontent.ftlv1-2.fna.fbcdn.net/v/t1.0-9/41869803_2005245629497104_5477444699658649600_n.jpg?_nc_cat=106&_nc_ht=scontent.ftlv1-2.fna&oh=50d8b8b41919c242b6c189d1502d5e16&oe=5D26125E" class="img-fluid ">
+        <div class="mask flex-center">
+          <p class="white-text">שיר שחק</p>
+        </div>
+      </div>
+
+      <div class="rounded-circle view overlay hm-red-strong" style="width: 15% !important;margin: 10px;">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRckdUAbDfd9Z1Y-_mio1r_6pabKr3vC5FWyuNZjXMVitFGg_AT" class="img-fluid ">
+        <div class="mask flex-center">
+          <p class="gray-text">מור אלון</p>
+        </div>
+      </div>
+
+      <div class="rounded-circle view overlay hm-red-strong" style="width: 15% !important;margin: 10px;">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRckdUAbDfd9Z1Y-_mio1r_6pabKr3vC5FWyuNZjXMVitFGg_AT" class="img-fluid ">
+        <div class="mask flex-center">
+          <p class="gray-text">מור אלון</p>
+        </div>
+      </div>
+
+      <div class="rounded-circle view overlay hm-red-strong" style="width: 15% !important;margin: 10px;">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRckdUAbDfd9Z1Y-_mio1r_6pabKr3vC5FWyuNZjXMVitFGg_AT" class="img-fluid ">
+        <div class="mask flex-center">
+          <p class="gray-text">מור אלון</p>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+</div>
 
 <footer class="page-footer text-center font-small mdb-color darken-2 mt-4 wow fadeIn">
   <div class="footer-copyright py-3">
