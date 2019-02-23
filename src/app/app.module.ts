@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { CreateTripComponent } from './create-trip/create-trip.component';
 import {FormsModule} from "@angular/forms";
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavBarComponent,
-    CreateTripComponent
+    CreateTripComponent,
+    LandingPageComponent
   ],
   imports: [
     BrowserModule,
