@@ -4,5 +4,11 @@
 
 .rounded-circle :hover{
   background-color: rgba(180, 180, 200, 0.9);
-  opacity: 0.7;
+}
+
+.white-text{
+  font-weight: 500;
+}
+.near-moon-gradient{
+  max-height: 370px !important;
 }

@@ -24,12 +24,15 @@
     </section>
     <hr class="my-5">
 
-    <section class="text-center">
-      <div class="row mb-4 wow fadeIn">
+    <h2 class="h1-responsive font-weight-bold my-5 text-center">יעדים פופולריים בקרב הגולשים</h2>
+
+
+    <section class="text-center" >
+      <div class="row mb-4 wow fadeIn" (click)="basicModal.show()">
         <div class="col-md-6 mb-4" *ngFor="let trip of allTrips">
           <div class="card">
             <div class="view overlay zoom">
-              <img src={{trip.ImagePath}} class="card-img-top"
+              <img src={{trip.ImageUrl}} class="card-img-top"
                    alt="">
               <div class="mask flex-center">
                 <p class="white-text">Zoom effect</p>
@@ -40,7 +43,7 @@
             </div>
 
             <div class="card-body">
-              <h4 class="card-title">{{trip.city}}</h4>
+              <h4 class="card-title">{{trip.Name}}</h4>
               <p class="card-text"></p>
               <p class="card-text">
                 <strong></strong>
@@ -48,7 +51,7 @@
             </div>
           </div>
         </div>
-</div>
+      </div>
 
       <nav class="d-flex justify-content-center wow fadeIn">
         <ul class="pagination pg-blue">
@@ -123,6 +126,28 @@
     </div>
 
   </section>
+</div>
+
+<div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title w-100" id="myModalLabel"></h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+
+<!--
+        <button type="button" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect>Save changes</button>
+-->
+      </div>
+    </div>
+  </div>
 </div>
 
 <footer class="page-footer text-center font-small mdb-color darken-2 mt-4 wow fadeIn">
