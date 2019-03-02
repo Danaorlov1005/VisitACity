@@ -4,10 +4,10 @@ const { Pool, Client } = require('pg')
 async function executeQuery(query, params) {
 
     const client = new Client({
-        user: 'twfnggzo',
+        user: 'kwwwxjgg',
         host: 'manny.db.elephantsql.com',
-        database: 'twfnggzo',
-        password: 'K3Io6cuZK0D-Cr18ta89JRJ3uhdvFE4u',
+        database: 'kwwwxjgg',
+        password: 'Bmp6XEosDL9hdv0MoEAfWp_DHFAoz35k',
         port: 5432,
     })
 

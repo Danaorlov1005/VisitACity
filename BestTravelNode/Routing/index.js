@@ -2,9 +2,9 @@
 const express = require('express')
 const router = express.Router()
 
-// const { executeQuery } = require('../DBAccess')
-// const { addNewTrip, addNewPartner, getTripPartners } = require('../Repositories/TripRepository')
-// const { getTripsForUser } = require('../Repositories/UserRepositry')
+const { executeQuery } = require('../DBAccess')
+const { addNewTrip } = require('../Repositories/TripRepository')
+const { getTripsForUser } = require('../Repositories/UsersRepository')
 
 // router.get('/getIntrests', function (req, res) {
 //     executeQuery('select * from public."INTRESTS"').then((result) => {
@@ -12,11 +12,11 @@ const router = express.Router()
 //     }, (err => { console.log(err) }))
 // });
 
-// router.get('/addNewTrip', function (req, res) {
-//     addNewTrip().then((result) => {
-//         res.send(result);
-//     }, (err => { console.log(err) }));
-// });
+router.get('/addNewTrip', function (req, res) {
+    addNewTrip().then((result) => {
+        res.send(result);
+    }, (err => { console.log(err) }));
+});
 
 // tripId parameter
 // router.get('/findPartner', function (req, res) {
@@ -35,11 +35,11 @@ const router = express.Router()
 //     }, (err => { console.log(err) }));
 // })
 
-// router.get('/getTripsForUser', function (req, res) {
-//     getTripsForUser(req.params).then((result) => {
-//         res.send(result);
-//     }, (err => { console.log(err) }));
-// })
+router.get('/getTripsForUser', function (req, res) {
+    getTripsForUser(req.params).then((result) => {
+        res.send(result);
+    }, (err => { console.log(err) }));
+})
 
 // router.get('/getWantedPartners', function (req, res) {
 //     getWantedPartners(req.params.tripId).then((result) => {
