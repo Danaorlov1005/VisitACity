@@ -7,7 +7,6 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { CreateTripComponent } from './create-trip/create-trip.component';
 import {FormsModule} from "@angular/forms";
 import { LandingPageComponent } from './landing-page/landing-page.component';
-import { ModalWindowComponent } from './modal-window/modal-window.component';
 
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
@@ -21,8 +20,7 @@ import { } from '@types/googlemaps';
     AppComponent,
     NavBarComponent,
     CreateTripComponent,
-    LandingPageComponent,
-    ModalWindowComponent
+    LandingPageComponent
   ],
   imports: [
     AgmCoreModule.forRoot({
