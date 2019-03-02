@@ -1,3 +1,4 @@
+
 var https = require('follow-redirects').https;
 
 var placeDetails = function () {
@@ -9,7 +10,7 @@ var placeDetails = function () {
 function getCoordinates(zipcode) {
     https.request({
         host: 'maps.googleapis.com',
-        path: '/maps/api/geocode/json?address=' + zipcode + '&key=[YOUR API KEY]',
+        path: '/maps/api/geocode/json?address=' + zipcode + '&key=AIzaSyBts53vgjeOpiVy962cJUvS8D021tTgpdI',
         method: 'GET'
     },
         CoordinateResponse).end();
@@ -18,11 +19,11 @@ function getCoordinates(zipcode) {
 //Step 2: Find places within the specified radius, based on the coordinates provided by the getCoordinates function.
 
 
-function placeSearch(latitude = '500', longitude = '500', radius = '500', type = 'restaurant') {
+function placeSearch(latitude, longitude, radius) {
     https.request({
         host: 'maps.googleapis.com',
         path: '/maps/api/place/nearbysearch/json?location=' + latitude + ',' + longitude + '&radius=' + radius +
-            '&type=' + type + '&key=AIzaSyBts53vgjeOpiVy962cJUvS8D021tTgpdI',
+            '&type=restaurant&key=AIzaSyBts53vgjeOpiVy962cJUvS8D021tTgpdI',
         method: 'GET'
     },
         PlaceResponse).end();
@@ -76,10 +77,10 @@ function PlaceResponse(response) {
     });
 }
 
+// getCoordinates(37202); //Enter a zip code here to try it out (Nashville in this case)
 
-module.exports = { getCoordinates};
-getCoordinates(37202); //Enter a zip code here to try it out (Nashville in this case)
 
+module.exports = { getCoordinates };
 
 
 
