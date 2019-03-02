@@ -2,7 +2,7 @@
 const express = require('express')
 const router = express.Router()
 
-const { executeQuery } = require('../DBAccess')
+const { getPopularSites} = require('../Repositories/GeneralRepository')
 const { addNewTrip } = require('../Repositories/TripRepository')
 const { getTripsForUser } = require('../Repositories/UsersRepository')
 
@@ -23,11 +23,11 @@ router.get('/addNewTrip', function (req, res) {
 //     searchBestMatch(req.params.tripId, res);
 // });
 
-// router.get('/addPartnerToTrip', function (req, res) {
-//     addNewPartner(req.params).then((result) => {
-//         res.send(result);
-//     }, (err => { console.log(err) }));
-// })
+router.get('/getPopularSites', function (req, res) {
+    getPopularSites().then((result) => {
+        res.send(result);
+    }, (err => { console.log(err) }));
+})
 
 // router.get('/getPartners', function (req, res) {
 //     getTripPartners(req.data).then((result) => {
