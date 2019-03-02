@@ -69,12 +69,15 @@ function PlaceResponse(response) {
                 console.log('Rating: ' + PD.places[r].rating);
                 console.log('Vicinity: ' + PD.places[r].vicinity);
             }
+            return sdata;
         } else {
             console.log(sdata.status);
         }
     });
 }
 
+
+module.exports = { getCoordinates};
 getCoordinates(37202); //Enter a zip code here to try it out (Nashville in this case)
 
 

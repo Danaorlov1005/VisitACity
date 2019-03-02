@@ -5,6 +5,7 @@ const router = express.Router()
 const { getPopularSites} = require('../Repositories/GeneralRepository')
 const { addNewTrip } = require('../Repositories/TripRepository')
 const { getTripsForUser } = require('../Repositories/UsersRepository')
+const  GoogleAPI = require('../GoogleAPI')
 
 // router.get('/getIntrests', function (req, res) {
 //     executeQuery('select * from public."INTRESTS"').then((result) => {
@@ -41,6 +42,12 @@ router.get('/getTripsForUser', function (req, res) {
     }, (err => { console.log(err) }));
 })
 
+
+router.get('/getsPlacesAPI', function (req, res) {
+    GoogleAPI.getCoordinates(req.params).then((result) => {
+        res.send(result);
+    }, (err => { console.log(err) }));
+})
 // router.get('/getWantedPartners', function (req, res) {
 //     getWantedPartners(req.params.tripId).then((result) => {
 //         res.send(result);
