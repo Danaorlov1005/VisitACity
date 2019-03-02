@@ -7,7 +7,7 @@ var placeDetails = function () {
 
 //Step 1: Get coordinates based on the entered zipcode.
 
-function getCoordinates(zipcode) {
+async function getCoordinates(zipcode) {
     https.request({
         host: 'maps.googleapis.com',
         path: '/maps/api/geocode/json?address=' + zipcode + '&key=AIzaSyBts53vgjeOpiVy962cJUvS8D021tTgpdI',
@@ -17,7 +17,7 @@ function getCoordinates(zipcode) {
 }
 
 //Step 2: Find places within the specified radius, based on the coordinates provided by the getCoordinates function.
-
+const Places = [];
 
 function placeSearch(latitude, longitude, radius) {
     https.request({
@@ -70,7 +70,8 @@ function PlaceResponse(response) {
                 console.log('Rating: ' + PD.places[r].rating);
                 console.log('Vicinity: ' + PD.places[r].vicinity);
             }
-            return sdata;
+
+            // return sdata;
         } else {
             console.log(sdata.status);
         }
@@ -80,7 +81,7 @@ function PlaceResponse(response) {
 // getCoordinates(37202); //Enter a zip code here to try it out (Nashville in this case)
 
 
-module.exports = { getCoordinates };
+module.exports = { getCoordinates, placeSearch };
 
 
 
@@ -120,9 +121,3 @@ module.exports = { getCoordinates };
 // });
 // };
 
-// import Places from "google-places-web";
-
-
-// // Setup
-// Places.apiKey = googlePlacesAPIUrl;
-// Places.debug = __DEV__; // boolean;

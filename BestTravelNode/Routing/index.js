@@ -44,7 +44,7 @@ router.get('/getTripsForUser', function (req, res) {
 
 
 router.get('/getsPlacesAPI', function (req, res) {
-    GoogleAPI.getCoordinates(req.params).then((result) => {
+    GoogleAPI.getCoordinates(37202).then((result) => {
         res.send(result);
     }, (err => { console.log(err) }));
 })
