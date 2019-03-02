@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, NgZone} from '@angular/core';
 import {FormControl} from "@angular/forms";
 import { MapsAPILoader } from '@agm/core';
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-create-trip',
@@ -11,6 +12,7 @@ export class CreateTripComponent implements OnInit {
   /*@ViewChild('gmap') gmapElement: any;
   map: google.maps.Map*/
 
+  res:any = [];
   location = "פריז";
   public latitude: number;
   public longitude: number;
@@ -22,10 +24,12 @@ export class CreateTripComponent implements OnInit {
 
   constructor(
     private mapsAPILoader: MapsAPILoader,
-    private ngZone: NgZone
+    private ngZone: NgZone,
+    private http: HttpClient
   ) {}
 
   ngOnInit() {
+
     //set google maps defaults
     this.zoom = 4;
     this.latitude = 39.8282;
@@ -40,7 +44,7 @@ export class CreateTripComponent implements OnInit {
     //load Places Autocomplete
     this.mapsAPILoader.load().then(() => {
       let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
-        types: ["address"]
+        types: ['(cities)']
       });
       autocomplete.addListener("place_changed", () => {
         this.ngZone.run(() => {
