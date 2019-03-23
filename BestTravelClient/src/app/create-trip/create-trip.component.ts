@@ -9,8 +9,8 @@ import {HttpClient} from "@angular/common/http";
   styleUrls: ['./create-trip.component.css']
 })
 export class CreateTripComponent implements OnInit {
-  /*@ViewChild('gmap') gmapElement: any;
-  map: google.maps.Map*/
+  public origin: any;
+  public destination: any;
 
   res:any = [];
   location = "פריז";
@@ -25,11 +25,13 @@ export class CreateTripComponent implements OnInit {
   constructor(
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
-    private http: HttpClient
-  ) {}
+    private http: HttpClient) {}
 
   ngOnInit() {
+    this.initMap();
+  }
 
+  initMap(){
     //set google maps defaults
     this.zoom = 4;
     this.latitude = 39.8282;
@@ -60,11 +62,15 @@ export class CreateTripComponent implements OnInit {
           this.latitude = place.geometry.location.lat();
           this.longitude = place.geometry.location.lng();
           this.zoom = 12;
+
+          //Draw a path on the map
+          this.getDirection(this.latitude, this.longitude);
         });
       });
     });
   }
 
+  //setting a pin in the selected location
   private setCurrentPosition() {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
@@ -75,8 +81,12 @@ export class CreateTripComponent implements OnInit {
     }
   }
 
-  /*setMap(e:any){
-    e.preventDefault();
-    this.map.setCenter(new google.maps.LatLng(this.latitude, this.longitude));
-  }*/
+  //draw a path on the map
+  getDirection(latitude, longitude) {
+    this.origin = { lat: 24.799448, lng: 120.979021 };
+    this.destination = { lat: latitude, lng: longitude };
+
+    /*this.origin = 'Taipei Main Station';
+    this.destination = destination;*/
+  }
 }

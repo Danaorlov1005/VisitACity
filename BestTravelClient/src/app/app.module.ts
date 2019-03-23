@@ -16,6 +16,8 @@ import { AgmCoreModule } from '@agm/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { FlightLocatorComponent } from './flight-locator/flight-locator.component';
+import { AgmDirectionModule } from 'agm-direction';
+
 declare let google: any;
 
 @NgModule({
@@ -31,6 +33,7 @@ declare let google: any;
       apiKey: "AIzaSyBts53vgjeOpiVy962cJUvS8D021tTgpdI",
       libraries: ["places"]
     }),
+    AgmDirectionModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
