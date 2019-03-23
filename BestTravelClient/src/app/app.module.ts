@@ -1,3 +1,4 @@
+/// <reference types="@types/googlemaps" />
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -13,15 +14,17 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { AgmCoreModule } from '@agm/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { } from '@types/googlemaps';
 import { HttpClientModule } from '@angular/common/http';
+import { FlightLocatorComponent } from './flight-locator/flight-locator.component';
+declare let google: any;
 
 @NgModule({
   declarations: [
     AppComponent,
     NavBarComponent,
     CreateTripComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    FlightLocatorComponent
   ],
   imports: [
     AgmCoreModule.forRoot({
