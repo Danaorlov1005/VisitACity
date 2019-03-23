@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, NgZone} from '@angular/core';
-import {FormControl} from "@angular/forms";
+import { FormControl } from "@angular/forms";
 import { MapsAPILoader } from '@agm/core';
-import {HttpClient} from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 
 @Component({
   selector: 'app-create-trip',
@@ -9,8 +9,8 @@ import {HttpClient} from "@angular/common/http";
   styleUrls: ['./create-trip.component.css']
 })
 export class CreateTripComponent implements OnInit {
-  /*@ViewChild('gmap') gmapElement: any;
-  map: google.maps.Map*/
+  @ViewChild('gmap') gmapElement: any;
+  map: google.maps.Map
 
   res:any = [];
   location = "פריז";
