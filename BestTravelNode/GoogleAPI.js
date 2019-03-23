@@ -5,46 +5,64 @@ var placeDetails = function () {
     this.places = [];
 }
 
-//Step 1: Get coordinates based on the entered zipcode.
+// //Step 1: Get coordinates based on the entered zipcode.
 
-async function getCoordinates(zipcode) {
-    https.request({
-        host: 'maps.googleapis.com',
-        path: '/maps/api/geocode/json?address=' + zipcode + '&key=AIzaSyBts53vgjeOpiVy962cJUvS8D021tTgpdI',
-        method: 'GET'
-    },
-        CoordinateResponse).end();
-}
+// async function getCoordinates(zipcode) {
+//     https.request({
+//         host: 'maps.googleapis.com',
+//         path: '/maps/api/geocode/json?address=' + zipcode + '&key=AIzaSyBts53vgjeOpiVy962cJUvS8D021tTgpdI',
+//         method: 'GET'
+//     },
+//         CoordinateResponse).end();
+// }
 
-//Step 2: Find places within the specified radius, based on the coordinates provided by the getCoordinates function.
-const Places = [];
+// //Step 2: Find places within the specified radius, based on the coordinates provided by the getCoordinates function.
+// const Places = [];
 
 function placeSearch(latitude, longitude, radius) {
+    const url = '/maps/api/place/nearbysearch/json?location=' + latitude + ',' + longitude + '&radius=' + radius +
+    '&type=restaurant&key=AIzaSyBts53vgjeOpiVy962cJUvS8D021tTgpdI';
+    // require('https').get('https://maps.googleapis.com'+url, function(response) {
+    //     var body ='';
+    //     response.on('data', function(chunk) {
+    //       body += chunk;
+    //     });
+    //     response.on('end', function() {
+    //         var places = JSON.parse(body);
+    //         res.json(places);
+    //         var locations = places.results;
+    //         var randLoc = locations[Math.floor(Math.random() * locations.length)];
+      
+    //         res.json(randLoc);
+    //       });
+    //     }).on('error', function(e) {
+    //       console.log("Got error: " + e.message);
+    //     });
+
     https.request({
         host: 'maps.googleapis.com',
-        path: '/maps/api/place/nearbysearch/json?location=' + latitude + ',' + longitude + '&radius=' + radius +
-            '&type=restaurant&key=AIzaSyBts53vgjeOpiVy962cJUvS8D021tTgpdI',
+        path: url,
         method: 'GET'
     },
         PlaceResponse).end();
 }
 
-function CoordinateResponse(response) {
-    var data = "";
-    var sdata = "";
-    var latitude = "";
-    var longitude = "";
+// function CoordinateResponse(response) {
+//     var data = "";
+//     var sdata = "";
+//     var latitude = "";
+//     var longitude = "";
 
-    response.on('data', function (chunk) {
-        data += chunk;
-    });
-    response.on('end', function () {
-        sdata = JSON.parse(data);
-        latitude = sdata.results[0].geometry.viewport.northeast.lat;
-        longitude = sdata.results[0].geometry.viewport.northeast.lng;
-        placeSearch(latitude, longitude, 50000);
-    });
-}
+//     response.on('data', function (chunk) {
+//         data += chunk;
+//     });
+//     response.on('end', function () {
+//         sdata = JSON.parse(data);
+//         latitude = sdata.results[0].geometry.viewport.northeast.lat;
+//         longitude = sdata.results[0].geometry.viewport.northeast.lng;
+//         placeSearch(latitude, longitude, 50000);
+//     });
+// }
 
 function PlaceResponse(response) {
     var p;
@@ -81,7 +99,7 @@ function PlaceResponse(response) {
 // getCoordinates(37202); //Enter a zip code here to try it out (Nashville in this case)
 
 
-module.exports = { getCoordinates, placeSearch };
+module.exports = { placeSearch };
 
 
 
