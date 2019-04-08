@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, NgZone} from '@angular/core';
-import {FormControl} from "@angular/forms";
+import { FormControl } from "@angular/forms";
 import { MapsAPILoader } from '@agm/core';
-import {HttpClient} from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 
 export class tripObject{
   tripName : string;
