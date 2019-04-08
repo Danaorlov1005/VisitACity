@@ -6,6 +6,7 @@ var index = require('./Routing/index')
 var express = require('express')
 var app = express()
 var cors = require('cors');
+var bodyParser = require('body-parser')
 app.use(cors());
 
 app.use(function (req, res, next) {
@@ -14,6 +15,8 @@ app.use(function (req, res, next) {
   next();
 });
 
+
+app.use(bodyParser.json())
 app.use('/', index)
 
 http.createServer({
