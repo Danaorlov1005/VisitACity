@@ -13,7 +13,18 @@ export class CreateTripComponent implements OnInit {
   public destination: any;
 
   res:any = [];
-  location = "פריז";
+  location:any;
+  tripObject:any = [];
+
+  //travel preferences
+  nature:number = 2;
+  family:number = 2;
+  food:number = 2;
+  mightLife:number = 2;
+  culture:number = 2;
+  duration:number = 3;
+
+  //map properties
   public latitude: number;
   public longitude: number;
   public searchControl: FormControl;
@@ -63,6 +74,8 @@ export class CreateTripComponent implements OnInit {
           this.longitude = place.geometry.location.lng();
           this.zoom = 12;
 
+          this.location = place.name;
+
           //Draw a path on the map
           this.getDirection(this.latitude, this.longitude);
         });
@@ -88,5 +101,24 @@ export class CreateTripComponent implements OnInit {
 
     /*this.origin = 'Taipei Main Station';
     this.destination = destination;*/
+  }
+
+  //create a new trip
+  createTrip(){
+    this.tripObject.tripName = "הטיול שלי ל" + this.location;
+    this.tripObject.nature = this.nature;
+    this.tripObject.family = this.family;
+    this.tripObject.food = this.food;
+    this.tripObject.nightLife = this.mightLife;
+    this.tripObject.culture = this.culture;
+    this.tripObject.location.x = this.latitude;
+    this.tripObject.location.y = this.longitude;
+    this.tripObject.duration = this.duration;
+
+    alert(this.tripObject.tripName);
+/*    this.http.get("http://localhost:3000/addNewTrip").subscribe(
+      data => {
+        alert(data);
+      });*/
   }
 }
