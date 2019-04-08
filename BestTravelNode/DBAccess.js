@@ -7,7 +7,7 @@ async function executeQuery(query, params) {
         user: 'kwwwxjgg',
         host: 'manny.db.elephantsql.com',
         database: 'kwwwxjgg',
-        password: 'Bmp6XEosDL9hdv0MoEAfWp_DHFAoz35k',
+        password: 'Lx0MjaWnNDxKzcQ69Tx67O8bnO4pafwa',
         port: 5432,
     })
 
