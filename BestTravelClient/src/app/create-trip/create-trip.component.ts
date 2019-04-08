@@ -122,7 +122,8 @@ export class CreateTripComponent implements OnInit {
         alert(data);
       });*/
 
-    this.http.post("http://localhost:3000/addNewTrip", this.tripObject)
+
+    this.http.get("http://localhost:3000/addNewTrip", this.tripObject)
       .subscribe(res => {
         console.log(res);
       })
