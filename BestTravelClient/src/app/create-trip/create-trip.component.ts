@@ -3,6 +3,38 @@ import {FormControl} from "@angular/forms";
 import { MapsAPILoader } from '@agm/core';
 import {HttpClient} from "@angular/common/http";
 
+export class tripObject{
+  tripName : string;
+  nature : number;
+  family : number;
+  food : number;
+  nightLife : number;
+  culture : number;
+  location :location;
+  duration : number;
+
+  constructor(tripName:string, nature:number, family:number, food:number, nightLife:number, culture:number, location:location, duration:number){
+    this.tripName = tripName;
+    this.nature = nature;
+    this.family = family;
+    this.food = food;
+    this.nightLife = nightLife;
+    this.culture = culture;
+    this.location = location;
+    this.duration = duration;
+  }
+}
+
+export class location{
+  x : number;
+  y : number;
+
+  constructor(x : number, y: number){
+    this.x = x;
+    this.y = y;
+  }
+}
+
 @Component({
   selector: 'app-create-trip',
   templateUrl: './create-trip.component.html',
@@ -105,7 +137,9 @@ export class CreateTripComponent implements OnInit {
 
   //create a new trip
   createTrip(){
-    this.tripObject.tripName = "הטיול שלי ל" + this.location;
+    let location1 = new location(this.latitude, this.longitude);
+    let obj = new tripObject("הטיול שלי ל" + this.location, this.nature, this.family, this.food, this.mightLife,this.culture, location1 ,this.duration );
+/*    this.tripObject.tripName = "הטיול שלי ל" + this.location;
     this.tripObject.nature = this.nature;
     this.tripObject.family = this.family;
     this.tripObject.food = this.food;
@@ -114,15 +148,17 @@ export class CreateTripComponent implements OnInit {
     this.tripObject.location = [];
     this.tripObject.location.x = this.latitude;
     this.tripObject.location.y = this.longitude;
-    this.tripObject.duration = this.duration;
 
-    alert(this.tripObject.tripName);
+    this.tripObject.duration = this.duration;
+    alert(this.tripObject.tripName);*/
+
+
 /*    this.http.get("http://localhost:3000/addNewTrip").subscribe(
       data => {
         alert(data);
       });*/
 
-    this.http.post("http://localhost:3000/addNewTrip", this.tripObject)
+    this.http.post<tripObject>("http://localhost:3000/addNewTrip", obj)
       .subscribe(res => {
         console.log(res);
       })
