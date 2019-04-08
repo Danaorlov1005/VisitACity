@@ -111,6 +111,7 @@ export class CreateTripComponent implements OnInit {
     this.tripObject.food = this.food;
     this.tripObject.nightLife = this.mightLife;
     this.tripObject.culture = this.culture;
+    this.tripObject.location = [];
     this.tripObject.location.x = this.latitude;
     this.tripObject.location.y = this.longitude;
     this.tripObject.duration = this.duration;
