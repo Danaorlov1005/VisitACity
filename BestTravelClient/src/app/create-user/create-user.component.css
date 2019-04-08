@@ -1,0 +1,38 @@
+
+.round{
+    border-radius: 50%;
+  }
+  
+  .rounded-circle :hover{
+    background-color: rgba(180, 180, 200, 0.9);
+  }
+
+  .button{
+    box-shadow: 0px 5px 30px deepskyblue;
+  }
+  .white-text{
+    font-weight: 500;
+  }
+
+  .form{
+      text-align: right;
+      direction: rtl;
+  }
+
+  .label {
+    display: block !important;
+    text-align: right;
+    width: 100%;
+}
+.left-input {
+    direction: ltr !important;
+}
+
+.button-color{
+    outline-color: #2bbbad;
+}
+.center {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+  }

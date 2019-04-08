@@ -6,17 +6,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { CreateTripComponent } from './create-trip/create-trip.component';
-import {FormsModule} from "@angular/forms";
+import { FormsModule, ReactiveFormsModule, } from "@angular/forms";
 import { LandingPageComponent } from './landing-page/landing-page.component';
 
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { AgmCoreModule } from '@agm/core';
-import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { FlightLocatorComponent } from './flight-locator/flight-locator.component';
 import { AgmDirectionModule } from 'agm-direction';
+import { CreateUserComponent } from './create-user/create-user.component';
 
 declare let google: any;
 
@@ -26,7 +26,8 @@ declare let google: any;
     NavBarComponent,
     CreateTripComponent,
     LandingPageComponent,
-    FlightLocatorComponent
+    FlightLocatorComponent,
+    CreateUserComponent
   ],
   imports: [
     AgmCoreModule.forRoot({

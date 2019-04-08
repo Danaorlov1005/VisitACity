@@ -7,7 +7,7 @@ const { addNewTrip } = require('../Repositories/TripRepository')
 const { getTripsForUser, addNewUser, getUser } = require('../Repositories/UsersRepository')
 const GoogleAPI = require('../GoogleAPI')
 
-router.get('/addNewTrip', function (req, res) {
+router.post('/addNewTrip', function (req, res) {
     addNewTrip().then((result) => {
         res.send(result);
     }, (err => { console.log(err) }));
