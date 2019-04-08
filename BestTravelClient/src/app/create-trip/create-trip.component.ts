@@ -130,33 +130,12 @@ export class CreateTripComponent implements OnInit {
   getDirection(latitude, longitude) {
     this.origin = { lat: 24.799448, lng: 120.979021 };
     this.destination = { lat: latitude, lng: longitude };
-
-    /*this.origin = 'Taipei Main Station';
-    this.destination = destination;*/
   }
 
   //create a new trip
   createTrip(){
     let location1 = new location(this.latitude, this.longitude);
     let obj = new tripObject("הטיול שלי ל" + this.location, this.nature, this.family, this.food, this.mightLife,this.culture, location1 ,this.duration );
-/*    this.tripObject.tripName = "הטיול שלי ל" + this.location;
-    this.tripObject.nature = this.nature;
-    this.tripObject.family = this.family;
-    this.tripObject.food = this.food;
-    this.tripObject.nightLife = this.mightLife;
-    this.tripObject.culture = this.culture;
-    this.tripObject.location = [];
-    this.tripObject.location.x = this.latitude;
-    this.tripObject.location.y = this.longitude;
-
-    this.tripObject.duration = this.duration;
-    alert(this.tripObject.tripName);*/
-
-
-/*    this.http.get("http://localhost:3000/addNewTrip").subscribe(
-      data => {
-        alert(data);
-      });*/
 
     this.http.post<tripObject>("http://localhost:3000/addNewTrip", obj)
       .subscribe(res => {
