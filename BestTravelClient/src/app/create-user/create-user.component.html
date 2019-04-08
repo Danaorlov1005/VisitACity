@@ -1,43 +1,61 @@
-<div class="jumbotron text-right">
-  <div class="container">
-      <div class="row">
-          <div class="col-md-6 offset-md-3">
-              <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-                  <div class="form-group">
-                      <label>שם פרטי</label>
-                      <input type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
-                      <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
-                          <div *ngIf="f.firstName.errors.required">יש להכניס שם פרטי</div>
-                      </div>
+<div class="card form">
+
+  <h5 class="card-header grey-text text-center py-4">
+      <strong>הרשמה</strong>
+  </h5>
+
+  <!--Card content-->
+  <div class="card-body px-lg-5 pt-0">
+
+      <!-- Form -->
+      <form class="text-center center" style="color: #757575;">
+
+          <div class="form-row">
+              <div class="col">
+                  <!-- First name -->
+                  <div class="md-form text-right">
+                      <input type="text" id="materialRegisterFormFirstName" class="form-control">
+                      <label class="label" for="materialRegisterFormFirstName">שם פרטי</label>
                   </div>
-                  <div class="form-group">
-                      <label>שם משפחה</label>
-                      <input type="text" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
-                      <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
-                          <div *ngIf="f.lastName.errors.required">יש להכניס שם משפחה</div>
-                      </div>
+              </div>
+              <div class="col">
+                  <!-- Last name -->
+                  <div class="md-form">
+                      <input type="email" id="materialRegisterFormLastName" class="form-control" style="direction: rtl">
+                      <label class="label" for="materialRegisterFormLastName">שם משפחה</label>
                   </div>
-                  <div class="form-group">
-                      <label>מייל</label>
-                      <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
-                      <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-                          <div *ngIf="f.email.errors.required">יש להכניס כתובל מייל</div>
-                          <div *ngIf="f.email.errors.email">יש להכיס כתובת מייל תקינה</div>
-                      </div>
-                  </div>
-                  <div class="form-group">
-                      <label>ססמא</label>
-                      <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
-                      <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                          <div *ngIf="f.password.errors.required">יש להכניס ססמא</div>
-                          <div *ngIf="f.password.errors.minlength">על הססמא להיות לפחות באורך 6 תווים</div>
-                      </div>
-                  </div>
-                  <div class="form-group">
-                      <button [disabled]="loading" class="btn btn-outline-cyan waves-effect">הרשם</button>
-                  </div>
-              </form>
+              </div>
           </div>
-      </div>
+
+          <!-- E-mail -->
+          <div class="md-form mt-0 left-input">
+              <input type="email" id="materialRegisterFormEmail" class="form-control">
+              <label for="materialRegisterFormEmail">E-mail</label>
+          </div>
+
+          <!-- Password -->
+          <div class="md-form">
+              <input type="password" id="materialRegisterFormPassword" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock">
+              <label class="label" for="materialRegisterFormPassword">ססמא</label>
+              <small id="materialRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+                  לפחות 8 תווים
+              </small>
+          </div>
+
+          <!-- Phone number -->
+          <div class="md-form">
+              <input type="password" id="materialRegisterFormPhone" class="form-control">
+              <label class="label" for="materialRegisterFormPhone">מספר טלפון</label>
+          </div>
+
+          <!-- Sign up button -->
+          <button class="btn btn-outline-default btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Sign in</button>
+
+          <hr>
+
+      </form>
+      <!-- Form -->
+
   </div>
+
 </div>

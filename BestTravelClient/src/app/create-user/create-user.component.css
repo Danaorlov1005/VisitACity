@@ -14,6 +14,25 @@
     font-weight: 500;
   }
 
-  .text-right{
-      text-align: right !important;
+  .form{
+      text-align: right;
+      direction: rtl;
+  }
+
+  .label {
+    display: block !important;
+    text-align: right;
+    width: 100%;
+}
+.left-input {
+    direction: ltr !important;
+}
+
+.button-color{
+    outline-color: #2bbbad;
+}
+.center {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
   }
