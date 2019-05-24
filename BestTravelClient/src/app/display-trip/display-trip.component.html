@@ -1,0 +1,215 @@
+<!--Section heading-->
+<h2 class="h1 text-center my-5 font-weight-bold">הטיול שלך לפריז</h2>
+
+<div class="container">
+<!--Grid row-->
+<div class="row">
+
+  <!--Grid column-->
+  <div class="col-md-12 text-right">
+
+    <!--Image-->
+    <div class="view overlay rounded">
+      <img src="https://mdbootstrap.com/img/Photos/Others/images/77.jpg" class="img-fluid">
+      <a>
+        <div class="mask rgba-white-slight"></div>
+      </a>
+    </div>
+
+    
+
+    <!--Excerpt-->
+    <div class="news-data">
+      <a href="" class="light-blue-text">
+        <h6>
+          <i class="fa fa-plane" routerLink="/app-landing-page"></i>
+          <strong> מסלולים מומלצים</strong>
+        </h6>
+      </a>
+      <p>
+        <strong>
+          <i class="far fa-clock"></i> 20/08/2018</strong>
+      </p>
+    </div>
+    <h3>
+      <a>
+        <strong>הנה המסלול שיצרנו במיוחד בשבילך:</strong>
+      </a>
+    </h3>
+    <p> המסלול נבנה לפי ההעדפות שלך. תוכל תמיד לחזור ולחפש מסלולים חדשים אך מומלץ לשמור את המסלול כדי שתוכל לגשת אליו בקלות בפעם הבאה!
+    </p>
+
+    <!--/Featured news-->
+
+    <hr>
+
+    <!--Small news-->
+    <div class="row">
+      <div class="col-md-3">
+
+        <!--Image-->
+        <div class="view overlay rounded z-depth-1">
+          <img src="https://mdbootstrap.com/img/Photos/Others/photo8.jpg" class="img-fluid" alt="Minor sample post image">
+          <a>
+            <div class="mask rgba-white-slight"></div>
+          </a>
+        </div>
+      </div>
+
+      <!--Excerpt-->
+      <div class="col-md-9">
+        <p class="dark-grey-text">
+          <strong>19/08/2018</strong>
+        </p>
+        <a>Lorem ipsum dolor sit amet
+          <i class="fa fa-angle-left float-left" (click)="basicModal.show()"></i>
+        </a>
+      </div>
+
+    </div>
+    <!--/Small news-->
+
+    <hr>
+
+    <!--Small news-->
+    <div class="row">
+      <div class="col-md-3">
+
+        <!--Image-->
+        <div class="view overlay rounded z-depth-1">
+          <img src="https://mdbootstrap.com/img/Photos/Others/images/54.jpg" class="img-fluid" alt="Minor sample post image">
+          <a>
+            <div class="mask rgba-white-slight"></div>
+          </a>
+        </div>
+      </div>
+
+      <!--Excerpt-->
+      <div class="col-md-9">
+        <p class="dark-grey-text">
+          <strong>18/08/2018</strong>
+        </p>
+        <a>Soluta nobis est eligendi
+          <i class="fa fa-angle-left float-left" (click)="basicModal.show()"></i>
+        </a>
+      </div>
+
+    </div>
+    <!--/Small news-->
+
+    <hr>
+
+    <!--Small news-->
+    <div class="row">
+      <div class="col-md-3">
+
+        <!--Image-->
+        <div class="view overlay rounded z-depth-1">
+          <img src="https://mdbootstrap.com/img/Photos/Others/images/49.jpg" class="img-fluid" alt="Minor sample post image">
+          <a>
+            <div class="mask rgba-white-slight"></div>
+          </a>
+        </div>
+      </div>
+
+      <!--Excerpt-->
+      <div class="col-md-9">
+        <p class="dark-grey-text">
+          <strong>17/08/2018</strong>
+        </p>
+        <a>Voluptatem accusantium doloremque
+          <i class="fa fa-angle-left float-left" (click)="basicModal.show()"></i>
+        </a>
+      </div>
+
+    </div>
+    <!--/Small news-->
+
+  </div>
+  <!--Grid column-->
+
+</div>
+<!--Grid row-->
+</div>
+
+
+    <div mdbModal #basicModal="mdbModal" class="modal fade" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="row mb-6 wow fadeIn">
+          <div class="col">
+            <div class="card">
+              <div class="view overlay zoom">
+                <button type="button" class="close pull-right" aria-label="Close" (click)="closeModal()">
+                  <span aria-hidden="true">×</span>
+                </button>
+                <img src="https://mdbootstrap.com/img/Photos/Others/images/77.jpg" class="card-img-top"
+                     alt="">
+                <div class="mask flex-center">
+                  <p class="white-text">Zoom effect</p>
+                </div>
+                <a target="_blank">
+                  <div class="mask rgba-white-slight"></div>
+                </a>
+              </div>
+
+              <div class="card-body">
+                <h4 class="card-title">מסדעת צרפת</h4>
+                <p class="card-text"></p>
+                <p class="card-text">
+                  <strong>fjkdjfjks</strong>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+
+<div class="modal-dialog modal-side modal-bottom-left modal-notify modal-warning" role="document">
+  <!--Content-->
+  <div class="modal-content">
+    <!--Header-->
+    <div class="modal-header">
+      <p class="heading">Modal Warning</p>
+
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true" class="white-text">×</span>
+      </button>
+    </div>
+
+    <!--Body-->
+    <div class="modal-body">
+
+      <div class="row">
+        <div class="col-3 text-center">
+          <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(1).jpg" alt="Michal Szymanski - founder of Material Design for Bootstrap" class="img-fluid z-depth-1-half rounded-circle">
+          <div style="height: 10px"></div>
+          <p class="title mb-0">Jane</p>
+          <p class="text-muted " style="font-size: 13px">Consultant</p>
+        </div>
+
+        <div class="col-9">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, molestiae provident temporibus sunt
+            earum.</p>
+          <p class="card-text">
+            <strong>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</strong>
+          </p>
+        </div>
+      </div>
+
+
+    </div>
+
+    <!--Footer-->
+    <div class="modal-footer justify-content-center">
+      <a type="button" class="btn btn-warning waves-effect waves-light">Get it now
+        <i class="far fa-gem ml-1"></i>
+      </a>
+      <a type="button" class="btn btn-outline-warning waves-effect" data-dismiss="modal">No, thanks</a>
+    </div>
+  </div>
+  <!--/.Content-->
+</div>

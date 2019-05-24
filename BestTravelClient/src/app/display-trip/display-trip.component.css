@@ -1,0 +1,11 @@
+.card-comments img {
+  width: 4rem; }
+
+.container, h4, strong{
+  direction: rtl;
+}
+
+.close{
+  z-index: 1;
+  position: fixed;
+}

@@ -2,8 +2,10 @@ import { Component, OnInit, ViewChild, ElementRef, NgZone} from '@angular/core';
 import { FormControl } from "@angular/forms";
 import { MapsAPILoader } from '@agm/core';
 import { HttpClient } from "@angular/common/http";
+import {global} from "../global";
 
 export class tripObject{
+
   tripName : string;
   nature : number;
   family : number;
@@ -38,7 +40,8 @@ export class location{
 @Component({
   selector: 'app-create-trip',
   templateUrl: './create-trip.component.html',
-  styleUrls: ['./create-trip.component.css']
+  styleUrls: ['./create-trip.component.css'],
+  providers: [ global ]
 })
 export class CreateTripComponent implements OnInit {
   public origin: any;
@@ -62,13 +65,17 @@ export class CreateTripComponent implements OnInit {
   public searchControl: FormControl;
   public zoom: number;
 
+  //google places photo
+  photoUrl;
+
   @ViewChild("search")
   public searchElementRef: any;
 
   constructor(
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
-    private http: HttpClient) {}
+    private http: HttpClient,
+    private globals:global) {}
 
   ngOnInit() {
     this.initMap();
@@ -110,6 +117,12 @@ export class CreateTripComponent implements OnInit {
 
           //Draw a path on the map
           this.getDirection(this.latitude, this.longitude);
+
+          //set the photo of the  place
+          //this.photoUrl = place.photos[0].getUrl();
+
+
+
         });
       });
     });
@@ -128,7 +141,7 @@ export class CreateTripComponent implements OnInit {
 
   //draw a path on the map
   getDirection(latitude, longitude) {
-    this.origin = { lat: 24.799448, lng: 120.979021 };
+    this.origin = 'ראשון לציון';
     this.destination = { lat: latitude, lng: longitude };
   }
 
@@ -143,3 +156,4 @@ export class CreateTripComponent implements OnInit {
       })
   }
 }
+

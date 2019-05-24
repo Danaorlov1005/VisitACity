@@ -17,6 +17,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FlightLocatorComponent } from './flight-locator/flight-locator.component';
 import { AgmDirectionModule } from 'agm-direction';
 import { CreateUserComponent } from './create-user/create-user.component';
+import { DisplayTripComponent } from './display-trip/display-trip.component';
+import { global } from './global';
 
 declare let google: any;
 
@@ -27,7 +29,8 @@ declare let google: any;
     CreateTripComponent,
     LandingPageComponent,
     FlightLocatorComponent,
-    CreateUserComponent
+    CreateUserComponent,
+    DisplayTripComponent
   ],
   imports: [
     AgmCoreModule.forRoot({
@@ -42,7 +45,7 @@ declare let google: any;
     MDBBootstrapModule.forRoot(),
     HttpClientModule
   ],
-  providers: [],
+  providers: [global],
   bootstrap: [AppComponent],
   schemas: [NO_ERRORS_SCHEMA]
 })
