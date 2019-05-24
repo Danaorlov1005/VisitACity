@@ -1,9 +1,7 @@
 
 var https = require('follow-redirects').https;
 
-var placeDetails = function () {
-    this.places = [];
-}
+var placeDetails = []
 
 // //Step 1: Get coordinates based on the entered zipcode.
 
@@ -82,6 +80,7 @@ function PlaceResponse(response) {
                 PD.places.push(sdata.results[p]);
             }
             for (r = 0; r < sdata.results.length; r++) {
+                placeDetails.push(PD.places[r])
                 console.log('----------------------------------------------');
                 console.log(PD.places[r].name);
                 console.log('Place ID (for Place Detail search on Google):' + PD.places[r].place_id);
@@ -89,7 +88,7 @@ function PlaceResponse(response) {
                 console.log('Vicinity: ' + PD.places[r].vicinity);
             }
 
-            // return sdata;
+            return placeDetails
         } else {
             console.log(sdata.status);
         }

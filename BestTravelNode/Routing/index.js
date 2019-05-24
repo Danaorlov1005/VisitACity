@@ -1,17 +1,36 @@
 
 const express = require('express')
 const router = express.Router()
+const GooglePlaces = require('googleplaces')
 
 const { getPopularSites } = require('../Repositories/GeneralRepository')
 const { addNewTrip } = require('../Repositories/TripRepository')
 const { getTripsForUser, addNewUser, getUser } = require('../Repositories/UsersRepository')
 const GoogleAPI = require('../GoogleAPI')
-
+const {createNewTrip} = require('../Logics/TripLogic')
 router.post('/addNewTrip', function (req, res) {
     addNewTrip().then((result) => {
         res.send(result);
     }, (err => { console.log(err) }));
 });
+
+router.get('/createTripByParameters', async function (req,res){
+    const mockData = {
+        duration     : 4,
+        location: [41.8977047, 12.4760446],
+        filters: {
+            nature: 1,
+            family: 4,
+            food: 5,
+            nightLife: 3,
+            culture: 2
+
+        }
+    }
+
+    const results = await createNewTrip(mockData)
+    res.send(results)
+})
 
 router.get('/getPopularSites', function (req, res) {
     getPopularSites().then((result) => {
@@ -27,9 +46,7 @@ router.get('/getTripsForUser', function (req, res) {
 
 
 router.get('/getsPlacesAPI', function (req, res) {
-    GoogleAPI.placeSearch(32.064617, 34.829663, 500).then((result) => {
-        res.send(result);
-    }, (err => { console.log(err) }));
+
 })
 
 router.post('/addNewUser/:UserName/:Password', function (req, res) {
