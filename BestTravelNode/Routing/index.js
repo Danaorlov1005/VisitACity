@@ -1,13 +1,11 @@
 
 const express = require('express')
 const router = express.Router()
-const GooglePlaces = require('googleplaces')
-
 const { getPopularSites } = require('../Repositories/GeneralRepository')
 const { addNewTrip } = require('../Repositories/TripRepository')
 const { getTripsForUser, addNewUser, getUser } = require('../Repositories/UsersRepository')
-const GoogleAPI = require('../GoogleAPI')
 const {createNewTrip} = require('../Logics/TripLogic')
+
 router.post('/addNewTrip', function (req, res) {
     addNewTrip().then((result) => {
         res.send(result);
@@ -61,18 +59,6 @@ router.get('/getUser/:UserName/:Password', function (req, res) {
         res.send(result);
     }, (err => { console.log(err) }));
 });
-
-// router.get('/getWantedPartners', function (req, res) {
-//     getWantedPartners(req.params.tripId).then((result) => {
-//         res.send(result);
-//     }, (err => { console.log(err) }));
-// })
-
-// router.get('/addNewSwipe', function (req, res) {
-//     addNewSwipe(req.params).then((result) => {
-//         res.send(result);
-//     }, (err => { console.log(err) }));
-// })
 
 
 module.exports = router
