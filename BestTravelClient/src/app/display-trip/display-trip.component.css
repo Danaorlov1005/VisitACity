@@ -9,3 +9,7 @@
   z-index: 1;
   position: fixed;
 }
+
+.modal{
+  direction: rtl;
+}
