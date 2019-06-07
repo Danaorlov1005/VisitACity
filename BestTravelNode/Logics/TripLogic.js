@@ -9,8 +9,16 @@ async function createNewTrip(data) {
         var promise = devidePlacesByDays(allPlaces, data.duration)
         promise.then((res)=>{
             for (let index = 0; index < data.duration; index++) {
-                    planTripForDay(res[index].places)            
+                    planTripForDay(res[index].places, 'Day')            
             }
+
+            const dataForOrder = []
+
+            for (let index = 0; index < data.duration; index++) {
+                dataForOrder.push(res[index].center)                
+            }
+
+            planTripForDay(dataForOrder, 'DaysOrder')
             resolve(res)
         })
     })
@@ -63,8 +71,8 @@ function devidePlacesByDays(places, duration) {
 
 }
 
-function planTripForDay(places){
-    const verts = places.map((place) => {return [place.geometry.location.lat, place.geometry.location.lng]})
+function planTripForDay(places, planningType){
+    const verts = planningType === 'Day' ? generateVertsPerDay(places) : places
     const edges = generateEdges(verts)
 
     var edgeMST = Kruskal.kruskal( verts, edges, metric_dist );
@@ -72,6 +80,11 @@ function planTripForDay(places){
     console.log(edgeMST)
 
 }
+
+function generateVertsPerDay (places){
+    return places.map((place) => {return [place.geometry.location.lat, place.geometry.location.lng]})
+}
+
 
 function generateEdges (verts){
     var edges = []
