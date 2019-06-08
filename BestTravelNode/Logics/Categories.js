@@ -26,5 +26,11 @@ module.exports = {
         culture: [2, 7, 9, 11, 14],
         shopping: [8, 13]
     },
-    Local: ["nature","family", "food", "nightLife", "culture", "shopping"]
+    Local: [
+        "nature",
+        "family",
+        "food",
+        "nightLife",
+        "culture",
+        "shopping"]
 }

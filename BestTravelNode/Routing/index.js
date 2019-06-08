@@ -17,14 +17,7 @@ router.post('/createTripByParameters', async function (req,res){
     const dataFromClient = {
         duration     : req.body.duration,
         location: [req.body.location.x, req.body.location.y],
-        filters: {
-            nature: req.body.nature,
-            family: req.body.family,
-            food: req.body.food,
-            nightLife: req.body.nightLife,
-            culture: req.body.culture
-
-        }
+        filters: req.body.preferences        
     }
 
     const results = await createNewTrip(dataFromClient)

@@ -7,9 +7,9 @@ var Categories = require('./Categories')
 async function createNewTrip(data) {
     return new Promise(async function (resolve, reject) {
         let allPlaces = await getPlacesFromGoogle(data)
+        allPlaces = prioritizeResults(allPlaces, data.filters);
         var promise = devidePlacesByDays(allPlaces, data.duration)
         promise.then((res) => {
-            res = prioritizeResults(res, data.filters);
             for (let index = 0; index < data.duration; index++) {
                 const minimumTreeForDay = planTripForDay(res[index].places, 'Day')
                 res[index].places = buildAttractionsOrder(minimumTreeForDay, res[index].places)
@@ -44,16 +44,22 @@ async function getPlacesFromGoogle(data) {
 function prioritizeResults(places, preferences) {
     places.forEach(place => {
         place.priority = 0;
+        place.categories = [];
         // each preference of the client
         Categories.Local.forEach(type => {
+            const isInTheCategory = false;
             // go over all matching google categories
             Categories.Pairings[type].forEach(matchingType => {
-                if (place.types.includes(Categories.Google[matchingType]))
+                if (place.types.includes(Categories.Google[matchingType])) {
                     //increase the priority accorting to preferene
                     place.priority += preferences[type];
+                    isInTheCategory = true;
+                }
             });
+            place.categories.push(type);
         });
     });
+    return places;
 }
 
 
