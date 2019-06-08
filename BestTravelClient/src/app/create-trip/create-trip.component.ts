@@ -1,8 +1,8 @@
-import { Component, OnInit, ViewChild, ElementRef, NgZone} from '@angular/core';
+import { Component, OnInit, ViewChild, Injectable, NgZone} from '@angular/core';
 import { FormControl } from "@angular/forms";
 import { MapsAPILoader } from '@agm/core';
 import { HttpClient } from "@angular/common/http";
-import {global} from "../global";
+import { GlobalService } from '../global.service';
 
 export class tripObject{
 
@@ -40,15 +40,14 @@ export class location{
 @Component({
   selector: 'app-create-trip',
   templateUrl: './create-trip.component.html',
-  styleUrls: ['./create-trip.component.css'],
-  providers: [ global ]
-})
+  styleUrls: ['./create-trip.component.css']})
+@Injectable()
 export class CreateTripComponent implements OnInit {
   public origin: any;
   public destination: any;
 
   res:any = [];
-  location:any;
+  location:any = null;
   tripObject:any = [];
 
   //travel preferences
@@ -75,7 +74,7 @@ export class CreateTripComponent implements OnInit {
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
     private http: HttpClient,
-    private globals:global) {}
+    private globalService:GlobalService) {}
 
   ngOnInit() {
     this.initMap();
@@ -119,10 +118,11 @@ export class CreateTripComponent implements OnInit {
           this.getDirection(this.latitude, this.longitude);
 
           //set the photo of the  place
-          //this.photoUrl = place.photos[0].getUrl();
+          this.photoUrl = place.photos[0].getUrl({'maxWidth': 6000, 'maxHeight': 1000}  );
 
-
-
+          this.globalService.setCity(this.location);
+          this.globalService.setNextTripImgUrl(this.photoUrl);
+          this.globalService.setPlace(place);
         });
       });
     });
@@ -150,7 +150,7 @@ export class CreateTripComponent implements OnInit {
     let location1 = new location(this.latitude, this.longitude);
     let obj = new tripObject("הטיול שלי ל" + this.location, this.nature, this.family, this.food, this.mightLife,this.culture, location1 ,this.duration );
 
-    this.http.post<tripObject>("http://localhost:3000/addNewTrip", obj)
+    this.http.post<tripObject>("http://10.100.102.7:3000/createTripByParameters", obj)
       .subscribe(res => {
         console.log(res);
       })

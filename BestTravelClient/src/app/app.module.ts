@@ -19,6 +19,8 @@ import { AgmDirectionModule } from 'agm-direction';
 import { CreateUserComponent } from './create-user/create-user.component';
 import { DisplayTripComponent } from './display-trip/display-trip.component';
 import { global } from './global';
+import { GlobalService } from './global.service';
+
 
 declare let google: any;
 
@@ -45,7 +47,7 @@ declare let google: any;
     MDBBootstrapModule.forRoot(),
     HttpClientModule
   ],
-  providers: [global],
+  providers: [GlobalService],
   bootstrap: [AppComponent],
   schemas: [NO_ERRORS_SCHEMA]
 })

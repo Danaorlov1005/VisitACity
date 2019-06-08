@@ -1,5 +1,7 @@
+
+
 <!--Section heading-->
-<h2 class="h1 text-center my-5 font-weight-bold">הטיול שלך לפריז</h2>
+<h2 class="h1 text-center my-5 font-weight-bold">הטיול שלך ל{{city}}</h2>
 
 <div class="container">
 <!--Grid row-->
@@ -10,7 +12,7 @@
 
     <!--Image-->
     <div class="view overlay rounded">
-      <img src="https://mdbootstrap.com/img/Photos/Others/images/77.jpg" class="img-fluid">
+      <img src={{mainImgUrl}} class="img-fluid">
       <a>
         <div class="mask rgba-white-slight"></div>
       </a>
@@ -18,15 +20,15 @@
 
     <!--Excerpt-->
     <div class="news-data">
-      <a href="" class="light-blue-text">
+      <a class="light-blue-text" data-toggle="modal" data-target="#basicExample" (click)="frame.show()">
         <h6>
-          <i class="fa fa-plane" routerLink="/app-landing-page"></i>
+          <i class="fa fa-plane"></i>
           <strong> מסלולים מומלצים</strong>
         </h6>
       </a>
       <p>
         <strong>
-          <i class="far fa-clock"></i> 20/08/2018</strong>
+          <i class="fa fa-clock"></i> {{date}}</strong>
       </p>
     </div>
     <h3>
@@ -36,12 +38,8 @@
     </h3>
     <p> המסלול נבנה לפי ההעדפות שלך. תוכל תמיד לחזור ולחפש מסלולים חדשים אך מומלץ לשמור את המסלול כדי שתוכל לגשת אליו בקלות בפעם הבאה!
     </p>
-
-    <!--/Featured news-->
-
     <hr>
 
-    <!--Small news-->
     <div class="row">
       <div class="col-md-3">
 
@@ -165,9 +163,6 @@
     </div>
 
 
-<button type="button" mdbBtn color="default" rounded="true" data-toggle="modal" data-target="#basicExample" (click)="frame.show()"
-        mdbWavesEffect>Launch Modal</button>
-
 <div mdbModal #frame="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
      aria-hidden="true">
   <div class="modal-dialog modal-notify modal-success modal-side modal-bottom-right" role="document">
@@ -219,6 +214,14 @@
       </div>
 
     </div>
-    <!--/.Content-->
   </div>
 </div>
+
+<footer class="page-footer text-center font-small mt-4 wow fadeIn">
+  <hr class="my-4">
+
+  <div class="footer-copyright py-3">
+    © 2019 זכויות שמורות
+  </div>
+
+</footer>

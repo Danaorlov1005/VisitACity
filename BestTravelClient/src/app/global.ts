@@ -14,4 +14,8 @@ export class global {
     this.choosenLocation = data;
   }
 
+  commonFunction(): string {
+    return "Hello world";
+  }
+
 }

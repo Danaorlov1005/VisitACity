@@ -13,3 +13,7 @@
 .modal{
   direction: rtl;
 }
+
+.close{
+  display: contents !important;
+}
