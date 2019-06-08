@@ -2,10 +2,10 @@
 const express = require('express')
 const router = express.Router()
 
-const { getPopularSites} = require('../Repositories/GeneralRepository')
+const { getPopularSites } = require('../Repositories/GeneralRepository')
 const { addNewTrip } = require('../Repositories/TripRepository')
 const { getTripsForUser } = require('../Repositories/UsersRepository')
-const  GoogleAPI = require('../GoogleAPI')
+const GoogleAPI = require('../GoogleAPI')
 
 // router.get('/getIntrests', function (req, res) {
 //     executeQuery('select * from public."INTRESTS"').then((result) => {
@@ -43,11 +43,15 @@ router.get('/getTripsForUser', function (req, res) {
 })
 
 
-router.get('/getsPlacesAPI', function (req, res) {
-    GoogleAPI.placeSearch(32.064617, 34.829663 ,500).then((result) => {
-        res.send(result);
-    }, (err => { console.log(err) }));
+// http://localhost:3000/getPlaces?lat=32.068679&lng=34.774010&radius=1000
+router.get('/getPlaces', function (req, res) {
+    GoogleAPI.placeSearch(req.query.lat, req.query.lng, req.query.radius).
+        then((result) => {
+            res.send(result);
+        }, 
+        (err => { console.log(err) }));
 })
+
 // router.get('/getWantedPartners', function (req, res) {
 //     getWantedPartners(req.params.tripId).then((result) => {
 //         res.send(result);
