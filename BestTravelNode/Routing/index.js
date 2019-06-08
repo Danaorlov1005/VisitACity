@@ -8,25 +8,25 @@ const {createNewTrip} = require('../Logics/TripLogic')
 
 router.post('/addNewTrip', function (req, res) {
     addNewTrip().then((result) => {
-        res.send(result);
+        res.send(result)
     }, (err => { console.log(err) }));
 });
 
-router.get('/createTripByParameters', async function (req,res){
-    const mockData = {
-        duration     : 4,
-        location: [41.8977047, 12.4760446],
+router.post('/createTripByParameters', async function (req,res){
+    const dataFromClient = {
+        duration     : req.body.duration,
+        location: [req.body.location.x, req.body.location.y],
         filters: {
-            nature: 1,
-            family: 4,
-            food: 5,
-            nightLife: 3,
-            culture: 2
+            nature: req.body.nature,
+            family: req.body.family,
+            food: req.body.food,
+            nightLife: req.body.nightLife,
+            culture: req.body.culture
 
         }
     }
 
-    const results = await createNewTrip(mockData)
+    const results = await createNewTrip(dataFromClient)
     res.send(results)
 })
 

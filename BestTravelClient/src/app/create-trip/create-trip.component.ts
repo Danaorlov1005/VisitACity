@@ -150,7 +150,7 @@ export class CreateTripComponent implements OnInit {
     let location1 = new location(this.latitude, this.longitude);
     let obj = new tripObject("הטיול שלי ל" + this.location, this.nature, this.family, this.food, this.mightLife,this.culture, location1 ,this.duration );
 
-    this.http.post<tripObject>("http://10.100.102.7:3000/createTripByParameters", obj)
+    this.http.post<tripObject>("http://localhost:3000/createTripByParameters", obj)
       .subscribe(res => {
         console.log(res);
       })
