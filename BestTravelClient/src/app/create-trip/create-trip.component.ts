@@ -5,27 +5,16 @@ import { HttpClient } from "@angular/common/http";
 import { GlobalService } from '../global.service';
 
 export class tripObject{
-
   tripName : string;
-  nature : number;
-  shopping : number;
-  family : number;
-  food : number;
-  nightLife : number;
-  culture : number;
   location :location;
   duration : number;
+  preferences:preferences;
 
-  constructor(tripName:string, nature:number, family:number, food:number, nightLife:number, culture:number, location:location, duration:number, shopping:number){
+  constructor(tripName:string, location:location, duration:number, preferences:preferences){
     this.tripName = tripName;
-    this.nature = nature;
-    this.shopping = shopping;
-    this.family = family;
-    this.food = food;
-    this.nightLife = nightLife;
-    this.culture = culture;
     this.location = location;
     this.duration = duration;
+    this.preferences = preferences;
   }
 }
 
@@ -36,6 +25,24 @@ export class location{
   constructor(x : number, y: number){
     this.x = x;
     this.y = y;
+  }
+}
+
+export class preferences{
+  nature : number;
+  shopping : number;
+  family : number;
+  food : number;
+  nightLife : number;
+  culture : number;
+
+  constructor(nature:number, family:number, food:number, nightLife:number, culture:number, shopping:number){
+    this.nature = nature;
+    this.shopping = shopping;
+    this.family = family;
+    this.food = food;
+    this.nightLife = nightLife;
+    this.culture = culture;
   }
 }
 
@@ -151,11 +158,13 @@ export class CreateTripComponent implements OnInit {
   //create a new trip
   createTrip(){
     let location1 = new location(this.latitude, this.longitude);
-    let obj = new tripObject("הטיול שלי ל" + this.location, this.nature, this.family, this.food, this.mightLife,this.culture, location1 ,this.duration, this.shopping );
+    let preferences1 = new preferences(this.nature, this.family, this.food, this.mightLife,this.culture, this.shopping );
+    let obj = new tripObject("הטיול שלי ל" + this.location, location1 ,this.duration, preferences1);
 
     this.http.post<tripObject>("http://localhost:3000/createTripByParameters", obj)
       .subscribe(res => {
         console.log(res);
+        this.globalService.setTripObj(res);
       })
   }
 }
