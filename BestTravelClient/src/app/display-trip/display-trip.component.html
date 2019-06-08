@@ -40,10 +40,9 @@
     </p>
     <hr>
 
-    <div class="row">
+    <div class="row" *ngFor="let day of days; let index">
       <div class="col-md-3">
 
-        <!--Image-->
         <div class="view overlay rounded z-depth-1" style="height: 20vh !important">
           <img src="https://mdbootstrap.com/img/Photos/Others/photo8.jpg" class="img-fluid" alt="Minor sample post image">
           <a>
@@ -52,27 +51,19 @@
         </div>
       </div>
 
-      <!--Excerpt-->
       <div class="col-md-9">
         <p class="dark-grey-text">
-          <strong>19/08/2018</strong>
+          <strong>{{index}}</strong>
         </p>
         <a>Lorem ipsum dolor sit amet
           <i class="fa fa-angle-left float-left" (click)="basicModal.show()"></i>
         </a>
       </div>
-
     </div>
-    <!--/Small news-->
 
     <hr>
-    <!--/Small news-->
-
   </div>
-  <!--Grid column-->
-
 </div>
-<!--Grid row-->
 </div>
 
     <div mdbModal #basicModal="mdbModal" class="modal fade" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
