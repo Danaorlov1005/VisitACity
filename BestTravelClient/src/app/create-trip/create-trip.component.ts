@@ -8,6 +8,7 @@ export class tripObject{
 
   tripName : string;
   nature : number;
+  shopping : number;
   family : number;
   food : number;
   nightLife : number;
@@ -15,9 +16,10 @@ export class tripObject{
   location :location;
   duration : number;
 
-  constructor(tripName:string, nature:number, family:number, food:number, nightLife:number, culture:number, location:location, duration:number){
+  constructor(tripName:string, nature:number, family:number, food:number, nightLife:number, culture:number, shopping:number, location:location, duration:number){
     this.tripName = tripName;
     this.nature = nature;
+    this.shopping = shopping;
     this.family = family;
     this.food = food;
     this.nightLife = nightLife;
@@ -56,6 +58,7 @@ export class CreateTripComponent implements OnInit {
   food:number = 2;
   mightLife:number = 2;
   culture:number = 2;
+  shopping:number = 2;
   duration:number = 3;
 
   //map properties
@@ -148,7 +151,7 @@ export class CreateTripComponent implements OnInit {
   //create a new trip
   createTrip(){
     let location1 = new location(this.latitude, this.longitude);
-    let obj = new tripObject("הטיול שלי ל" + this.location, this.nature, this.family, this.food, this.mightLife,this.culture, location1 ,this.duration );
+    let obj = new tripObject("הטיול שלי ל" + this.location, this.nature, this.family, this.food, this.mightLife,this.culture, location1 ,this.duration, this.shopping );
 
     this.http.post<tripObject>("http://10.100.102.7:3000/createTripByParameters", obj)
       .subscribe(res => {
