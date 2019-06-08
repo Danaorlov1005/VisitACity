@@ -14,6 +14,7 @@ export class DisplayTripComponent implements OnInit {
   constructor(private globalService:GlobalService) { }
 
   ngOnInit() {
+    window.scrollTo(0,100);
   }
 
   closeModal(){

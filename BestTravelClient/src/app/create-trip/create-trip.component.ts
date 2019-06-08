@@ -16,7 +16,7 @@ export class tripObject{
   location :location;
   duration : number;
 
-  constructor(tripName:string, nature:number, family:number, food:number, nightLife:number, culture:number, shopping:number, location:location, duration:number){
+  constructor(tripName:string, nature:number, family:number, food:number, nightLife:number, culture:number, location:location, duration:number, shopping:number){
     this.tripName = tripName;
     this.nature = nature;
     this.shopping = shopping;
@@ -121,7 +121,7 @@ export class CreateTripComponent implements OnInit {
           this.getDirection(this.latitude, this.longitude);
 
           //set the photo of the  place
-          this.photoUrl = place.photos[0].getUrl({'maxWidth': 6000, 'maxHeight': 1000}  );
+          this.photoUrl = place.photos[1].getUrl({'maxWidth': 6000, 'maxHeight': 1000}  );
 
           this.globalService.setCity(this.location);
           this.globalService.setNextTripImgUrl(this.photoUrl);

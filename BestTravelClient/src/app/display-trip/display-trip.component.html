@@ -1,24 +1,24 @@
-
-
-<!--Section heading-->
-<h2 class="h1 text-center my-5 font-weight-bold">הטיול שלך ל{{city}}</h2>
+<div class="view jarallax" data-jarallax='{"speed": 0.2}' style="background-repeat: no-repeat; background-size: cover;" [ngStyle]="{ 'background-image': 'url(' + mainImgUrl  + ')'}">
+  <div class="full-bg-img mask rgba-black-light">
+    <div class="container flex-center">
+      <div class="row pt-5 mt-3 w-100">
+        <div class="col-md-12">
+          <div class="text-center">
+            <h2 class="h1 h1-reponsive white-text font-up font-bold mb-3 wow fadeInDown" data-wow-delay="0.3s"><strong>הטיול שלך מוכן!</strong></h2>
+            <hr class="hr-light mt-4 wow fadeInDown" data-wow-delay="0.4s">
+            <h2 class="font-up mb-5 white-text wow fadeInDown" data-wow-delay="0.4s"><strong>{{city}}</strong></h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="container">
-<!--Grid row-->
 <div class="row">
 
-  <!--Grid column-->
   <div class="col-md-12 text-right">
 
-    <!--Image-->
-    <div class="view overlay rounded">
-      <img src={{mainImgUrl}} class="img-fluid">
-      <a>
-        <div class="mask rgba-white-slight"></div>
-      </a>
-    </div>
-
-    <!--Excerpt-->
     <div class="news-data">
       <a class="light-blue-text" data-toggle="modal" data-target="#basicExample" (click)="frame.show()">
         <h6>
@@ -44,7 +44,7 @@
       <div class="col-md-3">
 
         <!--Image-->
-        <div class="view overlay rounded z-depth-1">
+        <div class="view overlay rounded z-depth-1" style="height: 20vh !important">
           <img src="https://mdbootstrap.com/img/Photos/Others/photo8.jpg" class="img-fluid" alt="Minor sample post image">
           <a>
             <div class="mask rgba-white-slight"></div>
@@ -66,59 +66,6 @@
     <!--/Small news-->
 
     <hr>
-
-    <!--Small news-->
-    <div class="row">
-      <div class="col-md-3">
-
-        <!--Image-->
-        <div class="view overlay rounded z-depth-1">
-          <img src="https://mdbootstrap.com/img/Photos/Others/images/54.jpg" class="img-fluid" alt="Minor sample post image">
-          <a>
-            <div class="mask rgba-white-slight"></div>
-          </a>
-        </div>
-      </div>
-
-      <!--Excerpt-->
-      <div class="col-md-9">
-        <p class="dark-grey-text">
-          <strong>18/08/2018</strong>
-        </p>
-        <a>Soluta nobis est eligendi
-          <i class="fa fa-angle-left float-left" (click)="basicModal.show()"></i>
-        </a>
-      </div>
-
-    </div>
-    <!--/Small news-->
-
-    <hr>
-
-    <!--Small news-->
-    <div class="row">
-      <div class="col-md-3">
-
-        <!--Image-->
-        <div class="view overlay rounded z-depth-1">
-          <img src="https://mdbootstrap.com/img/Photos/Others/images/49.jpg" class="img-fluid" alt="Minor sample post image">
-          <a>
-            <div class="mask rgba-white-slight"></div>
-          </a>
-        </div>
-      </div>
-
-      <!--Excerpt-->
-      <div class="col-md-9">
-        <p class="dark-grey-text">
-          <strong>17/08/2018</strong>
-        </p>
-        <a>Voluptatem accusantium doloremque
-          <i class="fa fa-angle-left float-left" (click)="basicModal.show()"></i>
-        </a>
-      </div>
-
-    </div>
     <!--/Small news-->
 
   </div>
@@ -127,7 +74,6 @@
 </div>
 <!--Grid row-->
 </div>
-
 
     <div mdbModal #basicModal="mdbModal" class="modal fade" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
