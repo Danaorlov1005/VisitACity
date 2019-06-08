@@ -164,7 +164,7 @@ export class CreateTripComponent implements OnInit {
     this.http.post<tripObject>("http://localhost:3000/createTripByParameters", obj)
       .subscribe(res => {
         console.log(res);
-        this.globalService.setTripObj(re  s);
+        this.globalService.setTripObj(res);
       })
   }
 }
