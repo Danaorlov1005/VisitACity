@@ -6,6 +6,7 @@ const { addNewTrip } = require('../Repositories/TripRepository')
 const { getTripsForUser, addNewUser, getUser } = require('../Repositories/UsersRepository')
 const {createNewTrip} = require('../Logics/TripLogic')
 
+
 router.post('/addNewTrip', function (req, res) {
     addNewTrip().then((result) => {
         res.send(result);
