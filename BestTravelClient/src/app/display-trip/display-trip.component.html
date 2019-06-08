@@ -1,0 +1,224 @@
+<!--Section heading-->
+<h2 class="h1 text-center my-5 font-weight-bold">הטיול שלך לפריז</h2>
+
+<div class="container">
+<!--Grid row-->
+<div class="row">
+
+  <!--Grid column-->
+  <div class="col-md-12 text-right">
+
+    <!--Image-->
+    <div class="view overlay rounded">
+      <img src="https://mdbootstrap.com/img/Photos/Others/images/77.jpg" class="img-fluid">
+      <a>
+        <div class="mask rgba-white-slight"></div>
+      </a>
+    </div>
+
+    <!--Excerpt-->
+    <div class="news-data">
+      <a href="" class="light-blue-text">
+        <h6>
+          <i class="fa fa-plane" routerLink="/app-landing-page"></i>
+          <strong> מסלולים מומלצים</strong>
+        </h6>
+      </a>
+      <p>
+        <strong>
+          <i class="far fa-clock"></i> 20/08/2018</strong>
+      </p>
+    </div>
+    <h3>
+      <a>
+        <strong>הנה המסלול שיצרנו במיוחד בשבילך:</strong>
+      </a>
+    </h3>
+    <p> המסלול נבנה לפי ההעדפות שלך. תוכל תמיד לחזור ולחפש מסלולים חדשים אך מומלץ לשמור את המסלול כדי שתוכל לגשת אליו בקלות בפעם הבאה!
+    </p>
+
+    <!--/Featured news-->
+
+    <hr>
+
+    <!--Small news-->
+    <div class="row">
+      <div class="col-md-3">
+
+        <!--Image-->
+        <div class="view overlay rounded z-depth-1">
+          <img src="https://mdbootstrap.com/img/Photos/Others/photo8.jpg" class="img-fluid" alt="Minor sample post image">
+          <a>
+            <div class="mask rgba-white-slight"></div>
+          </a>
+        </div>
+      </div>
+
+      <!--Excerpt-->
+      <div class="col-md-9">
+        <p class="dark-grey-text">
+          <strong>19/08/2018</strong>
+        </p>
+        <a>Lorem ipsum dolor sit amet
+          <i class="fa fa-angle-left float-left" (click)="basicModal.show()"></i>
+        </a>
+      </div>
+
+    </div>
+    <!--/Small news-->
+
+    <hr>
+
+    <!--Small news-->
+    <div class="row">
+      <div class="col-md-3">
+
+        <!--Image-->
+        <div class="view overlay rounded z-depth-1">
+          <img src="https://mdbootstrap.com/img/Photos/Others/images/54.jpg" class="img-fluid" alt="Minor sample post image">
+          <a>
+            <div class="mask rgba-white-slight"></div>
+          </a>
+        </div>
+      </div>
+
+      <!--Excerpt-->
+      <div class="col-md-9">
+        <p class="dark-grey-text">
+          <strong>18/08/2018</strong>
+        </p>
+        <a>Soluta nobis est eligendi
+          <i class="fa fa-angle-left float-left" (click)="basicModal.show()"></i>
+        </a>
+      </div>
+
+    </div>
+    <!--/Small news-->
+
+    <hr>
+
+    <!--Small news-->
+    <div class="row">
+      <div class="col-md-3">
+
+        <!--Image-->
+        <div class="view overlay rounded z-depth-1">
+          <img src="https://mdbootstrap.com/img/Photos/Others/images/49.jpg" class="img-fluid" alt="Minor sample post image">
+          <a>
+            <div class="mask rgba-white-slight"></div>
+          </a>
+        </div>
+      </div>
+
+      <!--Excerpt-->
+      <div class="col-md-9">
+        <p class="dark-grey-text">
+          <strong>17/08/2018</strong>
+        </p>
+        <a>Voluptatem accusantium doloremque
+          <i class="fa fa-angle-left float-left" (click)="basicModal.show()"></i>
+        </a>
+      </div>
+
+    </div>
+    <!--/Small news-->
+
+  </div>
+  <!--Grid column-->
+
+</div>
+<!--Grid row-->
+</div>
+
+
+    <div mdbModal #basicModal="mdbModal" class="modal fade" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="row mb-6 wow fadeIn">
+          <div class="col">
+            <div class="card">
+              <div class="view overlay zoom">
+                <button type="button" class="close pull-right" aria-label="Close" (click)="closeModal()">
+                  <span aria-hidden="true">×</span>
+                </button>
+                <img src="https://mdbootstrap.com/img/Photos/Others/images/77.jpg" class="card-img-top"
+                     alt="">
+                <div class="mask flex-center">
+                  <p class="white-text">Zoom effect</p>
+                </div>
+                <a target="_blank">
+                  <div class="mask rgba-white-slight"></div>
+                </a>
+              </div>
+
+              <div class="card-body">
+                <h4 class="card-title">מסדעת צרפת</h4>
+                <p class="card-text"></p>
+                <p class="card-text">
+                  <strong>fjkdjfjks</strong>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+<button type="button" mdbBtn color="default" rounded="true" data-toggle="modal" data-target="#basicExample" (click)="frame.show()"
+        mdbWavesEffect>Launch Modal</button>
+
+<div mdbModal #frame="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-notify modal-success modal-side modal-bottom-right" role="document">
+    <!--Content-->
+    <div class="modal-content">
+      <!--Header-->
+      <div class="modal-header">
+        <p class="heading lead">טיולים דומים</p>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+          <span aria-hidden="true" class="white-text">&times;</span>
+        </button>
+      </div>
+
+      <!--Body-->
+      <div class="modal-body text-center">
+        <div class="text-center">
+          <i class="fa fa-plane fa-4x mb-3 animated rotateIn"></i>
+          <ul class="list-unstyled">
+            <li class="media">
+              <img class="d-flex mr-3" src="https://mdbootstrap.com/img/Photos/Others/placeholder7.jpg" alt="Generic placeholder image">
+              <div class="media-body">
+                <a href="">
+                  <h5 class="mt-0 mb-1 font-weight-bold">טיול להרי הקרפטים</h5>
+                </a>
+                יעד זול ומתאים לכל המשפחה(...)
+              </div>
+            </li>
+            <li class="media my-4">
+              <img class="d-flex mr-3" src="https://mdbootstrap.com/img/Photos/Others/placeholder6.jpg" alt="An image">
+              <div class="media-body">
+                <a href="">
+                  <h5 class="mt-0 mb-1 font-weight-bold">מסע ביער הגשם</h5>
+                </a>
+                יום טיול בניס(...)
+              </div>
+            </li>
+            <li class="media">
+              <img class="d-flex mr-3" src="https://mdbootstrap.com/img/Photos/Others/placeholder5.jpg" alt="Generic placeholder image">
+              <div class="media-body">
+                <a href="">
+                  <h5 class="mt-0 mb-1 font-weight-bold">יומיים בבירה האנגלית</h5>
+                </a>
+                יומיים מלאים בלונדון (...)
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+    <!--/.Content-->
+  </div>
+</div>

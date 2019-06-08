@@ -1,42 +1,48 @@
-
+<div class="page">
 <div class="side-panel">
   <br>
   <div class="col">
     <div class="md-form mt-0">
-      <input placeholder="חפש מיקום..." autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [formControl]="searchControl">
+      <input placeholder="חפש מיקום..." autocorrect="off" autocapitalize="off"
+             spellcheck="off" type="text" class="form-control" #search [formControl]="searchControl"
+              [(ngModel)]="location">
 
     </div>
   </div>
-<!--
-    <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0">חפש במיקום הזה</button>
--->
 
   <div class="slider">
     <label for="nature">פעילויות טבע</label>
-    <input type="range" class="custom-range" min="0" max="5" id="nature">
+    <input type="range" class="custom-range" min="0" max="5" id="nature" [(ngModel)]="nature">
 
     <label for="family">משפחה</label>
-    <input type="range" class="custom-range" min="0" max="5" id="family">
+    <input type="range" class="custom-range" min="0" max="5" id="family" [(ngModel)]="family">
 
     <label for="food">אוכל</label>
-    <input type="range" class="custom-range" min="0" max="5" id="food">
+    <input type="range" class="custom-range" min="0" max="5" id="food" [(ngModel)]="food">
 
     <label for="nightLifa">חיי לילה</label>
-    <input type="range" class="custom-range" min="0" max="5" id="nightLifa">
+    <input type="range" class="custom-range" min="0" max="5" id="nightLifa" [(ngModel)]="mightLife">
 
     <label for="culture">תרבות</label>
-    <input type="range" class="custom-range" min="0" max="5" id="culture">
+    <input type="range" class="custom-range" min="0" max="5" id="culture"[(ngModel)]="culture">
 
+    <label for="duration" id="days">
+      סה"כ ימים:
+     {{duration}}
+    </label>
+    <input type="range" class="custom-range" min="1" max="7" id="duration"[(ngModel)]="duration">
+
+    <button class="btn btn-default" id="search" (click)="createTrip()" routerLink="/DisplayTripComponent">צור מסלול <i class="fa fa-search"></i></button>
   </div>
 
 </div>
 
-<!--
-<div #gmap style="width:80%;height:722px"></div>
--->
 
 <div class="" style="width: 80%; height: 650px !important;">
   <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom" style="height: inherit">
     <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+    <agm-direction [origin]="origin" [destination]="destination">
+    </agm-direction>
   </agm-map>
+</div>
 </div>

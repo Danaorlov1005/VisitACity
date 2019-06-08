@@ -1,40 +1,40 @@
 
 const express = require('express')
 const router = express.Router()
-
 const { getPopularSites } = require('../Repositories/GeneralRepository')
 const { addNewTrip } = require('../Repositories/TripRepository')
-const { getTripsForUser } = require('../Repositories/UsersRepository')
-const GoogleAPI = require('../GoogleAPI')
+const { getTripsForUser, addNewUser, getUser } = require('../Repositories/UsersRepository')
+const {createNewTrip} = require('../Logics/TripLogic')
 
-// router.get('/getIntrests', function (req, res) {
-//     executeQuery('select * from public."INTRESTS"').then((result) => {
-//         res.send(result);
-//     }, (err => { console.log(err) }))
-// });
-
-router.get('/addNewTrip', function (req, res) {
+router.post('/addNewTrip', function (req, res) {
     addNewTrip().then((result) => {
         res.send(result);
     }, (err => { console.log(err) }));
 });
 
-// tripId parameter
-// router.get('/findPartner', function (req, res) {
-//     searchBestMatch(req.params.tripId, res);
-// });
+router.get('/createTripByParameters', async function (req,res){
+    const mockData = {
+        duration     : 4,
+        location: [41.8977047, 12.4760446],
+        filters: {
+            nature: 1,
+            family: 4,
+            food: 5,
+            nightLife: 3,
+            culture: 2
+
+        }
+    }
+
+    const results = await createNewTrip(mockData)
+    res.send(results)
+})
 
 router.get('/getPopularSites', function (req, res) {
     getPopularSites().then((result) => {
         res.send(result);
     }, (err => { console.log(err) }));
 })
-
-// router.get('/getPartners', function (req, res) {
-//     getTripPartners(req.data).then((result) => {
-//         res.send(result);
-//     }, (err => { console.log(err) }));
-// })
 
 router.get('/getTripsForUser', function (req, res) {
     getTripsForUser(req.params).then((result) => {
@@ -57,12 +57,22 @@ router.get('/getPlaces', function (req, res) {
 //         res.send(result);
 //     }, (err => { console.log(err) }));
 // })
+router.get('/getsPlacesAPI', function (req, res) {
 
-// router.get('/addNewSwipe', function (req, res) {
-//     addNewSwipe(req.params).then((result) => {
-//         res.send(result);
-//     }, (err => { console.log(err) }));
-// })
+})
+
+router.post('/addNewUser/:UserName/:Password', function (req, res) {
+    addNewUser(req.params).then((result) => {
+        res.send(result);
+    }, (err => { console.log(err) }));
+});
+
+
+router.get('/getUser/:UserName/:Password', function (req, res) {
+    getUser(req.params).then((result) => {
+        res.send(result);
+    }, (err => { console.log(err) }));
+});
 
 
 module.exports = router
