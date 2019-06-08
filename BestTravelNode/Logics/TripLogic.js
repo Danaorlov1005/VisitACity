@@ -74,7 +74,7 @@ function devidePlacesByDays(places, duration) {
             for (let index = 0; index < duration; index++) {
                 placesByDays[index] = { places: [], center: clusters[index].centroid }
                 clusters[index].cluster.map((locInDay) => {
-                    placeToAdd = places.find(place => place.geometry.location.lan = locInDay[0] &&
+                    placeToAdd = places.find(place => place.geometry.location.lat = locInDay[0] &&
                         place.geometry.location.lng == locInDay[1])
 
                     placesByDays[index]["places"].push(placeToAdd)
