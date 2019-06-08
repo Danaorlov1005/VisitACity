@@ -165,7 +165,7 @@ export class CreateTripComponent implements OnInit {
       .subscribe(res => {
         console.log(res);
         this.globalService.setTripObj(res);
-      })
+      });
   }
 }
 

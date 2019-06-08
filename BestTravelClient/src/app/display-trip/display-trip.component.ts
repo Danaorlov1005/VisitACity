@@ -13,8 +13,10 @@ export class DisplayTripComponent implements OnInit {
   days:any = this.globalService.getTripObj();
   dayNames:any = ['היום הראשון שלך','היום השני שלך','היום השלישי שלך','היום הרביעי שלך','היום בחמישי שלך','היום השישי שלך'];
 
-  constructor(private globalService:GlobalService) { }
-
+  constructor(private globalService:GlobalService) {
+    this.days = this.globalService.getTripObj();
+  }
+  
   ngOnInit() {
     window.scrollTo(0,100);
     this.days = this.globalService.getTripObj();

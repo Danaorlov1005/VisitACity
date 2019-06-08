@@ -40,28 +40,28 @@
     </p>
     <hr>
 
-    <div class="row" *ngFor="let day of days; let index">
+    <div class="row" style="padding-bottom: 20px;" *ngFor="let day of days; let i = index">
       <div class="col-md-3">
 
         <div class="view overlay rounded z-depth-1" style="height: 20vh !important">
-          <img src="https://mdbootstrap.com/img/Photos/Others/photo8.jpg" class="img-fluid" alt="Minor sample post image">
+          <img src="https://mdbootstrap.com/img/Photos/Others/photo8.jpg" class="img-fluid">
           <a>
             <div class="mask rgba-white-slight"></div>
           </a>
         </div>
       </div>
 
-      <div class="col-md-9">
-        <p class="dark-grey-text">
-          <strong>{{index}}</strong>
-        </p>
-        <a>Lorem ipsum dolor sit amet
+      <div class="col-md-9" (click)="basicModal.show()">
+        <a>
+          <p class="dark-grey-text">
+            <strong>{{dayNames[i]}}</strong>
+          </p>
           <i class="fa fa-angle-left float-left" (click)="basicModal.show()"></i>
         </a>
       </div>
+      <hr>
     </div>
 
-    <hr>
   </div>
 </div>
 </div>
