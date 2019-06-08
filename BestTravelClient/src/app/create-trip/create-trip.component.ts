@@ -39,6 +39,16 @@ export class location{
   }
 }
 
+export class preferences{
+  x : number;
+  y : number;
+
+  constructor(x : number, y: number){
+    this.x = x;
+    this.y = y;
+  }
+}
+
 @Component({
   selector: 'app-create-trip',
   templateUrl: './create-trip.component.html',
