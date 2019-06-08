@@ -9,17 +9,15 @@ async function createNewTrip(data) {
         var promise = devidePlacesByDays(allPlaces, data.duration)
         promise.then((res)=>{
             for (let index = 0; index < data.duration; index++) {
-                    planTripForDay(res[index].places, 'Day')            
+                   const minimumTreeForDay =  planTripForDay(res[index].places, 'Day')
+                   res[index].places = buildAttractionsOrder(minimumTreeForDay,res[index].places)            
             }
 
-            const dataForOrder = []
+            const dataForOrder = res.map(day => day.center)
 
-            for (let index = 0; index < data.duration; index++) {
-                dataForOrder.push(res[index].center)                
-            }
-
-            planTripForDay(dataForOrder, 'DaysOrder')
-            resolve(res)
+            minimumTreeForTrip = planTripForDay(dataForOrder, 'DaysOrder')
+            const finalTrip = buildAttractionsOrder(minimumTreeForTrip, res)
+            resolve(finalTrip)
         })
     })
 }
@@ -77,7 +75,7 @@ function planTripForDay(places, planningType){
 
     var edgeMST = Kruskal.kruskal( verts, edges, metric_dist );
 
-    console.log(edgeMST)
+    return edgeMST
 
 }
 
@@ -103,5 +101,25 @@ function metric_dist( a, b ){
         { latitude: b[0], longitude: b[1] }
     );
   }
+
+function buildAttractionsOrder (minimumTree, places){
+
+    var indexArray = []
+
+    for (let index = 0; index < minimumTree.length; index++) {
+        const firstEdge = minimumTree[index][0]
+        const secondEdge = minimumTree[index][1]
+        
+        !indexArray.includes(firstEdge) ? indexArray.push(firstEdge) : null
+        !indexArray.includes(secondEdge) ? indexArray.push(secondEdge) : null
+        
+    }
+
+    finalTrip = indexArray.map(index => places[index])
+
+    console.log(finalTrip)
+    return finalTrip
+
+}
 
 module.exports = { createNewTrip }
