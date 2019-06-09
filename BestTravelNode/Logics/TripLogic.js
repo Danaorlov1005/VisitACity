@@ -3,39 +3,50 @@ const kmeans = require('node-kmeans');
 const geolib = require('geolib')
 var Kruskal = require("kruskal");
 var Categories = require('./Categories')
+var PlaceSearch = require('googleplaces/lib/PlaceSearch')
 
 async function createNewTrip(data) {
     return new Promise(async function (resolve, reject) {
-        let allPlaces = await getPlacesFromGoogle(data)
-        //allPlaces = prioritizeResults(allPlaces, data.filters);
-        var promise = devidePlacesByDays(allPlaces, data.duration)
-        promise.then((res) => {
-            for (let index = 0; index < data.duration; index++) {
-                const minimumTreeForDay = planTripForDay(res[index].places, 'Day')
-                res[index].places = buildAttractionsOrder(minimumTreeForDay, res[index].places)
-            }
+        getPlacesFromGoogle(data).then((result) => {
+            allPlaces = result
+            var promise = devidePlacesByDays(allPlaces, data.duration)
+            promise.then((res) => {
+                for (let index = 0; index < data.duration; index++) {
+                    const prioritizedPlaces = prioritizeResults(res[index].places, data.filters);
+                    const minimumTreeForDay = planTripForDay(prioritizedPlaces, 'Day')
+                    res[index].places = buildAttractionsOrder(minimumTreeForDay, res[index].places)
+                }
 
-            const dataForOrder = res.map(day => day.center)
+                const dataForOrder = res.map(day => day.center)
 
-            minimumTreeForTrip = planTripForDay(dataForOrder, 'DaysOrder')
-            const finalTrip = buildAttractionsOrder(minimumTreeForTrip, res)
-            resolve(finalTrip)
+                minimumTreeForTrip = planTripForDay(dataForOrder, 'DaysOrder')
+                var finalTrip = {
+                    'places': buildAttractionsOrder(minimumTreeForTrip, res),
+                    'duration': data.duration, 'area': data.location
+                }
+                resolve(finalTrip)
+            })
         })
+
     })
 }
 
 async function getPlacesFromGoogle(data) {
-    GooglePlaces.apiKey = 'AIzaSyBts53vgjeOpiVy962cJUvS8D021tTgpdI'
-    GooglePlaces.debug = false
+    var placeSearch = new PlaceSearch('AIzaSyBts53vgjeOpiVy962cJUvS8D021tTgpdI', 'json');
 
-    await GooglePlaces.nearbysearch({
-        location: data.location.toString(),
-        type: ["point_of_interest"], //Categories.Google,
-        rankby: "distance" // See google docs for different possible values
-    }).then(result => {
-            return result
-        })
-        .catch(e => console.log(e));
+    parameters = {
+        location: data.location,
+        rankby: "distance",
+        types: Categories.Google
+    };
+
+    return new Promise(function (resolve, reject) {
+        placeSearch(parameters, function (error, response) {
+            resolve(response.results)
+        }
+        )
+    })
+
 }
 
 // places - search result
@@ -55,10 +66,16 @@ function prioritizeResults(places, preferences) {
                     isInTheCategory = true;
                 }
             });
-            place.categories.push(type);
+
+            if (isInTheCategory)
+                place.categories.push(type);
         });
     });
-    return places;
+
+    const prioritizedPlaces = places.sort((a, b) =>
+        a.priority * a.priority * a.rating > b.priority * b.priority * b.rating ? -1 : 1).slice(0, 4);
+
+    return prioritizedPlaces;
 }
 
 
@@ -99,10 +116,73 @@ function planTripForDay(places, planningType) {
     const edges = generateEdges(verts)
 
     var edgeMST = Kruskal.kruskal(verts, edges, metric_dist);
-
-    return edgeMST
-
+    path = CreateAPath(edgeMST, verts.length)
+    return path
 }
+
+function generateVertsPerDay(places) {
+    return places.map((place) => { return [place.geometry.location.lat, place.geometry.location.lng] })
+}
+
+function CreateAPath(minTree, verts) {
+    var path = {}
+    var vertsDictCount = []
+
+    minTree.forEach(function (edge) {
+        if (path[edge[0]] == undefined) {
+            path[edge[0]] = edge[1]
+        }
+    });
+
+    for (var i = 0; i <= verts; i++) {
+        vertsDictCount[i] = 0
+    }
+
+    for (var i = 0; i <= minTree.length; i++) {
+        if (vertsDictCount[path[i]] > 2 || vertsDictCount[i] > 2) {
+            delete path[i]
+        }
+        else if (path[i] != undefined) {
+            vertsDictCount[i]++
+            vertsDictCount[path[i]]++
+        }
+    }
+
+    // maybe remove later
+    for (var i = 0; i < vertsDictCount.length; i++) {
+        if (vertsDictCount[i] >= 2) {
+            delete vertsDictCount[i]
+        }
+    }
+
+    createMissingEdges(verts, vertsDictCount, path)
+    createMissingEdges(verts, vertsDictCount, path)
+
+    return path
+}
+
+function createMissingEdges(verts, vertsDictCount, path) {
+    for (var i = 0; i < verts - 1; i++) {
+        if (vertsDictCount[i] >= 2) {
+            delete vertsDictCount[i]
+        }
+        if (path[i] == undefined && vertsDictCount[i] < 2) {
+            var j = i
+            while (j + 1 < vertsDictCount.length) {
+                if (vertsDictCount[j + 1] < 2) {
+                    path[j] = j + 1
+                    vertsDictCount[j]++
+                    vertsDictCount[j + 1]++
+                    break;
+                }
+                else {
+                    j++
+                }
+            }
+        }
+    }
+}
+
 
 function generateVertsPerDay(places) {
     return places.map((place) => { return [place.geometry.location.lat, place.geometry.location.lng] })
@@ -131,14 +211,14 @@ function buildAttractionsOrder(minimumTree, places) {
 
     var indexArray = []
 
-    for (let index = 0; index < minimumTree.length; index++) {
-        const firstEdge = minimumTree[index][0]
-        const secondEdge = minimumTree[index][1]
+    Object.entries(minimumTree).forEach(edge => {
+        const firstEdge = parseInt(edge[0], 10);
+        const secondEdge = parseInt(edge[1], 10);
 
         !indexArray.includes(firstEdge) ? indexArray.push(firstEdge) : null
         !indexArray.includes(secondEdge) ? indexArray.push(secondEdge) : null
 
-    }
+    });
 
     finalTrip = indexArray.map(index => places[index])
 
