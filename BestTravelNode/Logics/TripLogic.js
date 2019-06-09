@@ -20,8 +20,10 @@ async function createNewTrip(data) {
                 const dataForOrder = res.map(day => day.center)
 
                 minimumTreeForTrip = planTripForDay(dataForOrder, 'DaysOrder')
-                  var finalTrip = {'places': buildAttractionsOrder(minimumTreeForTrip, res),
-                             'duration': data.duration, 'area': data.location}
+                var finalTrip = {
+                    'places': buildAttractionsOrder(minimumTreeForTrip, res),
+                    'duration': data.duration, 'area': data.location
+                }
                 resolve(finalTrip)
             })
         })
@@ -50,13 +52,12 @@ async function getPlacesFromGoogle(data) {
 // places - search result
 // preferences - scale of eace category
 function prioritizeResults(places, preferences) {
-    debugger;
     places.forEach(place => {
         place.priority = 0;
         place.categories = [];
         // each preference of the client
         Categories.Local.forEach(type => {
-            isInTheCategory = false;
+            let isInTheCategory = false;
             // go over all matching google categories
             Categories.Pairings[type].forEach(matchingType => {
                 if (place.types.includes(Categories.Google[matchingType])) {
@@ -65,14 +66,14 @@ function prioritizeResults(places, preferences) {
                     isInTheCategory = true;
                 }
             });
-            
+
             if (isInTheCategory)
                 place.categories.push(type);
         });
     });
 
-    const prioritizedPlaces = places.sort((a, b) => a - b);
-    prioritizedPlaces = prioritizedPlaces.slice(0, 4);
+    const prioritizedPlaces = places.sort((a, b) =>
+        a.priority * a.priority * a.rating > b.priority * b.priority * b.rating ? -1 : 1).slice(0, 4);
 
     return prioritizedPlaces;
 }
@@ -114,7 +115,7 @@ function planTripForDay(places, planningType) {
     const verts = planningType === 'Day' ? generateVertsPerDay(places) : places
     const edges = generateEdges(verts)
 
-    var edgeMST = Kruskal.kruskal( verts, edges, metric_dist );
+    var edgeMST = Kruskal.kruskal(verts, edges, metric_dist);
     path = CreateAPath(edgeMST, verts.length)
     return path
 }
@@ -127,31 +128,31 @@ function CreateAPath(minTree, verts) {
     var path = {}
     var vertsDictCount = []
 
-    minTree.forEach(function(edge) {
+    minTree.forEach(function (edge) {
         if (path[edge[0]] == undefined) {
             path[edge[0]] = edge[1]
         }
     });
 
-    for(var i =0; i<= verts; i++) {
+    for (var i = 0; i <= verts; i++) {
         vertsDictCount[i] = 0
     }
 
-    for(var i=0; i<=minTree.length; i++) {
+    for (var i = 0; i <= minTree.length; i++) {
         if (vertsDictCount[path[i]] > 2 || vertsDictCount[i] > 2) {
             delete path[i]
         }
-        else if (path[i] != undefined){
+        else if (path[i] != undefined) {
             vertsDictCount[i]++
             vertsDictCount[path[i]]++
         }
     }
 
     // maybe remove later
-    for(var i =0; i< vertsDictCount.length; i++) {
+    for (var i = 0; i < vertsDictCount.length; i++) {
         if (vertsDictCount[i] >= 2) {
             delete vertsDictCount[i]
-       }
+        }
     }
 
     createMissingEdges(verts, vertsDictCount, path)
@@ -161,30 +162,30 @@ function CreateAPath(minTree, verts) {
 }
 
 function createMissingEdges(verts, vertsDictCount, path) {
-    for(var i = 0; i < verts -1; i++) {
+    for (var i = 0; i < verts - 1; i++) {
         if (vertsDictCount[i] >= 2) {
             delete vertsDictCount[i]
         }
         if (path[i] == undefined && vertsDictCount[i] < 2) {
             var j = i
-            while (j+1 < vertsDictCount.length) {
-                if (vertsDictCount[j+1] < 2) {
-                    path[j] = j+1
+            while (j + 1 < vertsDictCount.length) {
+                if (vertsDictCount[j + 1] < 2) {
+                    path[j] = j + 1
                     vertsDictCount[j]++
-                    vertsDictCount[j+1]++
+                    vertsDictCount[j + 1]++
                     break;
                 }
                 else {
                     j++
                 }
             }
-       }
+        }
     }
 }
 
 
-function generateVertsPerDay (places){
-    return places.map((place) => {return [place.geometry.location.lat, place.geometry.location.lng]})
+function generateVertsPerDay(places) {
+    return places.map((place) => { return [place.geometry.location.lat, place.geometry.location.lng] })
 }
 
 
@@ -226,4 +227,4 @@ function buildAttractionsOrder(minimumTree, places) {
 
 }
 
-module.exports = {createNewTrip}
+module.exports = { createNewTrip }
