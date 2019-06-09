@@ -7,7 +7,7 @@ var Categories = require('./Categories')
 async function createNewTrip(data) {
     return new Promise(async function (resolve, reject) {
         let allPlaces = await getPlacesFromGoogle(data)
-        allPlaces = prioritizeResults(allPlaces, data.filters);
+        //allPlaces = prioritizeResults(allPlaces, data.filters);
         var promise = devidePlacesByDays(allPlaces, data.duration)
         promise.then((res) => {
             for (let index = 0; index < data.duration; index++) {
@@ -26,14 +26,13 @@ async function createNewTrip(data) {
 
 async function getPlacesFromGoogle(data) {
     GooglePlaces.apiKey = 'AIzaSyBts53vgjeOpiVy962cJUvS8D021tTgpdI'
-    GooglePlaces.debug = true
+    GooglePlaces.debug = false
 
-    return await GooglePlaces.nearbysearch({
+    await GooglePlaces.nearbysearch({
         location: data.location.toString(),
-        type: Categories.Google,
+        type: ["point_of_interest"], //Categories.Google,
         rankby: "distance" // See google docs for different possible values
-    })
-        .then(result => {
+    }).then(result => {
             return result
         })
         .catch(e => console.log(e));
@@ -47,7 +46,7 @@ function prioritizeResults(places, preferences) {
         place.categories = [];
         // each preference of the client
         Categories.Local.forEach(type => {
-            const isInTheCategory = false;
+            let isInTheCategory = false;
             // go over all matching google categories
             Categories.Pairings[type].forEach(matchingType => {
                 if (place.types.includes(Categories.Google[matchingType])) {
@@ -80,7 +79,7 @@ function devidePlacesByDays(places, duration) {
             for (let index = 0; index < duration; index++) {
                 placesByDays[index] = { places: [], center: clusters[index].centroid }
                 clusters[index].cluster.map((locInDay) => {
-                    placeToAdd = places.find(place => place.geometry.location.lat = locInDay[0] &&
+                    placeToAdd = places.find(place => place.geometry.location.lat == locInDay[0] &&
                         place.geometry.location.lng == locInDay[1])
 
                     placesByDays[index]["places"].push(placeToAdd)
