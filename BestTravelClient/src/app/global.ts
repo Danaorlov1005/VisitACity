@@ -10,7 +10,7 @@ export class global {
   choosenLocation:any;
 
 
-  setChoosenLocation(data){
+  setChoosenLocation(data) {
     this.choosenLocation = data;
   }
 

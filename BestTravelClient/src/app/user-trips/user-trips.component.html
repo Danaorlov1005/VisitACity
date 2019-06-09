@@ -1,7 +1,8 @@
+<h2 class="h1-responsive font-weight-bold my-5 text-center">הטיולים השמורים שלך</h2>
 <section class="text-center" >
-  <div class="row mb-4 wow fadeIn" (click)="basicModal.show()">
+  <div class="row mb-4 wow fadeIn" >
     <div class="col-md-6 mb-4" *ngFor="let trip of allTrips">
-      <div class="card">
+      <div class="card" (click)="basicModal.show()">
         <div class="view overlay zoom">
           <img src={{trip.ImageUrl}} class="card-img-top"
                alt="">
@@ -21,6 +22,52 @@
           </p>
         </div>
       </div>
+
+      <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+        <div class="modal-dialog cascading-modal modal-avatar modal-sm" role="document">
+          <div class="modal-content" style="width: 200%; height: 600px !important;">
+            <div class="modal-header">
+              <img src={{trip.ImageUrl}} class="rounded-circle img-responsive" alt="Avatar photo">
+            </div>
+            <div class="modal-body text-center mb-1">
+              <button mdbBtn color="primary" class="waves-light" type="button" (click)="test.toggle();changeImage(activityPerDayImgUrl)" mdbWavesEffect>
+                אטרקציה ראשונה
+              </button>
+
+              <div class="" mdbCollapse #test="bs-collapse">
+                <p>דברים דברים דבריםדברים דברים דבריםדברים דברים דבריםדברים דברים דברים</p>
+              </div>
+            </div>
+            <button class="btn btn-default" id="search" (click)="createTrip()" routerLink="/DisplayTripComponent">ערוך מסלול </button>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
+
+  <nav class="d-flex justify-content-center wow fadeIn">
+    <ul class="pagination pg-blue">
+
+      <li class="page-item disabled">
+        <a class="page-link" href="#" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+          <span class="sr-only">Previous</span>
+        </a>
+      </li>
+
+      <li class="page-item active">
+        <a class="page-link" href="#">1
+          <span class="sr-only">(current)</span>
+        </a>
+      </li>
+
+      <li class="page-item">
+        <a class="page-link" href="#" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+          <span class="sr-only">Next</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
 </section>

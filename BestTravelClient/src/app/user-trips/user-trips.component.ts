@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-user-trips',
@@ -8,12 +8,12 @@ import { HttpClient } from "@angular/common/http";
 })
 export class UserTripsComponent implements OnInit {
 
-  allTrips: any = [];
+  allTrips: any;
 
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
-    this.http.get("http://localhost:3000/getPopularSites").subscribe(
+    this.http.get('http://localhost:3000/getPopularSites').subscribe(
       data => {
         this.allTrips = data;
       });

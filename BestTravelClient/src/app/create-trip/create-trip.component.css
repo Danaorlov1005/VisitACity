@@ -23,7 +23,7 @@
   padding-top: 60px;
 }
 
-input :not(.custom-range){
+input :not(.custom-range) {
   direction: rtl;
 }
 

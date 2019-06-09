@@ -19,35 +19,35 @@ export class GlobalService {
     return this.nextTripImgUrl;
   }
 
-  getCity(){
+  getCity() {
     return this.city;
   }
 
-  setCity(val){
+  setCity(val) {
     this.city = val;
   }
 
-  setPlace(val){
+  setPlace(val) {
     this.place = val;
   }
 
-  getPlace(){
+  getPlace() {
     return this.place;
   }
 
-  getTripObj(){
+  getTripObj() {
     return this.tripObj;
   }
 
-  setTripObj(val){
+  setTripObj(val) {
     this.tripObj = val;
   }
 
-  getTripObjToSearch(){
+  getTripObjToSearch() {
     return this.tripObjToSearch;
   }
 
-  setTripObjToSearch(val){
+  setTripObjToSearch(val) {
     this.tripObjToSearch = val;
   }
 }
