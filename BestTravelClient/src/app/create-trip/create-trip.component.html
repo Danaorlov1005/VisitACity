@@ -27,7 +27,12 @@
     <input type="range" class="custom-range" min="0" max="5" id="culture"[(ngModel)]="culture">
 
     <label for="shopping">שופינג</label>
-    <input type="range" class="custom-range" min="0" max="5" id="shopping"[(ngModel)]="shopping">
+    <div style="display: flex">
+      <i class="fa fa-minus float-right mr-2"></i>
+      <input type="range" class="custom-range" min="0" max="5" id="shopping"[(ngModel)]="shopping">
+      <i class="fa fa-plus float-left ml-2"></i>
+    </div>
+
 
     <label for="duration" id="days">
       סה"כ ימים:
