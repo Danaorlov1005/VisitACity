@@ -160,7 +160,7 @@ export class CreateTripComponent implements OnInit {
 
   // create a new trip
   createTrip() {
-    //create the trip object to send to the server and save it to global to use it later
+    // create the trip object to send to the server and save it to global to use it later
     this.latitude = parseFloat(this.latitude.toFixed(5));
     this.longitude = parseFloat(this.longitude.toFixed(5));
     let location1 = new location(this.latitude, this.longitude);

@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { CreateTripComponent } from './create-trip/create-trip.component';
-import { FormsModule, ReactiveFormsModule, } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 
 import { MDBBootstrapModule } from 'angular-bootstrap-md';

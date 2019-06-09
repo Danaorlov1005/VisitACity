@@ -1,0 +1,29 @@
+.round{
+  border-radius: 50%;
+}
+
+.rounded-circle :hover{
+  background-color: rgba(180, 180, 200, 0.9);
+}
+
+.white-text{
+  font-weight: 500;
+}
+.near-moon-gradient{
+  max-height: 370px !important;
+}
+
+.img-responsive{
+  height: 300px !important;
+  width: 300px !important;
+  image-rendering: -webkit-optimize-contrast;
+  object-fit: cover;
+}
+
+.modal-dialog{
+  margin-right: 50%;
+}
+
+.modal{
+  overflow: hidden !important;
+}
