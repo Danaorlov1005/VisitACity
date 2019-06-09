@@ -11,8 +11,8 @@ async function createNewTrip(data) {
             allPlaces = result
             var promise = devidePlacesByDays(allPlaces, data.duration)
             promise.then((res) => {
-                const prioritizedPlaces = prioritizeResults(res[index].places, data.filters);
                 for (let index = 0; index < data.duration; index++) {
+                    const prioritizedPlaces = prioritizeResults(res[index].places, data.filters);
                     const minimumTreeForDay = planTripForDay(prioritizedPlaces, 'Day')
                     res[index].places = buildAttractionsOrder(minimumTreeForDay, res[index].places)
                 }
@@ -49,7 +49,7 @@ async function getPlacesFromGoogle(data) {
 // places - search result
 // preferences - scale of eace category
 function prioritizeResults(places, preferences) {
-    const maxPriority = 0;
+    debugger;
     places.forEach(place => {
         place.priority = 0;
         place.categories = [];
@@ -61,23 +61,18 @@ function prioritizeResults(places, preferences) {
                 if (place.types.includes(Categories.Google[matchingType])) {
                     //increase the priority accorting to preferene
                     place.priority += preferences[type];
-                    maxPriority = _.max(maxPriority, place.priority);
                     isInTheCategory = true;
                 }
             });
+            
             if (isInTheCategory)
                 place.categories.push(type);
         });
     });
-    const maxPriority = maxPriority / places.length;
-    const prioritizedPlaces = [];
-    // at least 3 prioritized places each day
-    while (prioritizedPlaces < 3 && maxPriority) {
-        prioritizedPlaces = places.map(place => {
-            place.priority >= maxPriority;
-        });
-        maxPriority--;
-    }
+
+    const prioritizedPlaces = places.sort((a, b) => a - b);
+    prioritizedPlaces = prioritizedPlaces.slice(0, 4);
+
     return prioritizedPlaces;
 }
 
