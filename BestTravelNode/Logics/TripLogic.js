@@ -7,9 +7,9 @@ var Categories = require('./Categories')
 async function createNewTrip(data) {
     return new Promise(async function (resolve, reject) {
         let allPlaces = await getPlacesFromGoogle(data)
-        allPlaces = prioritizeResults(allPlaces, data.filters);
         var promise = devidePlacesByDays(allPlaces, data.duration)
         promise.then((res) => {
+            res = prioritizeResults(res, data.filters);
             for (let index = 0; index < data.duration; index++) {
                 const minimumTreeForDay = planTripForDay(res[index].places, 'Day')
                 res[index].places = buildAttractionsOrder(minimumTreeForDay, res[index].places)
