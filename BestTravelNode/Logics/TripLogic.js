@@ -6,21 +6,24 @@ var Categories = require('./Categories')
 
 async function createNewTrip(data) {
     return new Promise(async function (resolve, reject) {
-        let allPlaces = await getPlacesFromGoogle(data)
-        //allPlaces = prioritizeResults(allPlaces, data.filters);
-        var promise = devidePlacesByDays(allPlaces, data.duration)
-        promise.then((res) => {
-            for (let index = 0; index < data.duration; index++) {
-                const minimumTreeForDay = planTripForDay(res[index].places, 'Day')
-                res[index].places = buildAttractionsOrder(minimumTreeForDay, res[index].places)
-            }
-
-            const dataForOrder = res.map(day => day.center)
-
-            minimumTreeForTrip = planTripForDay(dataForOrder, 'DaysOrder')
-            const finalTrip = buildAttractionsOrder(minimumTreeForTrip, res)
-            resolve(finalTrip)
+        getPlacesFromGoogle(data).then((result)=>{
+            allPlaces = result
+            var promise = devidePlacesByDays(allPlaces, data.duration)
+            promise.then((res) => {
+                for (let index = 0; index < data.duration; index++) {
+                    const minimumTreeForDay = planTripForDay(res[index].places, 'Day')
+                    res[index].places = buildAttractionsOrder(minimumTreeForDay, res[index].places)
+                }
+    
+                const dataForOrder = res.map(day => day.center)
+    
+                minimumTreeForTrip = planTripForDay(dataForOrder, 'DaysOrder')
+                const finalTrip = buildAttractionsOrder(minimumTreeForTrip, res)
+                resolve(finalTrip)
+            })
         })
+        //allPlaces = prioritizeResults(allPlaces, data.filters);
+
     })
 }
 
@@ -28,14 +31,11 @@ async function getPlacesFromGoogle(data) {
     GooglePlaces.apiKey = 'AIzaSyBts53vgjeOpiVy962cJUvS8D021tTgpdI'
     GooglePlaces.debug = false
 
-    await GooglePlaces.nearbysearch({
+    return GooglePlaces.nearbysearch({
         location: data.location.toString(),
         type: ["point_of_interest"], //Categories.Google,
         rankby: "distance" // See google docs for different possible values
-    }).then(result => {
-            return result
-        })
-        .catch(e => console.log(e));
+    })
 }
 
 // places - search result
