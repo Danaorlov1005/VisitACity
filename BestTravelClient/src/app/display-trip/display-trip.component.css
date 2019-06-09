@@ -63,3 +63,11 @@ h5 {
 .cascading-modal{
   margin-right: 35% !important;
 }
+
+.btn{
+  margin: 0px !important;
+}
+
+#rateMe{
+  color: gold;
+}

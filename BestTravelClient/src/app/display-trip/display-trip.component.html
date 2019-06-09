@@ -40,7 +40,7 @@
     </p>
     <hr>
 
-    <div class="row" style="padding-bottom: 20px;" *ngFor="let day of days; let i = index">
+    <div class="row" style="padding-bottom: 20px;" *ngFor="let day of days.places; let i = index">
 
       <div class="col-md-9" (click)="basicModal.show()">
             <strong>{{dayNames[i]}}</strong>
@@ -54,7 +54,7 @@
               <img src={{activityPerDayImgUrl}} class="rounded-circle img-responsive" alt="לא נמצאה תמונה">
             </div>
 
-              <ul class="list-group list-group-flush mt-3" style="overflow-y: scroll">
+              <ul class="list-group list-group-flush mt-3" style="overflow-y: scroll;height: 55%">
                 <li class="list-group-item ml-4" (click)="test.toggle()" *ngFor="let place of day.places">{{place.name}}
                   <div class="" mdbCollapse #test="bs-collapse">
                     <p>כתובת: {{place.vicinity}}</p>
@@ -74,7 +74,7 @@
               </ul>
 
 
-            <button class="btn btn-cyan waves-effect waves-light" (click)="basicModal.hide();frame.show()">מצא טיולים דומים
+            <button class="btn btn-cyan waves-effect waves-light align-bottom" style="position: relative; width: 100%; bottom: 0px" (click)="basicModal.hide();frame.show()">מצא טיולים דומים
               <i class="fas fa-sign-in-alt ml-1"></i>
             </button>
           </div>
