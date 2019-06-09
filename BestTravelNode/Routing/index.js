@@ -16,7 +16,7 @@ router.post('/addNewTrip', function (req, res) {
 router.post('/createTripByParameters', async function (req,res){
     const dataFromClient = {
         duration     : req.body.duration,
-        location: [41.9102415,12.3959153],
+        location: [req.body.location.x, req.body.location.y],
         filters: req.body.preferences        
     }
 

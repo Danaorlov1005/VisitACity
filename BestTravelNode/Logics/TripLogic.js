@@ -3,6 +3,7 @@ const kmeans = require('node-kmeans');
 const geolib = require('geolib')
 var Kruskal = require("kruskal");
 var Categories = require('./Categories')
+var PlaceSearch = require('googleplaces/lib/PlaceSearch')
 
 async function createNewTrip(data) {
     return new Promise(async function (resolve, reject) {
@@ -27,15 +28,21 @@ async function createNewTrip(data) {
     })
 }
 
-async function getPlacesFromGoogle(data) {
-    GooglePlaces.apiKey = 'AIzaSyBts53vgjeOpiVy962cJUvS8D021tTgpdI'
-    GooglePlaces.debug = false
+async function getPlacesFromGoogle(data){
+    var placeSearch = new PlaceSearch('AIzaSyBts53vgjeOpiVy962cJUvS8D021tTgpdI', 'json');
 
-    return GooglePlaces.nearbysearch({
-        location: data.location.toString(),
-        type: ["point_of_interest"], //Categories.Google,
-        rankby: "distance" // See google docs for different possible values
-    })
+    parameters = {
+        location: data.location,
+        rankby: "distance",
+        types: Categories.Google
+    };
+
+    return new Promise(function (resolve, reject){
+        placeSearch(parameters, function (error, response){
+            resolve(response.results)
+        }
+        )})
+
 }
 
 // places - search result
