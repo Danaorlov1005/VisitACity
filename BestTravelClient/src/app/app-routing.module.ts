@@ -6,11 +6,13 @@ import {LandingPageComponent} from "./landing-page/landing-page.component"
 import { CreateUserComponent } from './create-user/create-user.component';
 import {FlightLocatorComponent} from "./flight-locator/flight-locator.component";
 import {DisplayTripComponent} from "./display-trip/display-trip.component";
+import {UserTripsComponent} from './user-trips/user-trips.component';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent},
   { path: 'app-landing-page', component: LandingPageComponent},
   { path: 'trip-planner', component: CreateTripComponent},
+  { path: 'user-trips', component: UserTripsComponent},
   { path: 'create-user', component: CreateUserComponent},
   { path: 'FlightLocator', component: FlightLocatorComponent},
   { path: 'DisplayTripComponent', component: DisplayTripComponent},

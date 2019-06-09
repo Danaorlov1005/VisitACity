@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { CreateTripComponent } from './create-trip/create-trip.component';
-import { FormsModule, ReactiveFormsModule, } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
@@ -20,6 +20,7 @@ import { CreateUserComponent } from './create-user/create-user.component';
 import { DisplayTripComponent } from './display-trip/display-trip.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GlobalService } from './global.service';
+import { UserTripsComponent } from './user-trips/user-trips.component';
 
 
 declare let google: any;
@@ -32,7 +33,8 @@ declare let google: any;
     LandingPageComponent,
     FlightLocatorComponent,
     CreateUserComponent,
-    DisplayTripComponent
+    DisplayTripComponent,
+    UserTripsComponent
   ],
   imports: [
     AgmCoreModule.forRoot({
