@@ -8,14 +8,12 @@
 .close{
   z-index: 1;
   position: fixed;
+  display: contents !important;
 }
 
 .modal{
   direction: rtl;
-}
-
-.close{
-  display: contents !important;
+  overflow: hidden;
 }
 
 .intro-header {
@@ -45,6 +43,7 @@ h5 {
   border-top: 3px solid #fff;
   width: 80px;
 }
+
 @media (max-width: 740px) {
   .full-height,
   .full-height body,
@@ -52,4 +51,15 @@ h5 {
   .full-height header .view {
     height: 700px;
   }
+}
+
+.img-responsive{
+  height: 250px !important;
+  width: 250px !important;
+  image-rendering: -webkit-optimize-contrast;
+  object-fit: cover;
+}
+
+.cascading-modal{
+  margin-right: 35% !important;
 }

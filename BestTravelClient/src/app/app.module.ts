@@ -18,7 +18,7 @@ import { FlightLocatorComponent } from './flight-locator/flight-locator.componen
 import { AgmDirectionModule } from 'agm-direction';
 import { CreateUserComponent } from './create-user/create-user.component';
 import { DisplayTripComponent } from './display-trip/display-trip.component';
-import { global } from './global';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GlobalService } from './global.service';
 
 
@@ -45,7 +45,8 @@ declare let google: any;
     FormsModule,
     ReactiveFormsModule,
     MDBBootstrapModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [GlobalService],
   bootstrap: [AppComponent],

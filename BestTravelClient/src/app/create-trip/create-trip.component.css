@@ -4,6 +4,7 @@
   position: absolute;
   background: aliceblue;
   text-align: right;
+  height: calc(100% - 70px);
 }
 
 .slider{

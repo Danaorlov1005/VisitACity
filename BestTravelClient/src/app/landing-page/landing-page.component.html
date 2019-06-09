@@ -28,9 +28,9 @@
 
 
     <section class="text-center" >
-      <div class="row mb-4 wow fadeIn" (click)="basicModal.show()">
+      <div class="row mb-4 wow fadeIn" >
         <div class="col-md-6 mb-4" *ngFor="let trip of allTrips">
-          <div class="card">
+          <div class="card" (click)="basicModal.show()">
             <div class="view overlay zoom">
               <img src={{trip.ImageUrl}} class="card-img-top"
                    alt="">
@@ -50,6 +50,21 @@
               </p>
             </div>
           </div>
+
+          <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+            <div class="modal-dialog cascading-modal modal-avatar modal-sm" role="document">
+              <div class="modal-content" style="width: 200%; height: 600px !important;">
+                <div class="modal-header">
+                  <img src={{trip.ImageUrl}} class="rounded-circle img-responsive" alt="Avatar photo">
+                </div>
+                <div class="modal-body text-center mb-1">
+                  <h5 class="mt-1 mb-2">{{trip.Name}}</h5>
+                  <h6>{{trip.Description}}</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
 
@@ -88,66 +103,44 @@
     <h2 class="h1-responsive font-weight-bold my-5">הכירו את הצוות</h2>
     <div class="row" style="display: -webkit-inline-box; padding-left: 130px">
 
-      <div class="rounded-circle view overlay hm-teal-strong wow  bounce" style="width: 15% !important;margin: 10px;">
-        <img src="https://scontent.ftlv1-1.fna.fbcdn.net/v/t1.0-9/50014527_10211201753154648_525782139665383424_n.jpg?_nc_cat=100&_nc_ht=scontent.ftlv1-1.fna&oh=bbc99f47c814fd048444d017b5087cdf&oe=5CE1E01D" class="img-fluid ">
+      <div class="rounded-circle view overlay hm-teal-strong wow bounce" style="width: 15% !important;margin: 10px;">
+        <img src="https://scontent.fsdv1-2.fna.fbcdn.net/v/t1.0-9/50014527_10211201753154648_525782139665383424_n.jpg?_nc_cat=100&_nc_ht=scontent.fsdv1-2.fna&oh=b246965c2e4623986105eb2ccaf245b0&oe=5D80141D" class="img-fluid ">
         <div class="mask flex-center">
           <p class="white-text">ורוניקה זולובוב</p>
         </div>
       </div>
 
-      <div class="rounded-circle view overlay hm-red-strong" style="width: 15% !important;margin: 10px;">
+      <div class="rounded-circle view overlay hm-teal-strong wow bounce" style="width: 15% !important;margin: 10px;">
         <img src="https://scontent.ftlv1-2.fna.fbcdn.net/v/t1.0-9/41869803_2005245629497104_5477444699658649600_n.jpg?_nc_cat=106&_nc_ht=scontent.ftlv1-2.fna&oh=50d8b8b41919c242b6c189d1502d5e16&oe=5D26125E" class="img-fluid ">
         <div class="mask flex-center">
           <p class="white-text">שיר שחק</p>
         </div>
       </div>
 
-      <div class="rounded-circle view overlay hm-red-strong" style="width: 15% !important;margin: 10px;">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRckdUAbDfd9Z1Y-_mio1r_6pabKr3vC5FWyuNZjXMVitFGg_AT" class="img-fluid ">
+      <div class="rounded-circle view overlay hm-teal-strong wow bounce" style="width: 15% !important;margin: 10px;">
+        <img src="https://scontent.fsdv1-2.fna.fbcdn.net/v/t1.0-9/49344588_2272386349438300_6860719160209440768_n.jpg?_nc_cat=101&_nc_ht=scontent.fsdv1-2.fna&oh=646a104e3015d6d71c9b1a25e1adadf4&oe=5D8E29EC" class="img-fluid ">
         <div class="mask flex-center">
-          <p class="gray-text">מור אלון</p>
+          <p class="white-text">מור אלון</p>
         </div>
       </div>
 
-      <div class="rounded-circle view overlay hm-red-strong" style="width: 15% !important;margin: 10px;">
+      <div class="rounded-circle view overlay hm-teal-strong wow bounce" style="width: 15% !important;margin: 10px;">
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRckdUAbDfd9Z1Y-_mio1r_6pabKr3vC5FWyuNZjXMVitFGg_AT" class="img-fluid ">
         <div class="mask flex-center">
-          <p class="gray-text">מור אלון</p>
+          <p class="white-text">ירין אנדרייב</p>
         </div>
       </div>
 
-      <div class="rounded-circle view overlay hm-red-strong" style="width: 15% !important;margin: 10px;">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRckdUAbDfd9Z1Y-_mio1r_6pabKr3vC5FWyuNZjXMVitFGg_AT" class="img-fluid ">
+      <div class="rounded-circle view overlay hm-teal-strong wow bounce" style="width: 15% !important;margin: 10px;">
+        <img src="https://scontent.fsdv1-2.fna.fbcdn.net/v/t1.0-9/14344870_10202164663116183_4840256321869618679_n.jpg?_nc_cat=105&_nc_ht=scontent.fsdv1-2.fna&oh=6f203349626046bd496b0811ea8a4420&oe=5D99C4A0" class="img-fluid ">
         <div class="mask flex-center">
-          <p class="gray-text">מור אלון</p>
+          <p class="white-text">דנה אורלוב</p>
         </div>
       </div>
 
     </div>
 
   </section>
-</div>
-
-<div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
-          <span aria-hidden="true">×</span>
-        </button>
-        <h4 class="modal-title w-100" id="myModalLabel"></h4>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-
-<!--
-        <button type="button" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect>Save changes</button>
--->
-      </div>
-    </div>
-  </div>
 </div>
 
 <footer class="page-footer text-center font-small mdb-color darken-2 mt-4 wow fadeIn">

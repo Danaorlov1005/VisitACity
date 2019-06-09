@@ -68,6 +68,8 @@ export class CreateTripComponent implements OnInit {
   shopping:number = 2;
   duration:number = 3;
 
+  mapHeight:any;
+
   //map properties
   public latitude: number;
   public longitude: number;
@@ -88,6 +90,7 @@ export class CreateTripComponent implements OnInit {
 
   ngOnInit() {
     this.initMap();
+    this.mapHeight = document.getElementById("side-panel").offsetHeight;
   }
 
   initMap(){
