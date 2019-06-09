@@ -20,6 +20,7 @@ import { CreateUserComponent } from './create-user/create-user.component';
 import { DisplayTripComponent } from './display-trip/display-trip.component';
 import { global } from './global';
 import { GlobalService } from './global.service';
+import { UserTripsComponent } from './user-trips/user-trips.component';
 
 
 declare let google: any;
@@ -32,7 +33,8 @@ declare let google: any;
     LandingPageComponent,
     FlightLocatorComponent,
     CreateUserComponent,
-    DisplayTripComponent
+    DisplayTripComponent,
+    UserTripsComponent
   ],
   imports: [
     AgmCoreModule.forRoot({

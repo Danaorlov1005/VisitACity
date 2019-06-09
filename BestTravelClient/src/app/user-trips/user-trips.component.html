@@ -1,0 +1,26 @@
+<section class="text-center" >
+  <div class="row mb-4 wow fadeIn" (click)="basicModal.show()">
+    <div class="col-md-6 mb-4" *ngFor="let trip of allTrips">
+      <div class="card">
+        <div class="view overlay zoom">
+          <img src={{trip.ImageUrl}} class="card-img-top"
+               alt="">
+          <div class="mask flex-center">
+            <p class="white-text">Zoom effect</p>
+          </div>
+          <a target="_blank">
+            <div class="mask rgba-white-slight"></div>
+          </a>
+        </div>
+
+        <div class="card-body">
+          <h4 class="card-title">{{trip.Name}}</h4>
+          <p class="card-text"></p>
+          <p class="card-text">
+            <strong></strong>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

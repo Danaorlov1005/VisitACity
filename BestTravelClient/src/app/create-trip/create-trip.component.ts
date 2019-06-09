@@ -4,6 +4,15 @@ import { MapsAPILoader } from '@agm/core';
 import { HttpClient } from "@angular/common/http";
 import { GlobalService } from '../global.service';
 
+export class location{
+  x : number;
+  y : number;
+
+  constructor(x : number, y: number){
+    this.x = x;
+    this.y = y;
+  }
+}
 export class tripObject{
 
   tripName : string;
@@ -13,7 +22,7 @@ export class tripObject{
   food : number;
   nightLife : number;
   culture : number;
-  location :location;
+  location : location;
   duration : number;
 
   constructor(tripName:string, nature:number, family:number, food:number, nightLife:number, culture:number, shopping:number, location:location, duration:number){
@@ -29,15 +38,6 @@ export class tripObject{
   }
 }
 
-export class location{
-  x : number;
-  y : number;
-
-  constructor(x : number, y: number){
-    this.x = x;
-    this.y = y;
-  }
-}
 
 @Component({
   selector: 'app-create-trip',
@@ -151,7 +151,7 @@ export class CreateTripComponent implements OnInit {
   //create a new trip
   createTrip(){
     let location1 = new location(this.latitude, this.longitude);
-    let obj = new tripObject("הטיול שלי ל" + this.location, this.nature, this.family, this.food, this.mightLife,this.culture, location1 ,this.duration, this.shopping );
+    let obj = new tripObject("הטיול שלי ל" + this.location, this.nature, this.shopping, this.family, this.food, this.mightLife, this.culture, location1 , this.duration );
 
     this.http.post<tripObject>("http://localhost:3000/createTripByParameters", obj)
       .subscribe(res => {
