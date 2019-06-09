@@ -65,11 +65,11 @@
         <div class="modal-dialog cascading-modal modal-avatar modal-sm" role="document">
           <div class="modal-content" style="width: 150%; height: 500px !important;">
             <div class="modal-header">
-              <img src={{activityPerDayImgUrl}} class="rounded-circle img-responsive" alt="Avatar photo">
+              <img src={{activityPerDayImgUrl}} class="rounded-circle img-responsive" alt="לא נמצאה תמונה">
             </div>
             <div class="modal-body text-center mb-1">
-              <button mdbBtn color="primary" class="waves-light" type="button" (click)="test.toggle();changeImage()" mdbWavesEffect>
-                Toggle collapse
+              <button mdbBtn color="primary" class="waves-light" type="button" (click)="test.toggle();changeImage(activityPerDayImgUrl)" mdbWavesEffect>
+                אטרקציה ראשונה
               </button>
 
               <div class="" mdbCollapse #test="bs-collapse">

@@ -8,6 +8,7 @@ export class GlobalService {
   private city;
   private place;
   private tripObj:any = {};
+  private tripObjToSearch:any = {};
 
   constructor() { }
 
@@ -40,5 +41,13 @@ export class GlobalService {
 
   setTripObj(val){
     this.tripObj = val;
+  }
+
+  getTripObjToSearch(){
+    return this.tripObjToSearch;
+  }
+
+  setTripObjToSearch(val){
+    this.tripObjToSearch = val;
   }
 }

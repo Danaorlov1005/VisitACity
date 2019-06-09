@@ -160,15 +160,11 @@ export class CreateTripComponent implements OnInit {
 
   //create a new trip
   createTrip(){
+    //create the trip object to send to the server and save it to global to use it later
     let location1 = new location(this.latitude, this.longitude);
     let preferences1 = new preferences(this.nature, this.family, this.food, this.mightLife,this.culture, this.shopping );
     let obj = new tripObject("הטיול שלי ל" + this.location, location1 ,this.duration, preferences1);
-
-    this.http.post<tripObject>("http://localhost:3000/createTripByParameters", obj)
-      .subscribe(res => {
-        console.log(res);
-        this.globalService.setTripObj(res);
-      });
+    this.globalService.setTripObjToSearch(obj);
   }
 }
 

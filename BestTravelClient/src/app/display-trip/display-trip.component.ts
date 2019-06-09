@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GlobalService } from '../global.service';
+import { HttpClient } from "@angular/common/http";
 
 @Component({
   selector: 'app-display-trip',
@@ -11,20 +12,27 @@ export class DisplayTripComponent implements OnInit {
   mainImgUrl: string = this.globalService.getNextTripImgUrl();
   activityPerDayImgUrl: string = this.globalService.getNextTripImgUrl();
   city: string = this.globalService.getCity();
-  days:any = this.globalService.getTripObj();
+  days:any = {};
   dayNames:any = ['היום הראשון שלך','היום השני שלך','היום השלישי שלך','היום הרביעי שלך','היום בחמישי שלך','היום השישי שלך', 'היום השביעי שלך'];
 
-  constructor(private globalService:GlobalService) {
-    this.days = this.globalService.getTripObj();
-  }
+  constructor(private globalService:GlobalService, private http: HttpClient) {}
 
   ngOnInit() {
     window.scrollTo(0,95);
-    this.days = this.globalService.getTripObj();
-    console.log(this.days[0]);
+    this.getTripObject();
   }
 
-  here(){
-    this.globalService.getTripObj();
+  getTripObject(){
+    let obj = this.globalService.getTripObjToSearch();
+    this.http.post("http://localhost:3000/createTripByParameters", obj)
+      .subscribe(res => {
+        console.log(res);
+        this.days = res;
+        this.globalService.setTripObj(res);
+      });;
+  }
+
+  changeImage(val){
+    this.activityPerDayImgUrl = val;
   }
 }
