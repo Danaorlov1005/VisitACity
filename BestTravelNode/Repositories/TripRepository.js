@@ -8,7 +8,7 @@ function addNewTrip(data){
         VALUES(nextval('trips_seq'),$1,$2,$3,$4)
     `
 
-    const values= ['מור בדיקה 3',['{"x": "4.6", "y":"7.8"}'], null, 4 ];
+    const values= ['new trip',data.places, data.area, data.duration];
 
     return executeQuery(query, values);
 }
