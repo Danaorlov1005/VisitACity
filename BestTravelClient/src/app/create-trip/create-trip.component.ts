@@ -4,6 +4,20 @@ import { MapsAPILoader } from '@agm/core';
 import { HttpClient } from '@angular/common/http';
 import { GlobalService } from '../global.service';
 
+export class tripObject{
+  tripName : string;
+  location :location;
+  duration : number;
+  preferences:preferences;
+
+  constructor(tripName:string, location:location, duration:number, preferences:preferences){
+    this.tripName = tripName;
+    this.location = location;
+    this.duration = duration;
+    this.preferences = preferences;
+  }
+}
+
 export class location{
   x : number;
   y : number;
@@ -29,20 +43,6 @@ export class preferences{
     this.food = food;
     this.nightLife = nightLife;
     this.culture = culture;
-  }
-}
-
-export class tripObject{
-  tripName: string;
-  location: location;
-  duration: number;
-  preferences: preferences;
-
-  constructor(tripName: string, location: location, duration: number, preferences: preferences) {
-    this.tripName = tripName;
-    this.location = location;
-    this.duration = duration;
-    this.preferences = preferences;
   }
 }
 
@@ -160,7 +160,9 @@ export class CreateTripComponent implements OnInit {
 
   // create a new trip
   createTrip() {
-    // create the trip object to send to the server and save it to global to use it later
+    //create the trip object to send to the server and save it to global to use it later
+    this.latitude = parseFloat(this.latitude.toFixed(5));
+    this.longitude = parseFloat(this.longitude.toFixed(5));
     let location1 = new location(this.latitude, this.longitude);
     let preferences1 = new preferences(this.nature, this.family, this.food, this.mightLife, this.culture, this.shopping );
     let obj = new tripObject("הטיול שלי ל" + this.location, location1 , this.duration, preferences1);

@@ -12,22 +12,47 @@
 
   <div class="slider">
     <label for="nature">פעילויות טבע</label>
+    <div style="display: flex">
+      <i class="fa fa-minus float-right mr-2"></i>
     <input type="range" class="custom-range" min="0" max="5" id="nature" [(ngModel)]="nature">
+      <i class="fa fa-plus float-left ml-2"></i>
+    </div>
 
     <label for="family">משפחה</label>
+    <div style="display: flex">
+      <i class="fa fa-minus float-right mr-2"></i>
     <input type="range" class="custom-range" min="0" max="5" id="family" [(ngModel)]="family">
+      <i class="fa fa-plus float-left ml-2"></i>
+    </div>
 
     <label for="food">אוכל</label>
+    <div style="display: flex">
+      <i class="fa fa-minus float-right mr-2"></i>
     <input type="range" class="custom-range" min="0" max="5" id="food" [(ngModel)]="food">
+      <i class="fa fa-plus float-left ml-2"></i>
+    </div>
 
     <label for="nightLifa">חיי לילה</label>
+    <div style="display: flex">
+      <i class="fa fa-minus float-right mr-2"></i>
     <input type="range" class="custom-range" min="0" max="5" id="nightLifa" [(ngModel)]="mightLife">
+      <i class="fa fa-plus float-left ml-2"></i>
+    </div>
 
     <label for="culture">תרבות</label>
+    <div style="display: flex">
+      <i class="fa fa-minus float-right mr-2"></i>
     <input type="range" class="custom-range" min="0" max="5" id="culture"[(ngModel)]="culture">
+      <i class="fa fa-plus float-left ml-2"></i>
+    </div>
 
     <label for="shopping">שופינג</label>
-    <input type="range" class="custom-range" min="0" max="5" id="shopping"[(ngModel)]="shopping">
+    <div style="display: flex">
+      <i class="fa fa-minus float-right mr-2"></i>
+      <input type="range" class="custom-range" min="0" max="5" id="shopping"[(ngModel)]="shopping">
+      <i class="fa fa-plus float-left ml-2"></i>
+    </div>
+
 
     <label for="duration" id="days">
       סה"כ ימים:
