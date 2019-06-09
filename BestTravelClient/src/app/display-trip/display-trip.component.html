@@ -41,25 +41,11 @@
     <hr>
 
     <div class="row" style="padding-bottom: 20px;" *ngFor="let day of days; let i = index">
-      <div class="col-md-3" (click)="basicModal.show()">
 
-        <div class="view overlay rounded z-depth-1" style="height: 20vh !important">
-          <img src="https://mdbootstrap.com/img/Photos/Others/photo8.jpg" class="img-fluid">
-          <a>
-            <div class="mask rgba-white-slight"></div>
-          </a>
-        </div>
-      </div>
-
-      <div class="col-md-9">
-        <a>
-          <p class="dark-grey-text">
+      <div class="col-md-9" (click)="basicModal.show()">
             <strong>{{dayNames[i]}}</strong>
-          </p>
-          <i class="fa fa-angle-left float-left" ></i>
-        </a>
+            <i class="fa fa-angle-left float-left" style="margin-top: 5px"></i>
       </div>
-      <hr>
 
       <div mdbModal #basicModal="mdbModal" class="modal fade" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
         <div class="modal-dialog cascading-modal modal-avatar modal-sm" role="document">
@@ -67,16 +53,6 @@
             <div class="modal-header">
               <img src={{activityPerDayImgUrl}} class="rounded-circle img-responsive" alt="לא נמצאה תמונה">
             </div>
-            <!--
-            <div class="modal-body text-center mb-1" *ngFor="let place of day.places; let j = index">
-              <button mdbBtn color="primary" class="waves-light" type="button" (click)="test.toggle();changeImage(activityPerDayImgUrl)" mdbWavesEffect>
-                {{place.name}}
-              </button>
-
-              <div class="" mdbCollapse #test="bs-collapse">
-                <p>דברים דברים דבריםדברים דברים דבריםדברים דברים דבריםדברים דברים דברים</p>
-              </div>
-            </div>-->
 
               <ul class="list-group list-group-flush mt-3" style="overflow-y: scroll">
                 <li class="list-group-item ml-4" (click)="test.toggle()" *ngFor="let place of day.places">{{place.name}}
