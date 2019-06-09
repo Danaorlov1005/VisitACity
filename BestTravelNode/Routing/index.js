@@ -20,6 +20,8 @@ router.post('/createTripByParameters', async function (req,res){
         filters: req.body.preferences        
     }
 
+    console.log([req.body.location.x, req.body.location.y])
+
     const results = await createNewTrip(dataFromClient)
     res.send(results)
 })

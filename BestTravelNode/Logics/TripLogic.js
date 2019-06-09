@@ -3,63 +3,82 @@ const kmeans = require('node-kmeans');
 const geolib = require('geolib')
 var Kruskal = require("kruskal");
 var Categories = require('./Categories')
+var PlaceSearch = require('googleplaces/lib/PlaceSearch')
 
 async function createNewTrip(data) {
     return new Promise(async function (resolve, reject) {
-        let allPlaces = await getPlacesFromGoogle(data)
-        var promise = devidePlacesByDays(allPlaces, data.duration)
-        promise.then((res) => {
-            res = prioritizeResults(res, data.filters);
-            for (let index = 0; index < data.duration; index++) {
-                const minimumTreeForDay = planTripForDay(res[index].places, 'Day')
-                res[index].places = buildAttractionsOrder(minimumTreeForDay, res[index].places)
-            }
+        getPlacesFromGoogle(data).then((result) => {
+            allPlaces = result
+            var promise = devidePlacesByDays(allPlaces, data.duration)
+            promise.then((res) => {
+                const prioritizedPlaces = prioritizeResults(res[index].places, data.filters);
+                for (let index = 0; index < data.duration; index++) {
+                    const minimumTreeForDay = planTripForDay(prioritizedPlaces, 'Day')
+                    res[index].places = buildAttractionsOrder(minimumTreeForDay, res[index].places)
+                }
 
-            const dataForOrder = res.map(day => day.center)
+                const dataForOrder = res.map(day => day.center)
 
-            minimumTreeForTrip = planTripForDay(dataForOrder, 'DaysOrder')
-            const finalTrip = buildAttractionsOrder(minimumTreeForTrip, res)
-            resolve(finalTrip)
+                minimumTreeForTrip = planTripForDay(dataForOrder, 'DaysOrder')
+                const finalTrip = buildAttractionsOrder(minimumTreeForTrip, res)
+                resolve(finalTrip)
+            })
         })
+
     })
 }
 
 async function getPlacesFromGoogle(data) {
-    GooglePlaces.apiKey = 'AIzaSyBts53vgjeOpiVy962cJUvS8D021tTgpdI'
-    GooglePlaces.debug = true
+    var placeSearch = new PlaceSearch('AIzaSyBts53vgjeOpiVy962cJUvS8D021tTgpdI', 'json');
 
-    return await GooglePlaces.nearbysearch({
-        location: data.location.toString(),
-        type: Categories.Google,
-        rankby: "distance" // See google docs for different possible values
+    parameters = {
+        location: data.location,
+        rankby: "distance",
+        types: Categories.Google
+    };
+
+    return new Promise(function (resolve, reject) {
+        placeSearch(parameters, function (error, response) {
+            resolve(response.results)
+        }
+        )
     })
-        .then(result => {
-            return result
-        })
-        .catch(e => console.log(e));
+
 }
 
 // places - search result
 // preferences - scale of eace category
 function prioritizeResults(places, preferences) {
+    const maxPriority = 0;
     places.forEach(place => {
         place.priority = 0;
         place.categories = [];
         // each preference of the client
         Categories.Local.forEach(type => {
-            const isInTheCategory = false;
+            let isInTheCategory = false;
             // go over all matching google categories
             Categories.Pairings[type].forEach(matchingType => {
                 if (place.types.includes(Categories.Google[matchingType])) {
                     //increase the priority accorting to preferene
                     place.priority += preferences[type];
+                    maxPriority = _.max(maxPriority, place.priority);
                     isInTheCategory = true;
                 }
             });
-            place.categories.push(type);
+            if (isInTheCategory)
+                place.categories.push(type);
         });
     });
-    return places;
+    const maxPriority = maxPriority / places.length;
+    const prioritizedPlaces = [];
+    // at least 3 prioritized places each day
+    while (prioritizedPlaces < 3 && maxPriority) {
+        prioritizedPlaces = places.map(place => {
+            place.priority >= maxPriority;
+        });
+        maxPriority--;
+    }
+    return prioritizedPlaces;
 }
 
 
@@ -80,7 +99,7 @@ function devidePlacesByDays(places, duration) {
             for (let index = 0; index < duration; index++) {
                 placesByDays[index] = { places: [], center: clusters[index].centroid }
                 clusters[index].cluster.map((locInDay) => {
-                    placeToAdd = places.find(place => place.geometry.location.lat = locInDay[0] &&
+                    placeToAdd = places.find(place => place.geometry.location.lat == locInDay[0] &&
                         place.geometry.location.lng == locInDay[1])
 
                     placesByDays[index]["places"].push(placeToAdd)

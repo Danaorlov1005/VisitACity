@@ -40,7 +40,7 @@
     </p>
     <hr>
 
-    <div class="row" style="padding-bottom: 20px;" > <!--*ngFor="let day of days; let i = index"-->
+    <div class="row" style="padding-bottom: 20px;" *ngFor="let day of days; let i = index">
       <div class="col-md-3" (click)="basicModal.show()">
 
         <div class="view overlay rounded z-depth-1" style="height: 20vh !important">
@@ -54,7 +54,7 @@
       <div class="col-md-9">
         <a>
           <p class="dark-grey-text">
-            <strong>{{dayNames[0]}}</strong>
+            <strong>{{dayNames[i]}}</strong>
           </p>
           <i class="fa fa-angle-left float-left" ></i>
         </a>
@@ -67,15 +67,36 @@
             <div class="modal-header">
               <img src={{activityPerDayImgUrl}} class="rounded-circle img-responsive" alt="לא נמצאה תמונה">
             </div>
-            <div class="modal-body text-center mb-1">
+            <!--
+            <div class="modal-body text-center mb-1" *ngFor="let place of day.places; let j = index">
               <button mdbBtn color="primary" class="waves-light" type="button" (click)="test.toggle();changeImage(activityPerDayImgUrl)" mdbWavesEffect>
-                אטרקציה ראשונה
+                {{place.name}}
               </button>
 
               <div class="" mdbCollapse #test="bs-collapse">
                 <p>דברים דברים דבריםדברים דברים דבריםדברים דברים דבריםדברים דברים דברים</p>
               </div>
-            </div>
+            </div>-->
+
+              <ul class="list-group list-group-flush mt-3" style="overflow-y: scroll">
+                <li class="list-group-item ml-4" (click)="test.toggle()" *ngFor="let place of day.places">{{place.name}}
+                  <div class="" mdbCollapse #test="bs-collapse">
+                    <p>כתובת: {{place.vicinity}}</p>
+                  </div>
+                  <div>
+                    <mdb-badge *ngIf="place.opening_hours != null" pill="true" primary="true" [hidden]="!place.opening_hours.open_now">פתוח עכשיו</mdb-badge>
+                    <mdb-badge *ngIf="place.opening_hours != null" pill="true" warning="true" [hidden]="place.opening_hours.open_now">סגור עכשיו</mdb-badge>
+                    <span id="rateMe" class="float-left">
+                      <i *ngIf="place.user_ratings_total > 0" class="fa fa-star py-2 px-1 rate-popover" data-index="0" data-html="true" data-toggle="popover" data-placement="top"></i>
+                      <i *ngIf="place.user_ratings_total > 1" class="fa fa-star py-2 px-1 rate-popover" data-index="1" data-html="true" data-toggle="popover" data-placement="top"></i>
+                      <i *ngIf="place.user_ratings_total > 2" class="fa fa-star py-2 px-1 rate-popover" data-index="2" data-html="true" data-toggle="popover" data-placement="top"></i>
+                      <i *ngIf="place.user_ratings_total > 3 " class="fa fa-star py-2 px-1 rate-popover" data-index="3" data-html="true" data-toggle="popover" data-placement="top"></i>
+                      <i *ngIf="place.user_ratings_total == 5" class="fa fa-star py-2 px-1 rate-popover" data-index="4" data-html="true" data-toggle="popover" data-placement="top"></i>
+                    </span>
+                  </div>
+                </li>
+              </ul>
+
 
             <button class="btn btn-cyan waves-effect waves-light" (click)="basicModal.hide();frame.show()">מצא טיולים דומים
               <i class="fas fa-sign-in-alt ml-1"></i>
@@ -151,3 +172,5 @@
     © 2019 זכויות שמורות
   </div>
 </footer>
+
+<script src="js/addons/rating.js"></script>

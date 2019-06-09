@@ -30,3 +30,11 @@ input :not(.custom-range){
 .md-form{
   direction: rtl;
 }
+
+.fa-plus{
+  color: darkgreen;
+}
+
+.fa-minus{
+  color: crimson;
+}

@@ -13,6 +13,9 @@ export class DisplayTripComponent implements OnInit {
   activityPerDayImgUrl: string = this.globalService.getNextTripImgUrl();
   city: string = this.globalService.getCity();
   days:any = {};
+/*
+  this.days.places:any = {};
+*/
   dayNames:any = ['היום הראשון שלך','היום השני שלך','היום השלישי שלך','היום הרביעי שלך','היום בחמישי שלך','היום השישי שלך', 'היום השביעי שלך'];
 
   constructor(private globalService:GlobalService, private http: HttpClient) {}
