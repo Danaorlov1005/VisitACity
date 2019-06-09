@@ -1,24 +1,24 @@
-
-
-<!--Section heading-->
-<h2 class="h1 text-center my-5 font-weight-bold">הטיול שלך ל{{city}}</h2>
+<div class="view jarallax" data-jarallax='{"speed": 0.2}' style="background-repeat: no-repeat; background-size: cover;" [ngStyle]="{ 'background-image': 'url(' + mainImgUrl  + ')'}">
+  <div class="full-bg-img mask rgba-black-light">
+    <div class="container flex-center">
+      <div class="row pt-5 mt-3 w-100">
+        <div class="col-md-12">
+          <div class="text-center">
+            <h2 class="h1 h1-reponsive white-text font-up font-bold mb-3 wow fadeInDown" data-wow-delay="0.3s"><strong>הטיול שלך מוכן!</strong></h2>
+            <hr class="hr-light mt-4 wow fadeInDown" data-wow-delay="0.4s">
+            <h2 class="font-up mb-5 white-text wow fadeInDown" data-wow-delay="0.4s"><strong>{{city}}</strong></h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="container">
-<!--Grid row-->
 <div class="row">
 
-  <!--Grid column-->
   <div class="col-md-12 text-right">
 
-    <!--Image-->
-    <div class="view overlay rounded">
-      <img src={{mainImgUrl}} class="img-fluid">
-      <a>
-        <div class="mask rgba-white-slight"></div>
-      </a>
-    </div>
-
-    <!--Excerpt-->
     <div class="news-data">
       <a class="light-blue-text" data-toggle="modal" data-target="#basicExample" (click)="frame.show()">
         <h6>
@@ -39,128 +39,56 @@
     <p> המסלול נבנה לפי ההעדפות שלך. תוכל תמיד לחזור ולחפש מסלולים חדשים אך מומלץ לשמור את המסלול כדי שתוכל לגשת אליו בקלות בפעם הבאה!
     </p>
     <hr>
-d
-    <div class="row">
-      <div class="col-md-3">
 
-        <!--Image-->
-        <div class="view overlay rounded z-depth-1">
-          <img src="https://mdbootstrap.com/img/Photos/Others/photo8.jpg" class="img-fluid" alt="Minor sample post image">
+    <div class="row" style="padding-bottom: 20px;" > <!--*ngFor="let day of days; let i = index"-->
+      <div class="col-md-3" (click)="basicModal.show()">
+
+        <div class="view overlay rounded z-depth-1" style="height: 20vh !important">
+          <img src="https://mdbootstrap.com/img/Photos/Others/photo8.jpg" class="img-fluid">
           <a>
             <div class="mask rgba-white-slight"></div>
           </a>
         </div>
       </div>
 
-      <!--Excerpt-->
       <div class="col-md-9">
-        <p class="dark-grey-text">
-          <strong>19/08/2018</strong>
-        </p>
-        <a>Lorem ipsum dolor sit amet
-          <i class="fa fa-angle-left float-left" (click)="basicModal.show()"></i>
+        <a>
+          <p class="dark-grey-text">
+            <strong>{{dayNames[0]}}</strong>
+          </p>
+          <i class="fa fa-angle-left float-left" ></i>
         </a>
       </div>
+      <hr>
 
-    </div>
-    <!--/Small news-->
+      <div mdbModal #basicModal="mdbModal" class="modal fade" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+        <div class="modal-dialog cascading-modal modal-avatar modal-sm" role="document">
+          <div class="modal-content" style="width: 150%; height: 500px !important;">
+            <div class="modal-header">
+              <img src={{activityPerDayImgUrl}} class="rounded-circle img-responsive" alt="לא נמצאה תמונה">
+            </div>
+            <div class="modal-body text-center mb-1">
+              <button mdbBtn color="primary" class="waves-light" type="button" (click)="test.toggle();changeImage(activityPerDayImgUrl)" mdbWavesEffect>
+                אטרקציה ראשונה
+              </button>
 
-    <hr>
-
-    <!--Small news-->
-    <div class="row">
-      <div class="col-md-3">
-
-        <!--Image-->
-        <div class="view overlay rounded z-depth-1">
-          <img src="https://mdbootstrap.com/img/Photos/Others/images/54.jpg" class="img-fluid" alt="Minor sample post image">
-          <a>
-            <div class="mask rgba-white-slight"></div>
-          </a>
-        </div>
-      </div>
-
-      <!--Excerpt-->
-      <div class="col-md-9">
-        <p class="dark-grey-text">
-          <strong>18/08/2018</strong>
-        </p>
-        <a>Soluta nobis est eligendi
-          <i class="fa fa-angle-left float-left" (click)="basicModal.show()"></i>
-        </a>
-      </div>
-
-    </div>
-    <!--/Small news-->
-
-    <hr>
-
-    <!--Small news-->
-    <div class="row">
-      <div class="col-md-3">
-
-        <!--Image-->
-        <div class="view overlay rounded z-depth-1">
-          <img src="https://mdbootstrap.com/img/Photos/Others/images/49.jpg" class="img-fluid" alt="Minor sample post image">
-          <a>
-            <div class="mask rgba-white-slight"></div>
-          </a>
-        </div>
-      </div>
-
-      <!--Excerpt-->
-      <div class="col-md-9">
-        <p class="dark-grey-text">
-          <strong>17/08/2018</strong>
-        </p>
-        <a>Voluptatem accusantium doloremque
-          <i class="fa fa-angle-left float-left" (click)="basicModal.show()"></i>
-        </a>
-      </div>
-
-    </div>
-    <!--/Small news-->
-
-  </div>
-  <!--Grid column-->
-
-</div>
-<!--Grid row-->
-</div>
-
-
-    <div mdbModal #basicModal="mdbModal" class="modal fade" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="row mb-6 wow fadeIn">
-          <div class="col">
-            <div class="card">
-              <div class="view overlay zoom">
-                <button type="button" class="close pull-right" aria-label="Close" (click)="closeModal()">
-                  <span aria-hidden="true">×</span>
-                </button>
-                <img src="https://mdbootstrap.com/img/Photos/Others/images/77.jpg" class="card-img-top"
-                     alt="">
-                <div class="mask flex-center">
-                  <p class="white-text">Zoom effect</p>
-                </div>
-                <a target="_blank">
-                  <div class="mask rgba-white-slight"></div>
-                </a>
-              </div>
-
-              <div class="card-body">
-                <h4 class="card-title">מסדעת צרפת</h4>
-                <p class="card-text"></p>
-                <p class="card-text">
-                  <strong>fjkdjfjks</strong>
-                </p>
+              <div class="" mdbCollapse #test="bs-collapse">
+                <p>דברים דברים דבריםדברים דברים דבריםדברים דברים דבריםדברים דברים דברים</p>
               </div>
             </div>
+
+            <button class="btn btn-cyan waves-effect waves-light" (click)="basicModal.hide();frame.show()">מצא טיולים דומים
+              <i class="fas fa-sign-in-alt ml-1"></i>
+            </button>
           </div>
         </div>
-
       </div>
+
     </div>
+  </div>
+</div>
+</div>
+
 
 
 <div mdbModal #frame="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -219,9 +147,7 @@ d
 
 <footer class="page-footer text-center font-small mt-4 wow fadeIn">
   <hr class="my-4">
-
   <div class="footer-copyright py-3">
     © 2019 זכויות שמורות
   </div>
-
 </footer>

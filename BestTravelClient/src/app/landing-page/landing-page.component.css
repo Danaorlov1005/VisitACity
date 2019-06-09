@@ -12,3 +12,18 @@
 .near-moon-gradient{
   max-height: 370px !important;
 }
+
+.img-responsive{
+  height: 300px !important;
+  width: 300px !important;
+  image-rendering: -webkit-optimize-contrast;
+  object-fit: cover;
+}
+
+.modal-dialog{
+  margin-right: 50%;
+}
+
+.modal{
+  overflow: hidden !important;
+}

@@ -1,5 +1,5 @@
 <div class="page">
-<div class="side-panel">
+<div class="side-panel" id="side-panel">
   <br>
   <div class="col">
     <div class="md-form mt-0">
@@ -41,8 +41,8 @@
 </div>
 
 
-<div class="" style="width: 80%; height: 650px !important;">
-  <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom" style="height: inherit">
+<div style="width: 80%;" [ngStyle]="{ 'height': 'mapHeight'}">
+  <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom" style="height: 750px" >
     <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
     <agm-direction [origin]="origin" [destination]="destination">
     </agm-direction>

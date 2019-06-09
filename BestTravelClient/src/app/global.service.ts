@@ -7,6 +7,8 @@ export class GlobalService {
   private nextTripImgUrl;
   private city;
   private place;
+  private tripObj:any = {};
+  private tripObjToSearch:any = {};
 
   constructor() { }
 
@@ -31,5 +33,21 @@ export class GlobalService {
 
   getPlace(){
     return this.place;
+  }
+
+  getTripObj(){
+    return this.tripObj;
+  }
+
+  setTripObj(val){
+    this.tripObj = val;
+  }
+
+  getTripObjToSearch(){
+    return this.tripObjToSearch;
+  }
+
+  setTripObjToSearch(val){
+    this.tripObjToSearch = val;
   }
 }

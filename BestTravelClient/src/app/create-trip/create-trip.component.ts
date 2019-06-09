@@ -4,6 +4,20 @@ import { MapsAPILoader } from '@agm/core';
 import { HttpClient } from "@angular/common/http";
 import { GlobalService } from '../global.service';
 
+export class tripObject{
+  tripName : string;
+  location :location;
+  duration : number;
+  preferences:preferences;
+
+  constructor(tripName:string, location:location, duration:number, preferences:preferences){
+    this.tripName = tripName;
+    this.location = location;
+    this.duration = duration;
+    this.preferences = preferences;
+  }
+}
+
 export class location{
   x : number;
   y : number;
@@ -13,31 +27,24 @@ export class location{
     this.y = y;
   }
 }
-export class tripObject{
 
-  tripName : string;
+export class preferences{
   nature : number;
   shopping : number;
   family : number;
   food : number;
   nightLife : number;
   culture : number;
-  location : location;
-  duration : number;
 
-  constructor(tripName:string, nature:number, family:number, food:number, nightLife:number, culture:number, shopping:number, location:location, duration:number){
-    this.tripName = tripName;
+  constructor(nature:number, family:number, food:number, nightLife:number, culture:number, shopping:number){
     this.nature = nature;
     this.shopping = shopping;
     this.family = family;
     this.food = food;
     this.nightLife = nightLife;
     this.culture = culture;
-    this.location = location;
-    this.duration = duration;
   }
 }
-
 
 @Component({
   selector: 'app-create-trip',
@@ -61,6 +68,8 @@ export class CreateTripComponent implements OnInit {
   shopping:number = 2;
   duration:number = 3;
 
+  mapHeight:any;
+
   //map properties
   public latitude: number;
   public longitude: number;
@@ -81,6 +90,7 @@ export class CreateTripComponent implements OnInit {
 
   ngOnInit() {
     this.initMap();
+    this.mapHeight = document.getElementById("side-panel").offsetHeight;
   }
 
   initMap(){
@@ -121,7 +131,7 @@ export class CreateTripComponent implements OnInit {
           this.getDirection(this.latitude, this.longitude);
 
           //set the photo of the  place
-          this.photoUrl = place.photos[0].getUrl({'maxWidth': 6000, 'maxHeight': 1000}  );
+          this.photoUrl = place.photos[1].getUrl({'maxWidth': 6000, 'maxHeight': 1000}  );
 
           this.globalService.setCity(this.location);
           this.globalService.setNextTripImgUrl(this.photoUrl);
@@ -150,13 +160,11 @@ export class CreateTripComponent implements OnInit {
 
   //create a new trip
   createTrip(){
+    //create the trip object to send to the server and save it to global to use it later
     let location1 = new location(this.latitude, this.longitude);
-    let obj = new tripObject("הטיול שלי ל" + this.location, this.nature, this.shopping, this.family, this.food, this.mightLife, this.culture, location1 , this.duration );
-
-    this.http.post<tripObject>("http://localhost:3000/createTripByParameters", obj)
-      .subscribe(res => {
-        console.log(res);
-      })
+    let preferences1 = new preferences(this.nature, this.family, this.food, this.mightLife,this.culture, this.shopping );
+    let obj = new tripObject("הטיול שלי ל" + this.location, location1 ,this.duration, preferences1);
+    this.globalService.setTripObjToSearch(obj);
   }
 }
 
