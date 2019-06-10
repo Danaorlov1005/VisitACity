@@ -12,7 +12,7 @@ export class DisplayTripComponent implements OnInit {
   mainImgUrl: string = this.globalService.getNextTripImgUrl();
   activityPerDayImgUrl: string = this.globalService.getNextTripImgUrl();
   city: string = this.globalService.getCity();
-  days:any = {};
+  days: any = {};
   canSave:boolean = this.globalService.getUser == null ? false:true;
 /*
   this.days.places:any = {};
@@ -28,13 +28,13 @@ export class DisplayTripComponent implements OnInit {
   }
 
   getTripObject() {
-    const obj = this.globalService.getTripObjToSearch();
+    const obj = this.globalService.getTripPreferencesObjToSearch();
     this.http.post('http://localhost:3000/createTripByParameters', obj)
       .subscribe(res => {
         this.globalService.setTripPlan(res);
         console.log(res);
         this.days = res;
-        this.globalService.setTripObj(res);
+        this.globalService.setTripPreferencesObj(res);
       });
   }
 
@@ -45,7 +45,7 @@ export class DisplayTripComponent implements OnInit {
       .subscribe(res => {
         console.log(res);
         this.days = res;
-        this.globalService.setTripObj(res);
+        this.globalService.setTripPreferencesObj(res);
       });
   }
 

@@ -7,9 +7,9 @@ export class GlobalService {
   private nextTripImgUrl;
   private city;
   private place;
-  private userId;
-  private tripObj: any = {};
-  private tripObjToSearch: any = {};
+  private userId: any = {};
+  private tripPreferencesObj: any = {};
+  private tripPreferencesObjToSearch: any = {};
   private currentTripPlan: any = {};
 
   constructor() { }
@@ -52,19 +52,19 @@ export class GlobalService {
     return this.place;
   }
 
-  getTripObj() {
-    return this.tripObj;
+  getTripPreferencesObj() {
+    return this.tripPreferencesObj;
   }
 
-  setTripObj(val) {
-    this.tripObj = val;
+  setTripPreferencesObj(val) {
+    this.tripPreferencesObj = val;
   }
 
-  getTripObjToSearch() {
-    return this.tripObjToSearch;
+  getTripPreferencesObjToSearch() {
+    return this.tripPreferencesObjToSearch;
   }
 
   setTripObjToSearch(val) {
-    this.tripObjToSearch = val;
+    this.tripPreferencesObjToSearch = val;
   }
 }

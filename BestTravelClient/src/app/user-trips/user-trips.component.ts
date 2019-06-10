@@ -21,6 +21,4 @@ export class UserTripsComponent implements OnInit {
         this.allTrips = data;
       });
   }
-
-
 }
