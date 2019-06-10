@@ -133,7 +133,13 @@ export class CreateTripComponent implements OnInit {
           this.getDirection(this.latitude, this.longitude);
 
           // set the photo of the  place
-          this.photoUrl = place.photos[1].getUrl({'maxWidth': 6000, 'maxHeight': 1000}  );
+          if(place.photos == null){
+            this.photoUrl = "https://mdbootstrap.com/img/Photos/Others/img%20%2848%29.jpg";
+          }else if(place.photos[1] != null){
+            this.photoUrl = place.photos[1].getUrl({'maxWidth': 6000, 'maxHeight': 1000}  );
+          }else{
+            this.photoUrl = place.photos[0].getUrl({'maxWidth': 6000, 'maxHeight': 1000}  );
+          }
 
           this.globalService.setCity(this.location);
           this.globalService.setNextTripImgUrl(this.photoUrl);
