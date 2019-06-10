@@ -13,6 +13,7 @@ export class DisplayTripComponent implements OnInit {
   activityPerDayImgUrl: string = this.globalService.getNextTripImgUrl();
   city: string = this.globalService.getCity();
   days:any = {};
+  canSave:boolean = this.globalService.getUser == null ? false:true;
 /*
   this.days.places:any = {};
 */
