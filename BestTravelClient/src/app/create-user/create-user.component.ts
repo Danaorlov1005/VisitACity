@@ -32,7 +32,7 @@ export class CreateUserComponent implements OnInit {
   // convenience getter for easy access to form fields
   get f() { return this.registerForm.controls; }
 
-  saveUser() {
+  login() {
       this.submitted = true;
     // stop here if form is invalid
     if (this.registerForm.invalid) {

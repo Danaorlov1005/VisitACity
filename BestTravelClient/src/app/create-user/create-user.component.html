@@ -85,11 +85,11 @@
   </div>
   <div *ngIf="registerForm.controls['Password'].invalid && (registerForm.controls['Password'].dirty || registerForm.controls['Password'].touched)" class="alert alert-danger">
     <div *ngIf="registerForm.controls['Password'].errors.required">
-      יש להכניס ססמא תקינה בת 5 תווים לפחות
+      יש להכניס ססמא תקינה בת 6 תווים לפחות
     </div>
   </div>
   <!-- Sign up button -->
-  <button class="btn btn-outline-default btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit" (click)="saveUser()" routerLink="/LandingPageComponent">הרשם</button>
+  <button class="btn btn-outline-default btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit" (click)="login()" routerLink="/LandingPageComponent">הרשם</button>
 
 </form>
 </div>
