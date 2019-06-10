@@ -69,7 +69,7 @@ router.get('/getPopularSites', async function (req, res) {
                 counter++;
                 result[index].trip = tripForSite
 
-                if (counter == result.length - 1) {
+                if (counter == result.length) {
                     res.send(result);
                 }
             })

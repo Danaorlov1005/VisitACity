@@ -49,7 +49,7 @@ async function getPlacesFromGoogle(data) {
                 counter++;
                 finalResult = finalResult.concat(response.results.slice(0, 5))
 
-                if (counter == Categories.Google.length - 1) {
+                if (counter == Categories.Google.length) {
                     const final = uniqBy(finalResult, 'name');
                     resolve(final)
                 }
