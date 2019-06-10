@@ -84,15 +84,15 @@ router.get('/getTripsForUser', function (req, res) {
     }, (err => { console.log(err) }));
 })
 
-router.get('/addNewUser', function (req, res) {
-    addNewUser(req.params).then((result) => {
+router.post('/addNewUser', function (req, res) {
+    addNewUser(req.body).then((result) => {
         res.send(result);
     }, (err => { console.log(err) }));
 })
 
 
 router.get('/getUser', function (req, res) {
-    getUser(req.params).then((result) => {
+    getUser(req.query).then((result) => {
         res.send(result);
     }, (err => { console.log(err) }));
 })
