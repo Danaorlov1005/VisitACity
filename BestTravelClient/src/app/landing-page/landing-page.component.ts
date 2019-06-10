@@ -17,6 +17,7 @@ export class LandingPageComponent implements OnInit {
     this.http.get("http://localhost:3000/getPopularSites").subscribe(
       data => {
         this.allTrips = data;
+        console.log(data);
       });
   }
 
