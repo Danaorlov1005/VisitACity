@@ -10,6 +10,7 @@ export class GlobalService {
   private userId: any = {};
   private tripObj: any = {};
   private tripObjToSearch: any = {};
+  private currentTripPlan: any = {};
 
   constructor() { }
 
@@ -24,6 +25,15 @@ export class GlobalService {
   }
   getNextTripImgUrl() {
     return this.nextTripImgUrl;
+  }
+
+  setTripPlan(result) {
+    this.currentTripPlan = result;
+    console.log(this.currentTripPlan);
+  }
+
+  getTripPlan() {
+    return this.currentTripPlan;
   }
 
   getCity() {
