@@ -3,7 +3,7 @@
 .round{
     border-radius: 50%;
   }
-  
+
   .rounded-circle :hover{
     background-color: rgba(180, 180, 200, 0.9);
   }
