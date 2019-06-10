@@ -10,7 +10,7 @@ function getTripsForUser(data){
               tu."USER_ID" = $1
     `
     //const values=[data.userId]
-    const values = [1]
+    const values = [data.userId]
 
     return executeQuery(query, values)
 }

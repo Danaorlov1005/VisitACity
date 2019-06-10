@@ -34,20 +34,24 @@ async function createNewTrip(data) {
 async function getPlacesFromGoogle(data) {
     var placeSearch = new PlaceSearch('AIzaSyBts53vgjeOpiVy962cJUvS8D021tTgpdI', 'json');
 
-    parameters = {
-        location: data.location,
-        rankby: "distance",
-        types: Categories.Google
-    };
+    let finalResult = []
 
     return new Promise(function (resolve, reject) {
-        placeSearch(parameters, function (error, response) {
-            resolve(response.results)
-        }
-        )
-    })
+        for (let index = 0; index < Categories.Google.length; index++) {
+            parameters = {
+                location: data.location,
+                rankby: "distance",
+                types: [Categories.Google[index]]
+            };
+            placeSearch(parameters, function (error, response) {
+                finalResult = finalResult.concat(response.results.slice(0,5))
 
-}
+                if(index == Categories.Google.length - 1){
+                    resolve(finalResult)
+                }
+            })            
+        }
+    })}
 
 // places - search result
 // preferences - scale of eace category
