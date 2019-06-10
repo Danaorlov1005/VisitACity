@@ -7,14 +7,14 @@ export class GlobalService {
   private nextTripImgUrl;
   private city;
   private place;
-  private userId: any = {};
+  private userId;
   private tripObj: any = {};
   private tripObjToSearch: any = {};
   private currentTripPlan: any = {};
 
   constructor() { }
 
-  setUser(email: any) {
+  setUser(email: string) {
     this.userId = email;
   }
   getUser() {

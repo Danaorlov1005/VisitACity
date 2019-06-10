@@ -82,7 +82,7 @@
         </div>
       </div>
     </div>
-  <a (click)="SaveTrip()" class="light-blue-text" data-toggle="modal" data-target="#basicExample" [disabled]="canSave">
+  <a (click)="SaveTrip()" class="light-blue-text" data-toggle="modal" data-target="#basicExample" [hidden]="!canSave">
     <h6>
       <i class="fa fa-download"></i>
       <strong> שמור את הטיול</strong>
