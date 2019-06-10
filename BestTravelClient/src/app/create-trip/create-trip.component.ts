@@ -11,8 +11,7 @@ export class tripObject{
   duration: number;
   preferences: preferences;
 
-  constructor(user: string, tripName: string, location: location, duration: number, preferences: preferences) {
-    this.user = user;
+  constructor(tripName: string, location: location, duration: number, preferences: preferences) {
     this.tripName = tripName;
     this.location = location;
     this.duration = duration;
@@ -173,7 +172,7 @@ export class CreateTripComponent implements OnInit {
     this.longitude = parseFloat(this.longitude.toFixed(5));
     let location1 = new location(this.latitude, this.longitude);
     let preferences1 = new preferences(this.nature, this.family, this.food, this.mightLife, this.culture, this.shopping );
-    let obj = new tripObject(this.globalService.getUser(), "הטיול שלי ל" + this.location, location1 , this.duration, preferences1);
+    let obj = new tripObject( "הטיול שלי ל" + this.location, location1 , this.duration, preferences1);
     this.globalService.setTripObjToSearch(obj);
   }
 }
