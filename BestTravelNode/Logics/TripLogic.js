@@ -38,6 +38,7 @@ async function getPlacesFromGoogle(data) {
     let finalResult = []
 
     return new Promise(function (resolve, reject) {
+        let counter = 0;
         for (let index = 0; index < Categories.Google.length; index++) {
             parameters = {
                 location: data.location,
@@ -45,16 +46,17 @@ async function getPlacesFromGoogle(data) {
                 types: [Categories.Google[index]]
             };
             placeSearch(parameters, function (error, response) {
-            
-                finalResult = finalResult.concat(response.results.slice(0,5))
+                counter++;
+                finalResult = finalResult.concat(response.results.slice(0, 5))
 
-                if(index == Categories.Google.length - 1){
+                if (counter == Categories.Google.length - 1) {
                     const final = uniqBy(finalResult, 'name');
                     resolve(final)
                 }
-            })            
+            })
         }
-    })}
+    })
+}
 
 // places - search result
 // preferences - scale of eace category
@@ -229,7 +231,6 @@ function buildAttractionsOrder(minimumTree, places) {
 
     finalTrip = indexArray.map(index => places[index])
 
-    console.log(finalTrip)
     return finalTrip
 
 }
