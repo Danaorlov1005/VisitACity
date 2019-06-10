@@ -27,3 +27,7 @@
 .modal{
   overflow: hidden !important;
 }
+
+#rateMe{
+  color: gold;
+}
