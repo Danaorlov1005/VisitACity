@@ -14,7 +14,7 @@ export class GlobalService {
 
   constructor() { }
 
-  setUser(email: any) {
+  setUser(email: string) {
     this.userId = email;
   }
   getUser() {

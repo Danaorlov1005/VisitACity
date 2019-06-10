@@ -13,6 +13,7 @@ export class DisplayTripComponent implements OnInit {
   activityPerDayImgUrl: string = this.globalService.getNextTripImgUrl();
   city: string = this.globalService.getCity();
   days: any = {};
+  canSave:boolean = this.globalService.getUser == null ? false:true;
 /*
   this.days.places:any = {};
 */
@@ -23,6 +24,7 @@ export class DisplayTripComponent implements OnInit {
   ngOnInit() {
     window.scrollTo(0, 95);
     this.getTripObject();
+    this.canSave = this.globalService.getUser() == null ? false:true;
   }
 
   getTripObject() {
