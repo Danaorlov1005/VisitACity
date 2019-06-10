@@ -63,6 +63,26 @@
                   <h5 class="mt-1 mb-2">{{trip.Name}}</h5>
                   <h6>{{trip.Description}}</h6>
                 </div>
+
+                <ul class="list-group list-group-flush mt-3" style="overflow-y: scroll;height: 55%">
+                  <li class="list-group-item ml-4" (click)="test.toggle()" *ngFor="let place of trip.trip.places[0].places">{{place.name}}
+                    <div class="" mdbCollapse #test="bs-collapse">
+                      <p>כתובת: {{place.vicinity}}</p>
+                    </div>
+                    <div>
+                      <mdb-badge *ngIf="place.opening_hours != null" pill="true" primary="true" [hidden]="!place.opening_hours.open_now" style="margin-left: 250px">פתוח עכשיו</mdb-badge>
+                      <mdb-badge *ngIf="place.opening_hours != null" pill="true" warning="true" [hidden]="place.opening_hours.open_now" style="margin-left: 250px"> סגור עכשיו</mdb-badge>
+                      <span id="rateMe" class="float-left">
+                      <i *ngIf="place.user_ratings_total > 0" class="fa fa-star py-2 px-1 rate-popover" data-index="0" data-html="true" data-toggle="popover" data-placement="top"></i>
+                      <i *ngIf="place.user_ratings_total > 1" class="fa fa-star py-2 px-1 rate-popover" data-index="1" data-html="true" data-toggle="popover" data-placement="top"></i>
+                      <i *ngIf="place.user_ratings_total > 2" class="fa fa-star py-2 px-1 rate-popover" data-index="2" data-html="true" data-toggle="popover" data-placement="top"></i>
+                      <i *ngIf="place.user_ratings_total > 3 " class="fa fa-star py-2 px-1 rate-popover" data-index="3" data-html="true" data-toggle="popover" data-placement="top"></i>
+                      <i *ngIf="place.user_ratings_total == 5" class="fa fa-star py-2 px-1 rate-popover" data-index="4" data-html="true" data-toggle="popover" data-placement="top"></i>
+                    </span>
+                    </div>
+                  </li>
+                </ul>
+
               </div>
             </div>
           </div>
