@@ -4,6 +4,7 @@ const geolib = require('geolib')
 var Kruskal = require("kruskal");
 var Categories = require('./Categories')
 var PlaceSearch = require('googleplaces/lib/PlaceSearch')
+var uniqBy = require('lodash.uniqby');
 
 async function createNewTrip(data) {
     return new Promise(async function (resolve, reject) {
@@ -44,10 +45,12 @@ async function getPlacesFromGoogle(data) {
                 types: [Categories.Google[index]]
             };
             placeSearch(parameters, function (error, response) {
+            
                 finalResult = finalResult.concat(response.results.slice(0,5))
 
                 if(index == Categories.Google.length - 1){
-                    resolve(finalResult)
+                    const final = uniqBy(finalResult, 'name');
+                    resolve(final)
                 }
             })            
         }
