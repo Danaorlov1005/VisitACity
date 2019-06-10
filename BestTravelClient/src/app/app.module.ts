@@ -21,6 +21,7 @@ import { DisplayTripComponent } from './display-trip/display-trip.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GlobalService } from './global.service';
 import { UserTripsComponent } from './user-trips/user-trips.component';
+import { UserLoginComponent } from './user-login/user-login.component';
 
 
 declare let google: any;
@@ -34,7 +35,8 @@ declare let google: any;
     FlightLocatorComponent,
     CreateUserComponent,
     DisplayTripComponent,
-    UserTripsComponent
+    UserTripsComponent,
+    UserLoginComponent
   ],
   imports: [
     AgmCoreModule.forRoot({

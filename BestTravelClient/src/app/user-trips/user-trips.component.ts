@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { GlobalService } from '../global.service';
 
 @Component({
   selector: 'app-user-trips',
@@ -10,10 +11,12 @@ export class UserTripsComponent implements OnInit {
 
   allTrips: any;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private globalService: GlobalService) {
+
+  }
 
   ngOnInit() {
-    this.http.get('http://localhost:3000/getPopularSites').subscribe(
+    this.http.get('http://localhost:3000/getTripsForUser', {params: this.globalService.getUser()}).subscribe(
       data => {
         this.allTrips = data;
       });

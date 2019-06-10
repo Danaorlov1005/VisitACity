@@ -5,12 +5,14 @@ import { HttpClient } from '@angular/common/http';
 import { GlobalService } from '../global.service';
 
 export class tripObject{
-  tripName : string;
-  location :location;
-  duration : number;
-  preferences:preferences;
+  user: string;
+  tripName: string;
+  location: location;
+  duration: number;
+  preferences: preferences;
 
-  constructor(tripName:string, location:location, duration:number, preferences:preferences){
+  constructor(user: string, tripName: string, location: location, duration: number, preferences: preferences) {
+    this.user = user;
     this.tripName = tripName;
     this.location = location;
     this.duration = duration;
@@ -19,8 +21,8 @@ export class tripObject{
 }
 
 export class location{
-  x : number;
-  y : number;
+  x: number;
+  y: number;
 
   constructor(x : number, y: number) {
     this.x = x;
@@ -171,7 +173,7 @@ export class CreateTripComponent implements OnInit {
     this.longitude = parseFloat(this.longitude.toFixed(5));
     let location1 = new location(this.latitude, this.longitude);
     let preferences1 = new preferences(this.nature, this.family, this.food, this.mightLife, this.culture, this.shopping );
-    let obj = new tripObject("הטיול שלי ל" + this.location, location1 , this.duration, preferences1);
+    let obj = new tripObject(this.globalService.getUser(), "הטיול שלי ל" + this.location, location1 , this.duration, preferences1);
     this.globalService.setTripObjToSearch(obj);
   }
 }
