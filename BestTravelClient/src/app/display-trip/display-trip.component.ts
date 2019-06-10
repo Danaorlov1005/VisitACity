@@ -32,10 +32,10 @@ export class DisplayTripComponent implements OnInit {
         console.log(res);
         this.days = res;
         this.globalService.setTripObj(res);
-      });;
+      });
   }
 
-  changeImage(val){
+  changeImage(val) {
     this.activityPerDayImgUrl = val;
   }
 }
