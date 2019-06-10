@@ -40,9 +40,7 @@ export class CreateUserComponent implements OnInit {
     }
     const user = this.registerForm.get('UserName').value;
     const password = this.registerForm.get('Password').value;
-      this.http.post('http://localhost:3000/addNewUser/:UserName/:Password', {}, {params: new HttpParams().
-        set('UserName', user).
-        append('Password', password)})
+      this.http.post('http://localhost:3000/addNewUser', {'UserName': user, 'Password': password})
         .subscribe(res => {
           console.log(res);
           this.globalService.setUser(user);
