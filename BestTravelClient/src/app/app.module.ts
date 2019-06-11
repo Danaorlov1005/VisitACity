@@ -9,7 +9,7 @@ import { CreateTripComponent } from './create-trip/create-trip.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 
-import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import {DropdownModule, MDBBootstrapModule} from 'angular-bootstrap-md';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { AgmCoreModule } from '@agm/core';
@@ -50,7 +50,9 @@ declare let google: any;
     ReactiveFormsModule,
     MDBBootstrapModule.forRoot(),
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    DropdownModule.forRoot(),
+
   ],
   providers: [GlobalService],
   bootstrap: [AppComponent],

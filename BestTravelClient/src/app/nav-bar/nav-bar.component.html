@@ -7,6 +7,9 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
     <ul class="navbar-nav mr-auto">
+      <div class="nav-item" *ngIf="globalService.getUser()">
+        <p class="nav-link">{{globalService.getUser()}}</p>
+      </div>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true"
            aria-expanded="false">
@@ -17,7 +20,6 @@
           <a class="dropdown-item" href="#">התנתק</a>
         </div>
       </li>
-
       <li class="nav-item">
         <a class="nav-link" routerLink="/app-landing-page"> גלה הרפתקאות חדשות<p class="fa fa-map"></p></a>
       </li>

@@ -37,7 +37,7 @@ export class UserLoginComponent implements OnInit {
       .subscribe(res => {
         console.log(res);
         this.globalService.setUser(user);
-        this.router.navigate(['landing-page']);
+        this.router.navigate(['/app-landing-page']);
       }, err => {
         alert('שם משתמש או ססמא שגויים');
       });
