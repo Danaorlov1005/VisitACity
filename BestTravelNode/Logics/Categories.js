@@ -17,7 +17,6 @@ module.exports = {
         "shopping_mall",           // 13             
         "stadium",                 // 14     
         "zoo",                     // 15
-        "point_of_interest",       // 16
     ],
     Pairings: {
         nature: [1, 11, 15],

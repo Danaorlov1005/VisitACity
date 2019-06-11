@@ -33,27 +33,39 @@ async function createNewTrip(data) {
 }
 
 async function getPlacesFromGoogle(data) {
-    var placeSearch = new PlaceSearch('AIzaSyBts53vgjeOpiVy962cJUvS8D021tTgpdI', 'json');
+    var placeSearch = new PlaceSearch('AIzaSyBORN9IeVSsOjcMDnzY43FHGrIa6mNJnYc', 'json');
 
     let finalResult = []
 
     return new Promise(function (resolve, reject) {
         let counter = 0;
+        let parameters = {
+            location: data.location,
+            rankby: "distance",
+            types: [Categories.Google[0]]
+        };
+
         for (let index = 0; index < Categories.Google.length; index++) {
-            parameters = {
-                location: data.location,
-                rankby: "distance",
-                types: [Categories.Google[index]]
-            };
+
             placeSearch(parameters, function (error, response) {
                 counter++;
-                finalResult = finalResult.concat(response.results.slice(0, 5))
+                let forSlice = 5
+                
+                if(response){
+
+                if (response.results.length <forSlice){
+                    forSlice = response.results.length
+                }
+                finalResult = finalResult.concat(response.results.slice(0, forSlice))
 
                 if (counter == Categories.Google.length) {
                     const final = uniqBy(finalResult, 'name');
                     resolve(final)
                 }
+            }
             })
+
+            parameters.types= Categories.Google[index]
         }
     })
 }

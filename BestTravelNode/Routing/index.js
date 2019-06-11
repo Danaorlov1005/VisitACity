@@ -49,7 +49,7 @@ router.get('/createTripByParameters1', async function (req, res) {
 
 router.get('/getPopularSites', async function (req, res) {
     let counter = 0;
-    getPopularSites().then(async function (result) {
+     getPopularSites().then(async function (result) {
         for (let index = 0; index < result.length; index++) {
             let params = {
                 duration: 4,
@@ -74,6 +74,7 @@ router.get('/getPopularSites', async function (req, res) {
                 }
             })
         }
+
     }, (err => { console.log(err) }));
 
 })
@@ -102,13 +103,6 @@ router.get('/getUser', function (req, res) {
 router.get('/getsPlacesAPI', function (req, res) {
 
 })
-
-router.post('/addNewUser/:UserName/:Password', function (req, res) {
-    addNewUser(req.params).then((result) => {
-        res.send(result);
-    }, (err => { console.log(err) }));
-});
-
 
 router.get('/getUser/:UserName/:Password', function (req, res) {
     getUser(req.params).then((result) => {
