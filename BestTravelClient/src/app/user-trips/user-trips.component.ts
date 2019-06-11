@@ -16,7 +16,7 @@ export class UserTripsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.http.get('http://localhost:3000/getTripsForUser', {params: this.globalService.getUser()}).subscribe(
+    this.http.get('http://localhost:3000/getTripsForUser?UserName=' + this.globalService.getUser()).subscribe(
       data => {
         this.allTrips = data;
       });

@@ -3,12 +3,10 @@ const { executeQuery } = require('../DBAccess')
 function getTripsForUser(data){
     let query =`
         SELECT t."id", t."locations", t."name", t."area", t."duration"
-        FROM public."TRIPS" t,
-        WHERE t."USER_ID" = $1
+        FROM public."Trips" t
+        WHERE t."user_id" = $1
     `
-    const values = [data.userId]
-
-    return executeQuery(query, values)
+    return executeQuery(query, [data.UserName])
 }
 
 function addNewUser(data){

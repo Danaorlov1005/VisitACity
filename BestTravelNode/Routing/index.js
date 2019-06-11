@@ -75,7 +75,7 @@ router.get('/getPopularSites', async function (req, res) {
      )})
 
 router.get('/getTripsForUser', function (req, res) {
-    getTripsForUser(req.params).then((result) => {
+    getTripsForUser(req.query).then((result) => {
         res.send(result);
     }, (err => { console.log(err) }));
 })
@@ -105,12 +105,6 @@ router.post('/addNewUser/:UserName/:Password', function (req, res) {
     }, (err => { console.log(err) }));
 });
 
-
-router.get('/getUser/:UserName/:Password', function (req, res) {
-    getUser(req.params).then((result) => {
-        res.send(result);
-    }, (err => { console.log(err) }));
-});
 
 // router.get('/getWantedPartners', function (req, res) {
 //     getWantedPartners(req.params.tripId).then((result) => {
