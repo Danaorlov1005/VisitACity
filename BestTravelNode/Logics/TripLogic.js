@@ -50,22 +50,22 @@ async function getPlacesFromGoogle(data) {
             placeSearch(parameters, function (error, response) {
                 counter++;
                 let forSlice = 5
-                
-                if(response){
 
-                if (response.results.length <forSlice){
-                    forSlice = response.results.length
-                }
-                finalResult = finalResult.concat(response.results.slice(0, forSlice))
+                if (response) {
 
-                if (counter == Categories.Google.length) {
-                    const final = uniqBy(finalResult, 'name');
-                    resolve(final)
+                    if (response.results.length < forSlice) {
+                        forSlice = response.results.length
+                    }
+                    finalResult = finalResult.concat(response.results.slice(0, forSlice))
+
+                    if (counter == Categories.Google.length) {
+                        const final = uniqBy(finalResult, 'name');
+                        resolve(final)
+                    }
                 }
-            }
             })
 
-            parameters.types= Categories.Google[index]
+            parameters.types = Categories.Google[index]
         }
     })
 }
@@ -101,7 +101,6 @@ function prioritizeResults(places, preferences) {
 
 
 function devidePlacesByDays(places, duration) {
-
     let vectors = []
 
     places.forEach(place => {
@@ -113,8 +112,9 @@ function devidePlacesByDays(places, duration) {
         kmeans.clusterize(vectors, { k: duration }, async (err, res) => {
             const clusters = res
             const placesByDays = []
-
+            let counter = 0;
             for (let index = 0; index < duration; index++) {
+                counter++;
                 placesByDays[index] = { places: [], center: clusters[index].centroid }
                 clusters[index].cluster.map((locInDay) => {
                     placeToAdd = places.find(place => place.geometry.location.lat == locInDay[0] &&
@@ -123,13 +123,13 @@ function devidePlacesByDays(places, duration) {
                     placesByDays[index]["places"].push(placeToAdd)
                 })
             }
+            if (counter == duration) {
+                resolve(placesByDays);
+            }
+        });
 
-            resolve(placesByDays);
-        })
     });
-
     return kMeansPromise
-
 }
 
 function planTripForDay(places, planningType) {
