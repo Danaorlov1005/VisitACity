@@ -1,95 +1,24 @@
-<!--<div class="card form">-->
-
-  <!--<h5 class="card-header grey-text text-center py-4">-->
-      <!--<strong>הרשמה</strong>-->
-  <!--</h5>-->
-
-  <!--&lt;!&ndash;Card content&ndash;&gt;-->
-  <!--<div class="card-body px-lg-5 pt-0">-->
-
-      <!--&lt;!&ndash; Form &ndash;&gt;-->
-      <!--<form class="text-center center" style="color: #757575;">-->
-
-          <!--&lt;!&ndash;<div class="form-row">&ndash;&gt;-->
-              <!--&lt;!&ndash;<div class="col">&ndash;&gt;-->
-                  <!--&lt;!&ndash;&lt;!&ndash; First name &ndash;&gt;&ndash;&gt;-->
-                  <!--&lt;!&ndash;<div class="md-form text-right">&ndash;&gt;-->
-                      <!--&lt;!&ndash;<input type="text" id="materialRegisterFormFirstName" class="form-control">&ndash;&gt;-->
-                      <!--&lt;!&ndash;<label class="label" for="materialRegisterFormFirstName">שם פרטי</label>&ndash;&gt;-->
-                  <!--&lt;!&ndash;</div>&ndash;&gt;-->
-              <!--&lt;!&ndash;</div>&ndash;&gt;-->
-              <!--&lt;!&ndash;<div class="col">&ndash;&gt;-->
-                  <!--&lt;!&ndash;&lt;!&ndash; Last name &ndash;&gt;&ndash;&gt;-->
-                  <!--&lt;!&ndash;<div class="md-form">&ndash;&gt;-->
-                      <!--&lt;!&ndash;<input type="email" id="materialRegisterFormLastName" class="form-control" style="direction: rtl">&ndash;&gt;-->
-                      <!--&lt;!&ndash;<label class="label" for="materialRegisterFormLastName">שם משפחה</label>&ndash;&gt;-->
-                  <!--&lt;!&ndash;</div>&ndash;&gt;-->
-              <!--&lt;!&ndash;</div>&ndash;&gt;-->
-          <!--&lt;!&ndash;</div>&ndash;&gt;-->
-
-          <!--&lt;!&ndash; E-mail &ndash;&gt;-->
-          <!--<div class="md-form mt-0 left-input">-->
-            <!--<label>E-mail:-->
-              <!--<input type="text" ng-model="email">-->
-              <!--&lt;!&ndash;<input type="email" id="email" class="form-control" required>&ndash;&gt;-->
-             <!--</label>-->
-          <!--</div>-->
-
-          <!--&lt;!&ndash; Password &ndash;&gt;-->
-          <!--<div class="md-form">-->
-            <!--<label class="label" for="password">ססמא:-->
-              <!--<input type="password" id="password" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock" required>-->
-              <!--</label>-->
-              <!--<small id="materialRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">-->
-                  <!--לפחות 8 תווים-->
-              <!--</small>-->
-          <!--</div>-->
-
-          <!--&lt;!&ndash; Phone number &ndash;&gt;-->
-          <!--&lt;!&ndash;<div class="md-form">&ndash;&gt;-->
-              <!--&lt;!&ndash;<input id="materialRegisterFormPhone" class="form-control">&ndash;&gt;-->
-              <!--&lt;!&ndash;<label class="label" for="materialRegisterFormPhone">מספר טלפון</label>&ndash;&gt;-->
-          <!--&lt;!&ndash;</div>&ndash;&gt;-->
-
-          <!--&lt;!&ndash; Sign up button &ndash;&gt;-->
-          <!--<button class="btn btn-outline-default btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit" (click)="saveUser()" routerLink="/LandingPageComponent">Sign in</button>-->
-
-          <!--<hr>-->
-
-      <!--</form>-->
-      <!--&lt;!&ndash; Form &ndash;&gt;-->
-
-  <!--</div>-->
-
-<!--</div>-->
-<!--&lt;!&ndash;Card content&ndash;&gt;-->
 <div class="card-body px-lg-5 pt-0">
-
-<!--&lt;!&ndash; Form &ndash;&gt;-->
-<!--<form class="text-center center" style="color: #757575;">-->
-<form class="text-center center" [formGroup]="registerForm" novalidate>
+  <form class="text-center center" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
   <div class="form-group">
-    <label class="center-block">כתובת מייל:
-      <input class="form-control" formControlName="UserName">
-    </label>
-  </div>
-  <div *ngIf="registerForm.controls['UserName'].invalid && (registerForm.controls['UserName'].dirty || registerForm.controls['UserName'].touched)" class="alert alert-danger">
-    <div *ngIf="registerForm.controls['UserName'].errors.required">
-      יש להכניס כתובת מייל
+    <label for="UserName">כתובת מייל</label>
+    <input type="text" formControlName="UserName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.UserName.errors }" />
+    <div *ngIf="submitted && f.UserName.errors" class="invalid-feedback">
+      <div *ngIf="f.UserName.errors.required">יש להזין כתובת מייל</div>
+      <div *ngIf="f.UserName.errors.email">יש להזין כתובת מייל תקינה</div>
     </div>
   </div>
   <div class="form-group">
-    <label class="center-block">סיסמא:
-      <input class="form-control" formControlName="Password">
-    </label>
-  </div>
-  <div *ngIf="registerForm.controls['Password'].invalid && (registerForm.controls['Password'].dirty || registerForm.controls['Password'].touched)" class="alert alert-danger">
-    <div *ngIf="registerForm.controls['Password'].errors.required">
-      יש להכניס ססמא תקינה בת 6 תווים לפחות
+    <label for="Password">ססמא</label>
+    <input type="password" formControlName="Password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.Password.errors }" />
+    <div *ngIf="submitted && f.Password.errors" class="invalid-feedback">
+      <div *ngIf="f.Password.errors.required">יש להזין ססמא באורך 6 תווים לפחות</div>
+      <div *ngIf="f.Password.errors.minlength">יש להזין ססמא באורך 6 תווים לפחות</div>
     </div>
   </div>
-  <!-- Sign up button -->
-  <button class="btn btn-outline-default btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit" (click)="login()" routerLink="/LandingPageComponent">הרשם</button>
-
+  <div class="form-group">
+    <button class="btn btn-outline-default btn-rounded my-4 waves-effect z-depth-0">הרשם</button>
+    <a routerLink="/app-landing-page" class="btn btn-link">בטל</a>
+  </div>
 </form>
 </div>
