@@ -102,6 +102,7 @@ function prioritizeResults(places, preferences) {
 
 function devidePlacesByDays(places, duration) {
     let vectors = []
+    let counter = 0;
 
     places.forEach(place => {
         vectors.push([place.geometry.location.lat, place.geometry.location.lng])
@@ -112,9 +113,7 @@ function devidePlacesByDays(places, duration) {
         kmeans.clusterize(vectors, { k: duration }, async (err, res) => {
             const clusters = res
             const placesByDays = []
-            let counter = 0;
             for (let index = 0; index < duration; index++) {
-                counter++;
                 placesByDays[index] = { places: [], center: clusters[index].centroid }
                 clusters[index].cluster.map((locInDay) => {
                     placeToAdd = places.find(place => place.geometry.location.lat == locInDay[0] &&
@@ -122,9 +121,10 @@ function devidePlacesByDays(places, duration) {
 
                     placesByDays[index]["places"].push(placeToAdd)
                 })
-            }
-            if (counter == duration) {
-                resolve(placesByDays);
+
+                if (index == duration-1){
+                    resolve(placesByDays);
+                }
             }
         });
 
