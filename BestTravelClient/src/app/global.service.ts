@@ -7,7 +7,7 @@ export class GlobalService {
   private nextTripImgUrl;
   private city;
   private place;
-  private userId: any = {};
+  private userId;
   private tripPreferencesObj: any = {};
   private tripPreferencesObjToSearch: any = {};
   private currentTripPlan: any = {};

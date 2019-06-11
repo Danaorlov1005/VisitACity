@@ -1,6 +1,6 @@
 <main class="mt-5 pt-5">
   <div class="container">
-    <section class="card near-moon-gradient animated pulse" id="intro">
+    <section class="card near-moon-gradient animated pulse" id="intro" [hidden]="isUserConnected">
       <div class="card-body text-white text-center py-5 px-5 my-5 wow bounceInUp overlay zoom">
 
         <h1 class="mb-4">
@@ -13,10 +13,10 @@
           <strong>צור מסלולים וקבל מסלולים מותאים אישית שגולשים עם אותם תחומי עניין כמוך אהבו</strong>
         </p>
         <div>
-          <a href="#" routerLink="/user-login" class="btn btn-outline-white btn-lg">התחבר
+          <a routerLink="/user-login" class="btn btn-outline-white btn-lg">התחבר
             <i class="fa fa-user ml-2"></i>
           </a>
-          <a href="#" routerLink="/create-user" class="btn btn-outline-white btn-lg">צור חשבון חדש
+          <a routerLink="/create-user" class="btn btn-outline-white btn-lg">צור חשבון חדש
             <i class="fa fa-plus ml-2"></i>
           </a>
         </div>
