@@ -43,11 +43,36 @@ router.get('/createTripByParameters1', async function (req,res){
     res.send(results)
 })
 
-router.get('/getPopularSites', function (req, res) {
-    getPopularSites().then((result) => {
-        res.send(result);
-    }, (err => { console.log(err) }));
-})
+router.get('/getPopularSites', async function (req, res) {
+    let counter = 0;
+     getPopularSites().then(async function (result) {
+        for (let index = 0; index < result.length; index++) {
+            let params = {
+                duration: 4,
+                location: [result[index].Location.x, result[index].Location.y],
+                filters: {
+                    nature: 2,
+                    family: 2,
+                    food: 2,
+                    nightLife: 2,
+                    culture: 2,
+                    shopping: 2
+                }
+            }
+
+            createNewTrip(params).then((tripForSite) => {
+                console.log(result[index].Name + " - " + tripForSite.places.length);
+                counter++;
+                result[index].trip = tripForSite
+
+                if (counter == result.length) {
+                    res.send(result);
+                }
+            })
+        }
+
+    }
+     )})
 
 router.get('/getTripsForUser', function (req, res) {
     getTripsForUser(req.params).then((result) => {
@@ -56,14 +81,14 @@ router.get('/getTripsForUser', function (req, res) {
 })
 
 router.get('/addNewUser', function (req, res) {
-    addNewUser(req.params).then((result) => {
+    addNewUser(req.body).then((result) => {
         res.send(result);
     }, (err => { console.log(err) }));
 })
 
 
 router.get('/getUser', function (req, res) {
-    getUser(req.params).then((result) => {
+    getUser(req.query).then((result) => {
         res.send(result);
     }, (err => { console.log(err) }));
 })
