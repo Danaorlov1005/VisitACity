@@ -121,7 +121,7 @@ function devidePlacesByDays(places, duration) {
 
                     placesByDays[index]["places"].push(placeToAdd)
                 })
-
+  
                 if (index == duration-1){
                     resolve(placesByDays);
                 }
