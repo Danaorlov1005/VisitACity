@@ -40,7 +40,7 @@ declare let google: any;
   ],
   imports: [
     AgmCoreModule.forRoot({
-      apiKey: "AIzaSyBts53vgjeOpiVy962cJUvS8D021tTgpdI",
+      apiKey: "AIzaSyBORN9IeVSsOjcMDnzY43FHGrIa6mNJnYc",
       libraries: ["places"]
     }),
     AgmDirectionModule,
