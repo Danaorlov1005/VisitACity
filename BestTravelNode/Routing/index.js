@@ -9,7 +9,7 @@ const { createNewTrip } = require('../Logics/TripLogic')
 
 
 router.post('/addNewTrip', function (req, res) {
-    addNewTrip(req.data)
+    addNewTrip(req.body.obj, req.body.user, req.body.imageUrl, req.body.city)
 });
 
 router.post('/createTripByParameters', async function (req, res) {
@@ -79,7 +79,7 @@ router.get('/getPopularSites', async function (req, res) {
 })
 
 router.get('/getTripsForUser', function (req, res) {
-    getTripsForUser(req.params).then((result) => {
+    getTripsForUser(req.query).then((result) => {
         res.send(result);
     }, (err => { console.log(err) }));
 })
