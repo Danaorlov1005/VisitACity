@@ -3,13 +3,13 @@ const express = require('express')
 const router = express.Router()
 
 const { getPopularSites } = require('../Repositories/GeneralRepository')
-const { addNewTrip } = require('../Repositories/TripRepository')
+const { saveTrip } = require('../Repositories/TripRepository')
 const { getTripsForUser, addNewUser, getUser } = require('../Repositories/UsersRepository')
 const { createNewTrip } = require('../Logics/TripLogic')
 
 
-router.post('/addNewTrip', function (req, res) {
-    addNewTrip(req.body.obj, req.body.user, req.body.imageUrl, req.body.city)
+router.post('/saveTrip', function (req, res) {
+    saveTrip(req.body.obj, req.body.user, req.body.imageUrl, req.body.city)
 });
 
 router.post('/createTripByParameters', async function (req, res) {
@@ -23,28 +23,8 @@ router.post('/createTripByParameters', async function (req, res) {
 
     const results = await createNewTrip(dataFromClient)
     res.send(results)
-    addNewTrip(results)
-})
 
-router.get('/createTripByParameters1', async function (req, res) {
-    const mockData = {
-        duration: 4,
-        location: [41.8977047, 12.4760446],
-        filters: {
-            nature: 1,
-            family: 4,
-            food: 5,
-            nightLife: 3,
-            culture: 2
-
-        }
-    }
-
-    const results = await createNewTrip(mockData)
-    res.send(results)
-
-    // remove after add new trip button
-    addNewTrip(results)
+    // saveTrip(results)
 })
 
 router.get('/getPopularSites', async function (req, res) {
@@ -75,7 +55,6 @@ router.get('/getPopularSites', async function (req, res) {
             })
         }
     }, (err => { console.log(err) }));
-
 })
 
 router.get('/getTripsForUser', function (req, res) {
@@ -90,17 +69,10 @@ router.post('/addNewUser', function (req, res) {
     }, (err => { console.log(err) }));
 })
 
-
 router.get('/getUser', function (req, res) {
     getUser(req.query).then((result) => {
         res.send(result);
     }, (err => { console.log(err) }));
-})
-
-
-
-router.get('/getsPlacesAPI', function (req, res) {
-
 })
 
 router.post('/addNewUser/:UserName/:Password', function (req, res) {
