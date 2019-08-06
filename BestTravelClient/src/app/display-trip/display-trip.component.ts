@@ -29,9 +29,12 @@ export class DisplayTripComponent implements OnInit {
 
   getTripObject() {
     const obj = this.globalService.getTripPreferencesObjToSearch();
-    this.http.post('http://localhost:3000/createTripByParameters', obj)
+    const user = this.globalService.getUser();
+    const imageUrl = this.globalService.getNextTripImgUrl();
+    const city = this.globalService.getCity();
+    this.http.post('http://localhost:3000/createTripByParameters', {obj, user, imageUrl, city})
       .subscribe(res => {
-        this.globalService.setTripPlan(res);
+        this.globalService.setTripPlan(res); 
         console.log(res);
         this.days = res;
         this.globalService.setTripPreferencesObj(res);
@@ -39,9 +42,9 @@ export class DisplayTripComponent implements OnInit {
   }
 
   SaveTrip() {
-    const obj = this.globalService.getTripPlan();
+    const tripId = this.globalService.getTripPlan().id;
     const user = this.globalService.getUser();
-    this.http.post('http://localhost:3000/saveTrip', {obj, user})
+    this.http.post('http://localhost:3000/saveTrip', {tripId, user}) 
       .subscribe(res => {
         console.log(res);
         this.days = res;

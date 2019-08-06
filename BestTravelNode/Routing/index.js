@@ -3,28 +3,28 @@ const express = require('express')
 const router = express.Router()
 
 const { getPopularSites } = require('../Repositories/GeneralRepository')
-const { saveTrip } = require('../Repositories/TripRepository')
+const { saveTrip, markTripAsSaved } = require('../Repositories/TripRepository')
 const { getTripsForUser, addNewUser, getUser } = require('../Repositories/UsersRepository')
 const { createNewTrip } = require('../Logics/TripLogic')
 
 
-router.post('/saveTrip', function (req, res) {
-    saveTrip(req.body.obj, req.body.user, req.body.imageUrl, req.body.city)
+router.post('/saveTrip',async function (req, res) {
+    const a = await markTripAsSaved(req.body.tripId, req.body.user);
 });
 
 router.post('/createTripByParameters', async function (req, res) {
     const dataFromClient = {
-        duration: req.body.duration,
-        location: [req.body.location.x, req.body.location.y],
-        filters: req.body.preferences
+        duration: req.body.obj.duration,
+        location: [req.body.obj.location.x, req.body.obj.location.y],
+        filters: req.body.obj.preferences
     }
 
-    console.log([req.body.location.x, req.body.location.y])
+    console.log([req.body.obj.location.x, req.body.obj.location.y])
 
-    const results = await createNewTrip(dataFromClient)
-    res.send(results)
-
-    // saveTrip(results)
+    let results = await createNewTrip(dataFromClient)
+    const tripId = await saveTrip(results, req.body.user, req.body.imageUrl, req.body.city);
+    results.id = tripId[0];
+    res.send(results);
 })
 
 router.get('/getPopularSites', async function (req, res) {
