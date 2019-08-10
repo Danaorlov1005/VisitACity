@@ -3,13 +3,13 @@ const express = require('express')
 const router = express.Router()
 
 const { getPopularSites } = require('../Repositories/GeneralRepository')
-const { saveTrip, markTripAsSaved } = require('../Repositories/TripRepository')
+const TripRepository = require('../Repositories/TripRepository')
 const { getTripsForUser, addNewUser, getUser } = require('../Repositories/UsersRepository')
 const { createNewTrip } = require('../Logics/TripLogic')
 
 
-router.post('/saveTrip',async function (req, res) {
-    const a = await markTripAsSaved(req.body.tripId, req.body.user);
+router.post('/saveTrip', async function (req, res) {
+    const a = await TripRepository.markTripAsSaved(req.body.tripId);
 });
 
 router.post('/createTripByParameters', async function (req, res) {
@@ -19,11 +19,32 @@ router.post('/createTripByParameters', async function (req, res) {
         filters: req.body.obj.preferences
     }
 
-    console.log([req.body.obj.location.x, req.body.obj.location.y])
+    if (!req.body.user || req.body.user.toString() == ""){
+        console.log("no user logged in");        
+        res.send(null);
+    }
+    else {
+        let results = await createNewTrip(dataFromClient)
+        const tripId = await TripRepository.saveTrip(results, req.body.user, req.body.imageUrl, req.body.city);
+        results.id = tripId[0].id;
+        res.send(results);
+    }
+})
 
-    let results = await createNewTrip(dataFromClient)
-    const tripId = await saveTrip(results, req.body.user, req.body.imageUrl, req.body.city);
-    results.id = tripId[0];
+router.post('/getRecommendations', async function (req, res){
+    const dataFromClient = {
+        user_id: req.body.user,
+        location: [req.body.obj.location.x, req.body.obj.location.y],
+        filters: req.body.obj.preferences,
+        tripId: req.body.tripId
+    }
+
+    const results={
+        searchesAmount: await TripRepository.getAmountOfSeraches(),
+        avgDuration: await TripRepository.avgDuration(dataFromClient.user_id),
+        nearbyPlaces: await TripRepository.getNearPlaces(dataFromClient.location)        
+    }  
+
     res.send(results);
 })
 
