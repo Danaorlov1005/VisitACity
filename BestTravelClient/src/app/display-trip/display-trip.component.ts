@@ -41,7 +41,9 @@ export class DisplayTripComponent implements OnInit {
   SaveTrip() {
     const obj = this.globalService.getTripPlan();
     const user = this.globalService.getUser();
-    this.http.post('http://localhost:3000/addNewTrip', {obj, user})
+    const imageUrl = this.mainImgUrl;
+    const city = this.city;
+    this.http.post('http://localhost:3000/addNewTrip', {obj, user, imageUrl, city})
       .subscribe(res => {
         console.log(res);
         this.days = res;
