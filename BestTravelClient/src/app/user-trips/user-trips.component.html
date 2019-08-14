@@ -8,8 +8,8 @@
         <div class="col-md-6 mb-4" *ngFor="let trip of allTrips">
           <div class="card" (click)="basicModal.show()">
             <div class="view overlay zoom">
-              <!--<img src={{trip.ImageUrl}} class="card-img-top"-->
-                   <!--alt="">-->
+              <img src={{trip.ImageUrl}} class="card-img-top"
+                   alt="">
               <div class="mask flex-center">
                 <p class="white-text">Zoom effect</p>
               </div>
@@ -40,8 +40,11 @@
                   <h6> משך הטיול הוא {{trip.duration}} ימים </h6>
                 </div>
 
-                <ul class="list-group list-group-flush mt-3" style="overflow-y: scroll;height: 55%">
-                  <li class="list-group-item ml-4" (click)="test.toggle()" *ngFor="let place of trip.locations[0].places">{{place.name}}
+                <ul class="list-group" style="overflow-y: scroll;height: 55%">
+                  <li class="pb-5" *ngFor="let location of trip.locations; let i=index">
+                    <h6> יום מספר {{i+1}} </h6>
+                    <ul class="list-group list-group-flush mt-3">
+                  <li class="list-group-item ml-4" (click)="test.toggle()" *ngFor="let place of location.places">{{place.name}}
                     <div class="" mdbCollapse #test="bs-collapse">
                       <p>כתובת: {{place.vicinity}}</p>
                     </div>
@@ -56,6 +59,8 @@
                       <i *ngIf="place.user_ratings_total == 5" class="fa fa-star py-2 px-1 rate-popover" data-index="4" data-html="true" data-toggle="popover" data-placement="top"></i>
                     </span>
                     </div>
+                  </li>
+                  </ul>
                   </li>
                 </ul>
 

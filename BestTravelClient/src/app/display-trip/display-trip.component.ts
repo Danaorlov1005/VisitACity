@@ -13,7 +13,7 @@ export class DisplayTripComponent implements OnInit {
   activityPerDayImgUrl: string = this.globalService.getNextTripImgUrl();
   city: string = this.globalService.getCity();
   days: any = {};
-  canSave:boolean = this.globalService.getUser == null ? false:true;
+  canSave: boolean = this.globalService.getUser == null ? false : true;
 /*
   this.days.places:any = {};
 */
@@ -43,7 +43,7 @@ export class DisplayTripComponent implements OnInit {
     const user = this.globalService.getUser();
     const imageUrl = this.mainImgUrl;
     const city = this.city;
-    this.http.post('http://localhost:3000/saveTrip', {obj, user})
+    this.http.post('http://localhost:3000/saveTrip', {obj, user, imageUrl, city})
       .subscribe(res => {
         console.log(res);
         this.days = res;
