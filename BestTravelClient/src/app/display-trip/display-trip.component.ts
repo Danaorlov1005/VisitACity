@@ -14,9 +14,9 @@ export class DisplayTripComponent implements OnInit {
   city: string = this.globalService.getCity();
   days: any = {};
   canSave: boolean = this.globalService.getUser == null ? false : true;
-  /*
-    this.days.places:any = {};
-  */
+/*
+  this.days.places:any = {};
+*/
   dayNames: any = ['היום הראשון שלך', 'היום השני שלך', 'היום השלישי שלך', 'היום הרביעי שלך', 'היום בחמישי שלך', 'היום השישי שלך', 'היום השביעי שלך'];
 
   constructor(private globalService: GlobalService, private http: HttpClient) { }

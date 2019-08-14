@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import { GlobalService } from '../global.service';
 
 @Component({
@@ -16,7 +16,8 @@ export class UserTripsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.http.get('http://localhost:3000/getTripsForUser?UserName=' + this.globalService.getUser()).subscribe(
+    const params = new HttpParams().set('UserName', this.globalService.getUser());
+    this.http.get('http://localhost:3000/getTripsForUser', {params}).subscribe(
       data => {
         this.allTrips = data;
       });

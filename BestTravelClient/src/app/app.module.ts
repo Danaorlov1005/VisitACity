@@ -51,8 +51,6 @@ declare let google: any;
     MDBBootstrapModule.forRoot(),
     HttpClientModule,
     BrowserAnimationsModule,
-    DropdownModule.forRoot(),
-
   ],
   providers: [GlobalService],
   bootstrap: [AppComponent],
