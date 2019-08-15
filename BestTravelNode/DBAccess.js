@@ -8,7 +8,7 @@ async function executeQuery(query, params) {
         host: 'manny.db.elephantsql.com',
         database: 'kwwwxjgg',
         password: 'Lx0MjaWnNDxKzcQ69Tx67O8bnO4pafwa',
-        port: 5432,
+        port: 5432
     })
 
     await client.connect();

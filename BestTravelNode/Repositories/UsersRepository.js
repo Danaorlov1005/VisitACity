@@ -2,9 +2,9 @@ const { executeQuery } = require('../DBAccess')
 
 function getTripsForUser(data){
     let query =`
-        SELECT t."id", t."locations", t."name", t."area", t."duration"
-        FROM public."Trips" t
-        WHERE t."user_id" = $1
+    SELECT id, name, locations, area, duration, user_id, "ImageUrl", is_saved
+	FROM public."Trips"	
+	WHERE user_id = $1 AND is_saved = true
     `
     return executeQuery(query, [data.UserName])
 }
