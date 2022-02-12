@@ -8,7 +8,7 @@
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
     "express": "^4.16.4",
-    "follow-redirects": "^1.7.0",
+    "follow-redirects": "^1.14.8",
     "geolib": "^3.0.2",
     "google-places-web": "^0.1.11",
     "googleplaces": "^0.6.1",
